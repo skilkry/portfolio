@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CV - Skilkry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/cv.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>   
+    <script type="module" src="./assets/JavaScript/common.js"></script>
+    <!-- Añadir la biblioteca html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="background-system">
+        <div class="grid"></div>
+        <div class="vignette"></div>
+        <div class="glow-points"></div>
+        <div class="scan-lines"></div>
+    </div>
+    <header>
+        <nav class="nav">
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+          </a>
+        </nav>
+      </header>
+            <div class="cv-controls">
+                <button id="downloadCV" class="cv-button">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+                <button id="printCV" class="cv-button">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="cv-container">
+        <div class="cv-document">
+            <div class="cv-header">
+                <div class="profile-pic">
+                    <img src="./assets/images/profilePicture.png" alt="Profile Picture">
+                    <div class="profile-glow"></div>
+                </div>
+                <div class="cv-title">
+                    <h1>Daniel <span class="surname">(Skilkry)</span></h1>
+                    <h2>Web Developer</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>ssdsardina@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+34 663 32 38 52</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Madrid, Spain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <div class="section-header">
+                    <i class="fas fa-user"></i>
+                    <h3>About Me</h3>
+                </div>
+                <div class="section-content">
+                    <p>Passionate web developer with a strong focus on creating immersive, interactive user experiences. Specialized in front-end development with a growing expertise in back-end technologies. Always eager to learn new skills and technologies to stay at the cutting edge of web development.</p>
+                    <p>I am particularly interested in <strong>emerging technologies</strong>, such as <strong>AI</strong> and <strong>Blockchain</strong>, and love working on projects that push my creativity and problem-solving skills.</p>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <div class="section-header">
+                    <i class="fas fa-code"></i>
+                    <h3>Skills</h3>
+                </div>
+                <div class="section-content skills-grid">
+                    <div class="skill-item" >
+                        <span class="skill-name">HTML5</span>
+                   
+                    </div>
+                    <div class="skill-item" >
+                        <span class="skill-name">CSS3</span>
+                      
+                    </div>
+                    <div class="skill-item" >
+                        <span class="skill-name">JavaScript</span>
+                    
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Smali</span>
+                     
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">XML</span>
+                     
+                    </div>
+                    <div class="skill-item" data-level="80">
+                        <span class="skill-name">Python</span>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <div class="section-header">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Experience</h3>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Mar 24 – Jun 10, 2025</div>
+                    <div class="timeline-content">
+                        <h4>IT Internship</h4>
+                        <h5><a href="https://www.ventaone.es">VentaOne S.L</a></h5>
+                        <p>Completed a professional internship as part of the Intermediate Vocational Training in Microcomputer Systems and Networks. Involved in network configuration and support tasks, as well as assisting in the development of an Android application using Kotlin and XML. Successfully configured secure network environments and optimized performance for internal applications.</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="cv-section">
+                <div class="section-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education</h3>
+                </div>
+                <div class="section-content timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2019 – 2023</div>
+                        <div class="timeline-content">
+                            <h4>Compulsory Secondary Education (ESO)</h4>
+                            <h5>Colegio Obispo Perelló</h5>
+                            <p>Graduated from compulsory secondary education in Spain, focusing on general studies and foundational knowledge in various subjects.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- SMR -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2023 – 2025</div>
+                        <div class="timeline-content">
+                            <h4>Vocational Training in Microcomputer Systems and Networks (SMR)</h4>
+                            <h5>TEIDE I.V</h5>
+                            <p>Currently completing a two-year Intermediate Vocational Training program focused on IT support, operating systems, networking, and basic programming. This program equips me with both theoretical and practical knowledge in managing and troubleshooting network systems.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <div class="section-header">
+                    <i class="fas fa-language"></i>
+                    <h3>Languages</h3>
+                </div>
+                <div class="section-content languages-grid">
+                    <div class="language-item">
+                        <span class="language-name">Spanish</span>
+                        <span class="level-text">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="level-text">Cambridge English Certificate – B2 First (FCE), Advanced understanding of both written and spoken communication.</span>
+                    </div>
+                </div>
+            </div>
+            
+          
+    </main>
+    
+    <script src="./assets/JavaScript/cv.js"></script>
+</body>
+</html>

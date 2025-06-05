@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skilkry - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="./assets/css/layout.css"> 
+    
+    <link rel="stylesheet" href="./assets/css/accessibility.css">
+    <link rel="stylesheet" href="./assets/css/config-menu.css">
+
+    <meta name="description" content="Portfolio profesional de Skilkry - Desarrollador Web y Diseñador especializado en experiencias web creativas con temática cyberpunk.">
+    <meta name="keywords" content="desarrollo web, portfolio, cyberpunk, desarrollador creativo, skilkry, front-end, android, modder">
+    <meta property="og:title" content="Skilkry - Creative Web Developer">
+    <meta property="og:description" content="Portfolio profesional mostrando trabajos de desarrollo y diseño web.">
+</head>
+<body>
+    <div class="config-menu-container"> 
+        <button class="config-button" id="configButton"><i class="fas fa-cog"></i></button> 
+        <div class="config-menu" id="configMenu"> 
+            <div class="config-menu-header">
+                <h3 data-i18n="menu">Menú</h3>
+                <button class="close-button" id="closeConfigButton"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="config-menu-sections">
+                <!-- Sección de Configuración -->
+                <div class="config-section">
+                    <h4 class="section-title" data-i18n="settings">Configuración</h4>
+                    <div class="config-menu-items">
+                        <!-- Control de Tema -->
+                    
+                        <!-- Control de Sonido -->
+                    
+                        <!-- Selector de Idioma -->
+                        <div class="config-item language-container">
+                            <label for="language-selector" data-i18n="language">Idioma</label>
+                            <select id="language-selector" class="language-dropdown">
+                                <option value="es">Español</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de Enlaces -->
+                <div class="config-section">
+                    <h4 class="section-title" data-i18n="links">Enlaces</h4>
+                    <div class="config-menu-items">
+                        <!-- Enlace a CV -->
+                        <div class="config-item">
+                            <a href="./cv.html" class="config-link">
+                                <i class="fas fa-file-alt"></i>
+                                <span data-i18n="cv">CV</span>
+                            </a>
+                        </div>
+                        <!-- Enlace a Certificados -->
+                        <div class="config-item">
+                            <a href="./certificates.html" class="config-link">
+                                <i class="fas fa-certificate"></i>
+                                <span data-i18n="certificates">Certificados</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="config-menu a11y-menu" id="a11yMenu">
+        </div>
+    <header class="header">
+        <nav class="navbar">
+            </nav>
+    </header>
+   
+    <main class="main-content-area" id="sobre-mi">  
+        <div class="main-text-container">
+            <h1>HI! I'M <span class="main-text-span">DANIEL</span></h1> 
+            <h2>Front-end &amp; Android Dev, Modder</h2> 
+        </div> 
+    
+        <div class="terminal-window">
+            <div class="terminal-top-bar">
+                <div class="terminal-buttons">
+                    <div class="terminal-btn close"></div>
+                    <div class="terminal-btn min"></div>
+                    <div class="terminal-btn max"></div>
+                </div>
+                <span class="terminal-window-title">Made w 🫶 by Skilkry</span>
+            </div>
+    
+            <div class="terminal-main-content">
+                <div class="terminal-grid-layout">
+                    <div class="terminal-left-section">
+                        <img src="./assets/images/profilePicture.png" alt="Avatar de Skilkry" class="avatar-image">
+                        <div class="stats-text">
+                            </div>
+                    </div>
+                    <div class="terminal-right-section">
+                        <div class="terminal-menu-buttons">
+                            <button class="terminal-button" id="tutorial-start-button">START</button>
+                            <a href="./aboutMe.html" class="terminal-link-button">
+                                <button class="terminal-button about" id="tutorial-sobremi-button">ABOUT ME</button>
+                            </a>
+                            <a href="./projects.html" class="terminal-link-button">
+                                <button class="terminal-button projects" id="tutorial-proyectos-button">PROJECTS</button>
+                            </a>
+                            <a href="./contact.html" class="terminal-link-button">
+                                <button class="terminal-button contact" id="tutorial-contacto-button">CONTACT ME</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <img src="./assets/images/flor.png" alt="Maceta decorativa pixel art" class="decorative-pixel-flower">
+    
+    </main>
+
+    <script type="module" src="./assets/JavaScript/index.js"></script>
+    <script type="module" src="./assets/JavaScript/parallax.js"></script>
+    <script type="module" src="./assets/JavaScript/configMenu.js"></script>
+    <script src="./assets/JavaScript/accessibility.js"></script>
+    <script src="./assets/JavaScript/muteButton.js"></script>
+</body>
+</html>

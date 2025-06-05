@@ -1,0 +1,186 @@
+# Query: nav
+
+131 results - 41 files
+
+portfolio/index.html:
+  20:       <nav class="nav">
+  34:         <ul class="nav-list">
+  48:       </nav>
+
+portfolio/redirect.html:
+  11:      
+
+portfolio/assets/javascript/blind-Alert.js:
+  2:     const alertMessage = 'He detectado que quieres navegar con la tecla Tab, para mejorar tu experiencia, te recomiendo utilizar mi menú accesible para personas con visión reducida, aún en fase beta.';
+
+portfolio - 2/aboutMe.html:
+  19:         <nav class="nav">
+  23:         </nav>
+  25:         <nav class="nav">
+  30:           <div class="nav-links">
+  38:         </nav>
+
+portfolio - 2/accessibility.html:
+  30:         <nav class="nav">
+  35:           <div class="nav-links">
+  43:         </nav>
+
+portfolio - 2/certificates.html:
+  26:         <nav class="nav">
+  31:           <div class="nav-links">
+  39:         </nav>
+  47:         </nav>
+
+portfolio - 2/contact.html:
+  18:         <nav class="nav">
+  23:           <div class="nav-links">
+  31:         </nav>
+
+portfolio - 2/cv.html:
+  28:         <nav class="nav">
+  33:           <div class="nav-links">
+  41:         </nav>
+  51:         </nav>
+
+portfolio - 2/index.html:
+   48:                     <h4 class="section-title">Navigation</h4>
+  176:     <nav class="navbar">
+  178:     </nav>
+
+portfolio - 2/projects.html:
+  18:         <nav class="nav">
+  23:           <div class="nav-links">
+  31:         </nav>
+
+portfolio - 2/register.html:
+  13:   <!-- Navegación estandarizada -->
+  15:     <nav class="nav">
+  20:       <div class="nav-links">
+  28:     </nav>
+
+portfolio - 2/assets/css/imports.css:
+  9: @import './nav.css';
+
+portfolio - 2/assets/css/lightTheme.css:
+  502: body.light-theme .nav {
+  506: body.light-theme .nav a {
+  510: body.light-theme .nav a:hover {
+
+portfolio - 2/assets/css/nav.css:
+  10: .nav {
+  38: .nav i {
+  44: /* Añadir estilos para los enlaces de navegación */
+  45: .nav-links {
+  50: .nav-links a {
+  57: .nav-links a:hover {
+  63:     .nav-links {
+
+portfolio - 2/assets/css/querys.css:
+  4:     .nav-links {
+
+portfolio - 2/assets/css/register.css:
+  30:   margin-top: 70px; /* Añadir margen para la barra de navegación */
+
+portfolio - 2/assets/JavaScript/languageManager.js:
+    6:                 // Textos de navegación
+   13:                 'navigation': 'Navegación',
+   40:                 // Navigation texts
+   49:                 'navigation': 'Navigation',
+  166:             '.section-title:contains("Navigation")': 'navigation',
+  167:             '.section-title:contains("Navegación")': 'navigation',
+
+portfolio - 2/assets/JavaScript/main.js:
+   83: // Configurar el menú de navegación con efectos
+   84: function setupNavigation() {
+   85:     const navLinks = document.querySelectorAll('.nav a, .nav-links a');
+   87:     navLinks.forEach(link => {
+  114:     const navStyle = document.createElement('style');
+  115:     navStyle.textContent = `
+  136:     document.head.appendChild(navStyle);
+
+portfolio - 2/projects/finance-dashboard/budget.html:
+  17:             <nav class="main-nav">
+  32:             </nav>
+
+portfolio - 2/projects/finance-dashboard/index.html:
+  17:             <nav class="main-nav">
+  35:             </nav>
+
+portfolio - 2/projects/finance-dashboard/reports.html:
+  17:             <nav class="main-nav">
+  32:             </nav>
+
+portfolio - 2/projects/finance-dashboard/transactions.html:
+  17:             <nav class="main-nav">
+  32:             </nav>
+
+portfolio - 2/projects/finance-dashboard/scss/style.scss:
+  38:   .main-nav {
+
+portfolio - 2/projects/finance-dashboard/styles/style.css:
+  1038: .sidebar .main-nav ul li {
+  1043: .sidebar .main-nav ul li a {
+  1050: .sidebar .main-nav ul li a i {
+  1056: .sidebar .main-nav ul li:hover {
+  1060: .sidebar .main-nav ul li.active {
+  1063: .sidebar .main-nav ul li.active a {
+
+portfolio - 2/projects/finance-dashboard/styles/style.scss:
+  53:   .main-nav {
+
+portfolio - 2/projects/finance-dashboard/styles/layout/_sidebar.scss:
+  28:   .main-nav {
+
+portfolio - 2/projects/focusflow-timer/README.md:
+  37: 2.  Abre `index.html` en tu navegador.
+
+portfolio - 2/projects/game/memory-game/index.html:
+  13:         <nav class="nav">
+  18:         </nav>
+
+portfolio - 2/projects/task-manager/index.html:
+  13:         <nav class="nav">
+  20:         </nav>
+
+portfolio - 2/projects/task-manager/styles.css:
+   49: /* Header y navegación */
+   60: .nav {
+  658:     .nav {
+
+portfolio - 3/aboutMe.html:
+  12:     <nav class="nav">
+  16:     </nav>
+
+portfolio - 3/contact.html:
+  17:         <nav class="nav">
+  21:         </nav>
+
+portfolio - 3/index.html:
+  47:     <nav class="navbar">
+  49:     </nav>
+
+portfolio - 3/projects.html:
+  15:         <nav class="nav">
+  19:         </nav>
+
+portfolio - 3/register.html:
+  20:       <nav class="nav">
+  24:       </nav>
+
+portfolio - 3/assets/css/base.css:
+  2: @import './nav.css';
+
+portfolio - 3/assets/css/contact.css:
+  4: @import './nav.css';
+
+portfolio - 3/assets/css/discord.css:
+  1: @import './nav.css';
+
+portfolio - 3/assets/css/nav.css:
+  10: .nav {
+
+portfolio - 3/assets/css/querys.css:
+  4:     .nav-links {
+
+portfolio - 3/assets/css/register.css:
+  1: @import './nav.css';

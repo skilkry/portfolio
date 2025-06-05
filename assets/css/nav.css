@@ -1,0 +1,43 @@
+:root {
+    --discord-bg: #36393f;
+    --discord-primary: #dcddde;
+    --discord-secondary: #b9bbbe;
+    --discord-dark: #2f3136;
+    --discord-darker: #202225;
+    --discord-highlight: #5865f2;
+}
+
+.nav {
+    background-color: var(--discord-dark);
+    font-family: 'Poppins', sans-serif;
+    padding: 1rem 2rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-button {
+    color: var(--discord-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: white;
+}
+
+.nav i {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diprella - Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/register.css" />
+</head>
+<body>
+  <!-- Navegación estandarizada -->
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Home</span>
+      </a>
+    </nav>
+  </header>
+
+  <div class="container" id="container">
+    <div class="form-container sign-in-container">
+      <form action="#">
+        <div class="emoji-container">
+          <svg id="emoji" viewBox="0 0 200 200">
+            <circle cx="60" cy="60" r="50" fill="#ffb4c4" />
+            <path
+              class="arm left-arm"
+              d="M15 50 Q25 65 35 80"
+              fill="none"
+              stroke="#ffb4c4"
+              stroke-width="6"
+              stroke-linecap="round"
+            />
+            <path
+              class="arm right-arm"
+              d="M105 50 Q95 65 85 80"
+              fill="none"
+              stroke="#ffb4c4"
+              stroke-width="6"
+              stroke-linecap="round"
+            />
+            <g id="eyes">
+              <circle id="left-eye" cx="40" cy="50" r="10" fill="white" />
+              <circle id="right-eye" cx="80" cy="50" r="10" fill="white" />
+              <circle id="left-pupil" cx="40" cy="50" r="5" fill="#2c3e50" />
+              <circle id="right-pupil" cx="80" cy="50" r="5" fill="#2c3e50" />
+              <circle id="left-glint" cx="43" cy="47" r="2" fill="white" />
+              <circle id="right-glint" cx="83" cy="47" r="2" fill="white" />
+            </g>
+            <g id="left-hand">
+              <circle
+                cx="15"
+                cy="50"
+                r="8"
+                fill="#ffb4c4"
+                stroke="#ff9eb6"
+                stroke-width="2"
+              />
+            </g>
+            <g id="right-hand">
+              <circle
+                cx="105"
+                cy="50"
+                r="8"
+                fill="#ffb4c4"
+                stroke="#ff9eb6"
+                stroke-width="2"
+              />
+            </g>
+            <path
+              id="mouth"
+              d="M40 75 Q60 78 80 75"
+              fill="none"
+              stroke="#2c3e50"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <h1>Sign in</h1>
+        
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <span>or use your email account:</span>
+        
+        <div class="input-container">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email-input" placeholder="Email" />
+        </div>
+        
+        <div class="input-container">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password-input" placeholder="Password" />
+          <i class="fas fa-eye toggle-password" id="show-password" ></i>
+        </div>
+        
+  
+        
+        <a href="#" class="forgot">Forgot your password?</a>
+        <button type="button" class="signin-btn">SIGN IN</button>
+      </form>
+    </div>
+    <div class="form-container sign-up-container">
+      <form action="#">
+
+        <h1>Create Account</h1>
+        
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <span>or use your email for registration:</span>
+        
+        <div class="input-container">
+          <i class="fas fa-user"></i>
+          <input type="text" id="user-input" placeholder="Name" />
+        </div>
+        
+        <div class="input-container">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="signup-email-input" placeholder="Email" />
+        </div>
+        
+        <div class="input-container">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="signup-password-input" placeholder="Password" />
+        </div>
+        
+        <button type="button" class="signup-btn">SIGN UP</button>
+      </form>
+    </div>
+    
+    <!-- Overlay Container -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <!-- Left Overlay Panel (visible when in sign-up view) -->
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn">SIGN IN</button>
+        </div>
+        
+        <!-- Right Overlay Panel (visible when in sign-in view) -->
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp">SIGN UP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <p>Made with 🫶 by Skilkry</p>
+</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <!-- Add this script tag before your custom scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  
+  <!-- Your existing scripts -->
+  <script type="module" src="./assets/JavaScript/index.js"></script>
+  <script type="module" src="./assets/JavaScript/register.js"></script>
+  <script type="module" src="./assets/JavaScript/register-2.js"></script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+@charset "UTF-8";
+/* FocusFlow Timer - style.scss */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5a623;
+  --background-color: #f8f9fa;
+  --text-color: #343a40;
+  --modal-background: #ffffff;
+  --button-text-color: #ffffff;
+  --header-background: #ffffff;
+  --header-shadow: rgba(0,0,0,0.1);
+  --input-border-color: #ced4da;
+  --primary-text-color: #ffffff;
+  --focus-bg-light: color-mix(in srgb, var(--primary-color) 15%, transparent);
+  --short-break-color: #28a745;
+  --short-break-bg-light: color-mix(in srgb, #28a745 15%, transparent);
+  --long-break-color: #fd7e14;
+  --long-break-bg-light: color-mix(in srgb, #fd7e14 15%, transparent);
+  --text-color-light: color-mix(in srgb, var(--text-color) 70%, transparent);
+  --text-color-muted: color-mix(in srgb, var(--text-color) 50%, transparent);
+  --primary-light: #87ceeb;
+  --transition-speed: 0.3s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Eliminamos el bloque con la definición duplicada de body que pusiste antes */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  padding: 0.8em 1.5em;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+button:hover {
+  filter: brightness(90%);
+}
+button:active {
+  transform: scale(0.98);
+}
+button:disabled {
+  filter: brightness(120%);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+h1, h2 {
+  margin-bottom: 0.5em;
+}
+
+.app-header {
+  padding: 1rem 2rem;
+  background-color: var(--background-color);
+  box-shadow: 0 2px 4px var(--header-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+.app-header #settings-button {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 0.2em;
+}
+.app-header #settings-button:hover {
+  filter: none;
+  color: var(--primary-color);
+}
+
+.timer-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+  font-size: 0.9rem;
+  background-color: color-mix(in srgb, var(--background-color) 95%, black);
+  color: var(--text-color);
+  border-top: 1px solid var(--primary-light);
+  transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+}
+.app-footer p {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.timer-display {
+  margin-bottom: 2rem;
+}
+.timer-display #timer-mode {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--text-color-light);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.timer-display #timer-time {
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  line-height: 1;
+  transition: color 0.5s ease;
+}
+
+.timer-controls button {
+  margin: 0 0.5rem;
+}
+.timer-controls #reset-button, .timer-controls #skip-button {
+  background-color: var(--text-color-muted);
+  color: var(--background-color);
+}
+.timer-controls #reset-button:hover, .timer-controls #skip-button:hover {
+  filter: brightness(90%);
+}
+
+.cycle-tracker {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: var(--text-color-light);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  z-index: 1000;
+}
+.modal .modal-content {
+  background-color: var(--modal-background);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px var(--header-shadow);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+.modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-color-muted);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.modal .close-button:hover {
+  filter: none;
+  color: var(--primary-color);
+}
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+.modal form {
+  display: grid;
+  gap: 1rem;
+}
+.modal form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--text-color);
+}
+.modal form input[type=number], .modal form input[type=checkbox] {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 0.5em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.modal form input[type=checkbox] {
+  width: auto;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+.modal form input[type=color] {
+  padding: 0.2em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  height: 38px;
+  cursor: pointer;
+  background-color: var(--background-color);
+}
+.modal form label[for=enable-sound] {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+.modal form hr {
+  border: none;
+  border-top: 1px solid var(--input-border-color);
+  margin: 1rem 0;
+}
+.modal form .settings-color-selector label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.modal form .settings-color-selector .color-inputs {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.modal form .settings-color-selector .color-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.modal form .settings-color-selector .color-input-group label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+.modal form .settings-color-mode {
+  margin-bottom: 20px;
+}
+.modal form .settings-color-mode .radio-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+.modal form .settings-color-mode .radio-group label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.modal form .settings-color-mode .radio-group input[type=radio] {
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+.modal form .color-settings-group {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px dashed var(--input-border-color);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.02);
+  transition: border-color 0.3s, background-color 0.3s;
+}
+.modal form .color-settings-group[hidden] {
+  display: none;
+}
+.modal form .color-settings-group > label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: var(--text-color);
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.modal form .color-settings-group span {
+  font-size: 0.9em;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+.modal form .color-input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.modal form .color-input-group label {
+  font-weight: normal;
+  margin-bottom: 0;
+  min-width: 70px;
+  text-align: right;
+}
+.modal form .color-input-group input[type=color] {
+  margin-bottom: 0;
+}
+.modal form .color-inputs-advanced {
+  display: flex;
+  flex-direction: column;
+}
+.modal form button[type=submit] {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 1.1em;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body.focus-mode {
+  background-color: var(--focus-bg-light);
+}
+body.focus-mode .timer-display #timer-time {
+  color: var(--primary-color);
+}
+
+body.short-break-mode {
+  background-color: var(--short-break-bg-light);
+}
+body.short-break-mode .timer-display #timer-time {
+  color: var(--short-break-color);
+}
+
+body.long-break-mode {
+  background-color: var(--long-break-bg-light);
+}
+body.long-break-mode .timer-display #timer-time {
+  color: var(--long-break-color);
+}
+
+@media (max-width: 600px) {
+  .timer-display #timer-time {
+    font-size: 4rem;
+  }
+  .timer-controls button {
+    font-size: 0.9rem;
+    padding: 0.6em 1em;
+    margin: 0.3rem;
+  }
+  .app-header {
+    padding: 0.8rem 1rem;
+  }
+  .app-header h1 {
+    font-size: 1.3rem;
+  }
+  .modal-content {
+    padding: 1.5rem;
+  }
+  .settings-color-selector .color-inputs {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

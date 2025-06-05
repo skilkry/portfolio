@@ -1,0 +1,10 @@
+@use '../abstracts/variables' as *;
+
+// Example styles for charts
+.chart {
+  width: 100%;
+  height: 300px;
+  background-color: $card-background;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Finance Dashboard</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <h1>FinDash</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transacciones</a>
+                    </li>
+                    <li>
+                        <a href="budget.html"><i class="fas fa-piggy-bank"></i> Presupuesto</a>
+                    </li>
+                    <li class="active">
+                        <a href="reports.html"><i class="fas fa-file-alt"></i> Reportes</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content reports-page">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar en reportes...">
+                </div>
+                <div class="user-menu">
+                    <button class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="profile">
+                        <img src="./assets/default-avatar.svg" alt="Profile">
+                        <span>Usuario</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>Reportes Financieros</h1>
+                <div class="report-actions">
+                    <div class="date-range">
+                        <i class="fas fa-calendar-alt"></i>
+                        <select id="reportPeriod">
+                            <option value="month">Este Mes</option>
+                            <option value="quarter">Este Trimestre</option>
+                            <option value="year">Este Año</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
+                    <button class="export-btn">
+                        <i class="fas fa-download"></i>
+                        Exportar
+                    </button>
+                </div>
+            </div>
+
+            <div class="report-summary">
+                <div class="summary-card">
+                    <h2>Ingresos Totales</h2>
+                    <div class="amount">€4,500.00</div>
+                    <div class="trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>12% vs mes anterior</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <h2>Gastos Totales</h2>
+                    <div class="amount">€3,200.00</div>
+                    <div class="trend negative">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>8% vs mes anterior</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <h2>Tasa de Ahorro</h2>
+                    <div class="amount">28.9%</div>
+                    <div class="trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>3.2% vs mes anterior</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-charts">
+                <div class="chart-card">
+                    <h2>Ingresos vs Gastos</h2>
+                    <div class="chart-container">
+                        <canvas id="incomeExpenseChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h2>Distribución de Gastos</h2>
+                    <div class="chart-container">
+                        <canvas id="expenseDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-tables">
+                <div class="table-card">
+                    <h2>Principales Fuentes de Ingresos</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Cantidad</th>
+                                <th>% del Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Salario</td>
+                                <td class="amount income">€3,500.00</td>
+                                <td>77.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Freelance</td>
+                                <td class="amount income">€800.00</td>
+                                <td>17.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Inversiones</td>
+                                <td class="amount income">€200.00</td>
+                                <td>4.4%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-card">
+                    <h2>Principales Categorías de Gastos</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Cantidad</th>
+                                <th>% del Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Vivienda</td>
+                                <td class="amount expense">€1,200.00</td>
+                                <td>37.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Comida</td>
+                                <td class="amount expense">€600.00</td>
+                                <td>18.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Transporte</td>
+                                <td class="amount expense">€300.00</td>
+                                <td>9.4%</td>
+                            </tr>
+                            <tr>
+                                <td>Ocio</td>
+                                <td class="amount expense">€400.00</td>
+                                <td>12.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Servicios</td>
+                                <td class="amount expense">€350.00</td>
+                                <td>10.9%</td>
+                            </tr>
+                            <tr>
+                                <td>Otros</td>
+                                <td class="amount expense">€350.00</td>
+                                <td>10.9%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/reports.js"></script>
+    <script type="module" src="./js/transactions.js"></script>
+    <script type="module" src="./js/budget.js"></script>
+</body>
+</html>

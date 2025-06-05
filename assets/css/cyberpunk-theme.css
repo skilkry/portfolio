@@ -1,0 +1,294 @@
+@import './footer.css';
+
+:root {
+    /* Paleta de colores principal */
+    --cyber-primary: #9333ff;
+    --cyber-secondary: #6a0dad;
+    --cyber-accent: #ff00ff;
+    --cyber-accent2: #00ffff;
+    --cyber-text: #e0e0e0;
+    --cyber-dark: #1a0f2e;
+    --cyber-darker: rgba(20, 20, 35, 0.95);
+    --cyber-card-bg: rgba(30, 30, 45, 0.8);
+    --cyber-glow: rgba(147, 51, 255, 0.3);
+    
+    /* Sombras y efectos */
+    --cyber-shadow: 0 0 20px rgba(147, 51, 255, 0.3);
+    --cyber-glow-intense: 0 0 30px rgba(147, 51, 255, 0.5), 0 0 50px rgba(255, 0, 255, 0.2);
+    
+    /* Bordes */
+    --cyber-border: 1px solid rgba(147, 51, 255, 0.5);
+    
+    /* Gradientes */
+    --cyber-gradient: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #371C69 100%);
+    --cyber-button-gradient: linear-gradient(135deg, #845EC2, #D65DB1);
+    --cyber-glow-gradient: linear-gradient(90deg, transparent, var(--cyber-primary), var(--cyber-accent), transparent);
+
+}
+
+/* Estilos base para todas las páginas */
+body {
+    background-color: var(--cyber-dark);
+    color: var(--cyber-text);
+    font-family: 'Quantico', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Títulos con estilo cyberpunk */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', sans-serif;
+    color: white;
+    text-shadow: 0 0 10px rgba(147, 51, 255, 0.5);
+}
+
+/* Botones con estilo cyberpunk */
+.cyber-button {
+    background: rgba(147, 51, 255, 0.2);
+    border: var(--cyber-border);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-button:hover {
+    background: rgba(147, 51, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: var(--cyber-shadow);
+}
+
+.cyber-button::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, transparent, var(--cyber-accent), transparent);
+    animation: cyber-scan 2s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cyber-button:hover::before {
+    opacity: 1;
+}
+
+@keyframes cyber-scan {
+    0% { top: -10px; }
+    100% { top: 100%; }
+}
+
+/* Tarjetas con estilo cyberpunk */
+.cyber-card {
+    background: var(--cyber-card-bg);
+    border: 2px solid rgba(147, 51, 255, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--cyber-shadow);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.cyber-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--cyber-glow-intense);
+}
+
+/* Efectos de texto */
+.glitch-text {
+    position: relative;
+    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    animation: glitch-skew 0.2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(1deg); }
+    50% { transform: skew(-1deg); }
+    100% { transform: skew(1deg); }
+}
+
+/* Contenedores principales */
+.cyber-container {
+    padding: 2rem;
+    margin-top: 70px;
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+∫
+.cyber-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cyber-social-links a {
+    color: var(--cyber-text);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.cyber-social-links a:hover {
+    color: var(--cyber-primary);
+    transform: translateY(-3px);
+}
+
+/* Animaciones globales */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Efectos de escaneo */
+.scan-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Formularios */
+.cyber-input {
+    background: rgba(30, 30, 45, 0.6);
+    border: 1px solid rgba(147, 51, 255, 0.3);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-family: 'Quantico', sans-serif;
+}
+
+.cyber-input:focus {
+    outline: none;
+    border-color: var(--cyber-accent);
+    box-shadow: 0 0 10px rgba(147, 51, 255, 0.5);
+}
+
+.cyber-input::placeholder {
+    color: rgba(224, 224, 224, 0.5);
+}
+
+/* Cuadrículas */
+.cyber-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Títulos de sección */
+.cyber-section-title {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(147, 51, 255, 0.5);
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cyber-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyber-primary), var(--cyber-accent), transparent);
+}
+
+/* Efectos de hover para enlaces */
+.cyber-link {
+    position: relative;
+    color: var(--cyber-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.cyber-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cyber-primary), var(--cyber-accent));
+    transition: width 0.3s ease;
+}
+
+.cyber-link:hover {
+    color: white;
+    text-shadow: 0 0 8px var(--cyber-accent);
+}
+
+.cyber-link:hover::after {
+    width: 100%;
+}
+
+/* Badges y etiquetas */
+.cyber-badge {
+    background: rgba(147, 51, 255, 0.2);
+    border: 1px solid rgba(147, 51, 255, 0.5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .cyber-container {
+        padding: 1.5rem;
+    }
+    
+    .cyber-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .cyber-section-title {
+        font-size: 1.5rem;
+    }
+    
+    .cyber-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cyber-section-title {
+        font-size: 1.2rem;
+    }
+}

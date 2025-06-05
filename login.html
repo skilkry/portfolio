@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diprella - Login</title>
+  <link rel="stylesheet" href="./assets/css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+   
+      
+      <h1>Welcome back</h1>
+      <p class="subtitle">Please enter your credentials to login</p>
+      
+      <form id="login-form">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        
+        <div class="input-group">
+          <div class="password-label">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <i class="fas fa-eye toggle-password"></i>
+          </div>
+        </div>
+        
+        <div class="remember-me">
+          <input type="checkbox" id="remember" name="remember">
+          <label for="remember">Remember me</label>
+        </div>
+        
+        <button type="submit" class="login-btn">Log In</button>
+      </form>
+      
+      <div class="divider">
+        <span>OR</span>
+      </div>
+      
+      <div class="social-login">
+        <button class="google-btn">
+          <i class="fab fa-google"></i>
+          Continue with Google
+        </button>
+        <button class="facebook-btn">
+          <i class="fab fa-facebook-f"></i>
+          Continue with Facebook
+        </button>
+      </div>
+      
+      <p class="signup-text">
+        Don't have an account? <a href="index.html" class="signup-link">Sign up</a>
+      </p>
+    </div>
+  </div>
+  
+  <script src="./assets/JavaScript/login.js"></script>
+</body>
+</html>

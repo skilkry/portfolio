@@ -1,0 +1,176 @@
+@use '../abstracts/variables' as *;
+
+.transactions-page {
+  padding: $spacing-lg;
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+    
+    h1 {
+      font-size: 1.75rem;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+    }
+  }
+  
+  .filters {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      background-color: $card-background;
+      border-radius: $border-radius-md;
+      padding: $spacing-sm $spacing-md;
+      box-shadow: $shadow-sm;
+      
+      label {
+        margin-right: $spacing-sm;
+        color: $text-secondary;
+        font-size: 0.875rem;
+      }
+      
+      select, input {
+        border: none;
+        background: none;
+        outline: none;
+        color: $text-primary;
+        font-weight: $font-weight-bold;
+        padding: $spacing-xs;
+      }
+    }
+  }
+  
+  .transactions-table {
+    background-color: $card-background;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-md;
+    overflow: hidden;
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      
+      th, td {
+        padding: $spacing-md;
+        text-align: left;
+      }
+      
+      th {
+        background-color: rgba($primary-color, 0.05);
+        color: $text-primary;
+        font-weight: $font-weight-bold;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      tr {
+        border-bottom: 1px solid $border-color;
+        transition: background-color 0.2s ease;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        &:hover {
+          background-color: rgba($primary-color, 0.02);
+        }
+      }
+      
+      .transaction-type {
+        display: inline-block;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-sm;
+        font-size: 0.75rem;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        
+        &.income {
+          background-color: rgba($positive, 0.1);
+          color: $positive;
+        }
+        
+        &.expense {
+          background-color: rgba($negative, 0.1);
+          color: $negative;
+        }
+      }
+      
+      .amount {
+        font-weight: $font-weight-bold;
+        
+        &.income {
+          color: $positive;
+        }
+        
+        &.expense {
+          color: $negative;
+        }
+      }
+      
+      .actions {
+        display: flex;
+        gap: $spacing-xs;
+        
+        button {
+          background: none;
+          border: none;
+          padding: $spacing-xs;
+          border-radius: $border-radius-sm;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.1);
+          }
+          
+          &.edit {
+            color: $info;
+          }
+          
+          &.delete {
+            color: $negative;
+          }
+        }
+      }
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: $spacing-lg;
+    gap: $spacing-xs;
+    
+    button {
+      background: none;
+      border: 1px solid $border-color;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-sm;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+      
+      &.active {
+        background-color: $primary-color;
+        color: white;
+        border-color: $primary-color;
+      }
+      
+      &.prev, &.next {
+        padding: $spacing-xs $spacing-md;
+      }
+    }
+  }
+}

@@ -1,0 +1,446 @@
+@import './layout.css';
+@import './querys.css';
+@import './footer.css';
+@import './global.css';
+
+@import './lightTheme.css';
+
+@font-face {
+    font-family: Minecraft;
+    src: url(../fonts/Minecraft.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --background-light: linear-gradient(to bottom, #ff7ba0, #8e44ad, #2c3e50);
+    --text-light: #000000;
+    --background-dark: linear-gradient(to right, #3a3737, #222222, #2c2a2a, #3a3737);
+    --text-dark: #ffffff;
+    --accent-color-light: #e56997;
+    --accent-color-dark: #3a3737;
+    --link-hover-light: #ea72b6c9;
+    --link-hover-dark: #615959;
+    --cta-background-light: #bc6c9b;
+    --cta-background-dark: rgb(147, 141, 150);
+    --footer-background-light: #ffffff;
+    --footer-background-dark: #333333;
+    --shape-color-light: #ff79c6;
+    --shape-color-dark: #464541;
+    --icon-fill-dark: #000;
+    --icon-fill-light: #ffff00;
+    --icon-color-light: yellow;
+    --icon-color-dark: red;
+    --pass_log-color-dark: #fff;
+    --pass_log-color-light: #000;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.main {
+    position: relative;
+    z-index: 1;
+}
+
+body {
+    background-color: black;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+}
+
+/* Animación de fondo */
+@keyframes moveBackground {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(10px, 10px); }
+}
+
+/* Contenedor del logo */
+.logo-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+/* Animación del logo */
+.circle {
+    stroke-dasharray: 565;
+    stroke-dashoffset: 565;
+}
+
+.letter {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+}
+
+/* Texto de carga */
+.loading-text {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: white;
+    opacity: 0;
+}
+
+/* Animación de desaparición */
+@keyframes scaleFadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9) rotate(-5deg);
+        visibility: hidden;
+    }
+}
+
+/* Animación del texto de introducción */
+.intro-text {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Nombre del desarrollador */
+.dev-name {
+    font-size: 3rem;
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Cargo del desarrollador */
+.dev-title {
+    font-size: 1.5rem;
+    color: white;
+    opacity: 0;
+    margin: 1rem 0;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 3px;
+}
+
+/* Contenedor de habilidades */
+.dev-skills {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Estilos de cada habilidad */
+.skill {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Efectos brillantes comunes */
+.shiny-text {
+    display: inline;
+    color: #ffd700;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px #ffd700; }
+    50% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+}
+
+#text-container-animated {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #dcddde;
+    font-family: 'Minecraft', monospace;
+    text-shadow: 0 0 10px rgba(147, 51, 255, 0.5);
+    padding: 10px;
+    background: rgba(26, 15, 46, 0.3);
+    border-radius: 4px;
+    border-left: 3px solid rgba(147, 51, 255, 0.5);
+    margin-left: 20px;
+}
+
+.cyber-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -2px 0 #ff00ff;
+    clip-path: inset(0 50% 0 0);
+    animation: glitchShift 0.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitchShift {
+    0% { transform: translate(2px, -2px); opacity: 0.8; }
+    100% { transform: translate(-2px, 2px); opacity: 1; }
+}
+.menu-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(147, 51, 255, 0.3);
+    background: rgba(26, 15, 46, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+/* Eliminar esto de dentro del .menu-button::before */
+.menu-button::before {
+    content: '';
+    position: relative;
+    transition: 0.5s;
+}
+
+/* Añadir como selector independiente */
+.intro-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        #1a0f2e 0%,
+        #2d1b4e 35%,
+        #371C69 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.menu-button:hover::before {
+    left: 100%;
+}
+
+.menu-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(147, 51, 255, 0.3);
+    border-color: rgba(147, 51, 255, 0.6);
+}
+
+.social-links {
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    color: var(--discord-primary);
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: rgba(147, 51, 255, 0.8);
+    transform: translateY(-3px);
+}
+
+.cyber-heart {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    width: 24px;
+    height: 24px;
+}
+
+.heart-main {
+    fill: #ff0055; /* Rojo para ambos modos */
+    filter: drop-shadow(0 0 3px rgba(255, 0, 85, 0.5));
+}
+
+.heart-glow {
+    fill: transparent;
+    stroke: #ff0055; /* También rojo para coherencia */
+    stroke-width: 2;
+    opacity: 0.4;
+    animation: simple-pulse 2s infinite;
+}
+
+@keyframes simple-pulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.03);
+    }
+}
+
+/* Eliminar estas definiciones duplicadas */
+.cyber-heart{
+    color: red;
+}
+
+.heart-main {
+    fill: #c9c9c9; /* Color principal */
+}
+
+.heart-glow {
+    fill: transparent;
+    stroke: #9d6bff; /* Brillo */
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        stroke-opacity: 0.5;
+    }
+    to {
+        stroke-opacity: 1;
+    }
+}
+
+ .accesibility {
+    display: flex;
+    flex-direction: row;
+    font-size: 4px;
+}
+
+/* Añadir estos estilos al final del archivo */
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 2rem;
+    margin-top: 50px;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.main-title {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(147, 51, 255, 0.7), 0 0 20px rgba(147, 51, 255, 0.5);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cyber-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(26, 15, 46, 0.7);
+    border: 2px solid rgba(147, 51, 255, 0.5);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.cyber-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background: linear-gradient(45deg, rgba(147, 51, 255, 0.5), transparent, rgba(147, 51, 255, 0.5));
+    background-size: 300% 300%;
+    animation: borderGlow 3s ease infinite;
+    z-index: -1;
+}
+
+.cyber-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(147, 51, 255, 0.3);
+    border-color: rgba(147, 51, 255, 0.8);
+}
+
+.cyber-button:active {
+    transform: translateY(-2px);
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cyber-button {
+        width: 80%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Añadir al final del archivo */
+
+/* Estilos específicos para iconos */
+.menu-button i, 
+.config-button i,
+.a11y-toggle i,
+.close-button i,
+.config-menu-item i,
+.social-links i {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 1.2em;
+    width: 1.2em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Asegurar que los iconos sean visibles en modo de alto contraste */
+body.high-contrast i[class^="fas"],
+body.high-contrast i[class^="fab"],
+body.high-contrast i[class^="far"] {
+    color: white !important;
+}
+

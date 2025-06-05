@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Dashboard</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <h1>SkilDash</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active">
+                        <a href="./index.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="./transactions.html"><i class="fas fa-exchange-alt"></i> Transacciones</a>
+                    </li>
+                    <li>
+                        <a href="./budget.html"><i class="fas fa-piggy-bank"></i> Presupuesto</a>
+                    </li>
+                    <li>
+                        <a href="./reports.html"><i class="fas fa-file-alt"></i> Reportes</a>
+                    </li>
+                </ul>
+                <div class="aside_footer" >
+                    <p>Made w <i class="fa solid fa-heart"></i> by Skilkry</p>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar transacciones...">
+                </div>
+                <div class="user-menu">
+                    <button class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="profile">
+                        <img src="./assets/default-avatar.svg" alt="Profile">
+                        <span>Usuario</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <section class="balance-card card">
+                    <h2>Balance Total</h2>
+                    <div class="amount" id="totalBalance">$0.00</div>
+                    <div class="trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>3.5%</span>
+                        <span>vs mes anterior</span>
+                    </div>
+                </section>
+
+                <section class="income-card card">
+                    <h2>Ingresos</h2>
+                    <div class="amount" id="totalIncome">$0.00</div>
+                    <canvas id="incomeChart" class="chart"></canvas>
+                </section>
+
+                <section class="expenses-card card">
+                    <h2>Gastos</h2>
+                    <div class="amount" id="totalExpenses">$0.00</div>
+                    <canvas id="expensesChart" class="chart"></canvas>
+                </section>
+
+                <section class="transactions-list card">
+                    <div class="card-header">
+                        <h2>Últimas Transacciones</h2>
+                        <button class="btn-add"><i class="fas fa-plus"></i> Nueva</button>
+                    </div>
+                    <div id="recentTransactions" class="transactions-container">
+                        <!-- Transactions will be added dynamically -->
+                    </div>
+                </section>
+
+                <section class="spending-chart card">
+                    <h2>Análisis de Gastos</h2>
+                    <canvas id="spendingChart" class="chart"></canvas>
+                </section>
+
+                <section class="budget-progress card">
+                    <h2>Progreso del Presupuesto</h2>
+                    <div id="budgetProgress" class="progress-container">
+                        <!-- Budget progress bars will be added dynamically -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/transactions.js"></script>
+</body>
+</html>

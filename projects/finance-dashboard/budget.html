@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto - Finance Dashboard</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <h1>FinDash</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transacciones</a>
+                    </li>
+                    <li class="active">
+                        <a href="budget.html"><i class="fas fa-piggy-bank"></i> Presupuesto</a>
+                    </li>
+                    <li>
+                        <a href="reports.html"><i class="fas fa-file-alt"></i> Reportes</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content budget-page">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar categoría...">
+                </div>
+                <div class="user-menu">
+                    <button class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="profile">
+                        <img src="./assets/default-avatar.svg" alt="Profile">
+                        <span>Usuario</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>Presupuesto Mensual</h1>
+                <button class="btn-add" id="newBudgetBtn"><i class="fas fa-plus"></i> Nuevo Presupuesto</button>
+            </div>
+
+            <div class="budget-overview">
+                <div class="overview-card">
+                    <h2>Presupuesto Total</h2>
+                    <div class="amount">€2,000.00</div>
+                    <div class="progress-info">
+                        <span>Gastado: €1,500.00</span>
+                        <span class="percentage warning">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress warning" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <h2>Gastos Esenciales</h2>
+                    <div class="amount">€1,300.00</div>
+                    <div class="progress-info">
+                        <span>Gastado: €1,000.00</span>
+                        <span class="percentage good">77%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress good" style="width: 77%"></div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <h2>Gastos Discrecionales</h2>
+                    <div class="amount">€700.00</div>
+                    <div class="progress-info">
+                        <span>Gastado: €500.00</span>
+                        <span class="percentage good">71%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress good" style="width: 71%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="budget-categories" id="budgetCategories">
+                <!-- Budget categories will be added dynamically -->
+            </div>
+
+            <div class="add-budget-btn" id="addBudgetBtn">
+                <i class="fas fa-plus-circle"></i>
+                <span>Añadir Nueva Categoría</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./js/budget.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/transactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+@import './cyberpunk-theme.css';
+/* Estilos específicos de la página */
+
+:root {
+    --discord-bg: #36393f;
+    --discord-primary: #dcddde;
+    --discord-secondary: #b9bbbe;
+    --discord-dark: #2f3136;
+    --discord-darker: #202225;
+    --discord-highlight: #5865f2;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #371C69 100%);
+    font-family: 'Press Start 2P', sans-serif;
+    color: var(--discord-primary);
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(147, 51, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 225, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(147, 51, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(147, 51, 255, 0.03) 0px,
+        rgba(147, 51, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+main {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Profile Container */
+.discord-profile { 
+    margin-top: 50px;
+    background: linear-gradient(145deg, var(--discord-bg), var(--discord-dark));
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(88, 101, 242, 0.3);
+    border: 1px solid rgba(147, 51, 255, 0.2);
+}
+
+.discord-profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(88, 101, 242, 0.4);
+}
+
+/* Profile Header */
+.profile-header {
+    position: relative;
+    height: 120px;
+}
+
+.profile-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(45deg, #e56997, #8e44ad, #9933ff);
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
+    opacity: 0.9;
+}
+
+
+
+.profile-avatar {
+    position: absolute;
+    bottom: -30px;
+    left: 16px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 6px solid var(--discord-bg);
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.discord-profile:hover .profile-avatar {
+    transform: rotate(360deg);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Profile Info */
+.profile-info {
+    padding: 3rem 1rem 1rem;
+}
+
+.profile-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-name h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.discord-tag {
+    color: var(--discord-secondary);
+    font-size: 1rem;
+}
+
+.status {
+    color: #3ba55c;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Badges */
+.profile-badges {
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.badge.developer { background: var(--discord-highlight); color: white; }
+.badge.designer { background: #eb459e; color: white; }
+.badge.premium { background: #fbb848; color: var(--discord-darker); }
+
+/* Quote Container */
+.quote-container {
+    background: var(--discord-dark);
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+#text-container-anim {
+    display: inline;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--discord-primary);
+    letter-spacing: 0.5px;
+}
+
+.shiny-text {
+    display: inline;
+    color: #ffd700;
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* About Section */
+.divider {
+    height: 1px;
+    background-color: var(--discord-dark);
+    margin: 1rem 0;
+}
+
+.profile-about h3,
+.profile-roles h3 {
+    color: #9933ff;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(153, 51, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-about h3::before,
+.profile-roles h3::before {
+    content: '>';
+    color: #00ff00;
+}
+
+.about-content p {
+    color: var(--discord-primary);
+    font-size: 0.9rem;
+    margin: 0.8rem 0;
+    letter-spacing: 0.5px;
+}
+
+.cmd {
+    color: #00ff00;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Skills/Roles */
+.roles-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.role {
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.role::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.role:hover::after {
+    transform: translateX(100%);
+}
+
+.role:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.role.html { background: #2d7d46; }
+.role.css { background: #5865f2; }
+.role.js { background: #ed4245; }
+.role.smali { background: #fbb848; }
+.role.xml { background: #e56997; }
+.role.py { background: #343759; }
+
+/* Animations */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px #ffd700; }
+    50% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .discord-profile {
+        margin: 1rem;
+    }
+    
+    .profile-badges, .roles-list {
+        justify-content: center;
+    }
+}
+
+body.light-theme body{
+    --discord-bg: #00be95;
+   background-color: #00be95;
+}

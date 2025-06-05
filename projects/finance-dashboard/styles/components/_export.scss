@@ -1,0 +1,129 @@
+@use '../abstracts/variables' as *;
+
+// Export panel
+.export-panel {
+  background-color: $card-background;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  overflow: hidden;
+  
+  .export-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-color;
+    
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: $font-weight-bold;
+    }
+    
+    .close-export {
+      background: none;
+      border: none;
+      color: $text-secondary;
+      cursor: pointer;
+      padding: $spacing-xs;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: $text-primary;
+      }
+    }
+  }
+  
+  .export-body {
+    padding: $spacing-md;
+    
+    .export-option {
+      display: flex;
+      align-items: center;
+      padding: $spacing-md;
+      margin-bottom: $spacing-sm;
+      border-radius: $border-radius-md;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      i {
+        font-size: 2rem;
+        margin-right: $spacing-md;
+        width: 40px;
+        text-align: center;
+        
+        &.fa-file-pdf {
+          color: #e53935;
+        }
+        
+        &.fa-file-excel {
+          color: #2e7d32;
+        }
+        
+        &.fa-file-csv {
+          color: #1565c0;
+        }
+      }
+      
+      .option-details {
+        h4 {
+          margin: 0 0 $spacing-xs 0;
+          font-size: 1rem;
+        }
+        
+        p {
+          margin: 0;
+          font-size: 0.85rem;
+          color: $text-secondary;
+        }
+      }
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}
+
+// Toast notifications
+.toast {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-md;
+  color: white;
+  
+  &.info {
+    background-color: $info;
+  }
+  
+  &.success {
+    background-color: $positive;
+  }
+  
+  &.warning {
+    background-color: $warning;
+  }
+  
+  &.danger {
+    background-color: $negative;
+  }
+  
+  .toast-icon {
+    margin-right: $spacing-sm;
+    font-size: 1.5rem;
+  }
+  
+  .toast-content {
+    p {
+      margin: 0;
+    }
+  }
+}

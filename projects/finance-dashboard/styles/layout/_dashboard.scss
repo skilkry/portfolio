@@ -1,0 +1,9 @@
+@use '../abstracts/variables' as *;
+
+// Example styles for dashboard
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  padding: $spacing-lg;
+}

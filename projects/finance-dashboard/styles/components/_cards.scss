@@ -1,0 +1,9 @@
+@use '../abstracts/variables' as *;
+
+// Example styles for cards
+.card {
+  background-color: $card-background;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+}

@@ -1,0 +1,9 @@
+@use '../abstracts/variables' as *;
+
+// Example styles for header
+.header {
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-md;
+  box-shadow: $shadow-md;
+}

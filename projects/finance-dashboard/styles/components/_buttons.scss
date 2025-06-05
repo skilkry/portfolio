@@ -1,0 +1,18 @@
+@use '../abstracts/variables' as *;
+@use 'sass:color';
+
+// Example styles for buttons
+.button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm $spacing-md;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: color.adjust($primary-color, $lightness: -10%);
+  }
+}

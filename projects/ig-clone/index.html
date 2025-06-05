@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Clone - Skilkry</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">Instagram</div>
+    <input type="text" placeholder="Search..." class="search-bar" />
+    <div class="icons">
+      <span>❤️</span>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <section class="profile">
+    <div class="profile-img" id="profile-img"></div>
+    <div class="profile-info">
+      <div class="top">
+        <h2 id="username">username</h2>
+        <button onclick="location.href='edit.html'">Edit Profile</button>
+      </div>
+      <p><span id="posts-count">0</span> posts • <span id="followers-count">0</span> followers • <span id="following-count">0</span> following</p>
+      <p id="bio"></p>
+      <a href="#" id="link" target="_blank"></a>
+    </div>
+  </section>
+
+  <section class="actions">
+    <input type="file" id="upload-story" accept="image/*" hidden>
+    <button onclick="document.getElementById('upload-story').click()">➕ Story</button>
+
+    <input type="file" id="upload-post" accept="image/*" hidden>
+    <button onclick="document.getElementById('upload-post').click()">➕ Post</button>
+  </section>
+
+  <section class="stories" id="stories"></section>
+  <section class="posts" id="posts"></section>
+
+  <footer>
+    <p>Made with <span style="color: red;">♥</span> by Skilkry</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

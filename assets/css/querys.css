@@ -1,0 +1,11 @@
+
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .name {
+        font-size: 2rem;
+    }
+}

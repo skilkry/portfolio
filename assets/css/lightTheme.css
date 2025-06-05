@@ -1,0 +1,1240 @@
+body.light-theme {
+    --background-color: #E8B4B8;
+    --text-color: #1a0f2e;
+    --accent-color: #00ff1e;
+    --menu-background: rgba(240, 240, 240, 0.9);
+    --menu-border: rgba(147, 51, 255, 0.3);
+    --button-background: rgba(255, 255, 255, 0.9);
+    --button-text: #1a0f2e;
+    --grid-color: rgba(240, 0, 0, 0.994);
+    
+    /* Aplicar directamente el color de fondo */
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Mejorando elementos específicos en modo claro */
+body.light-theme .background-system {
+    background-color: #E8B4B8
+}
+
+
+body.light-theme .cyber-text,
+body.light-theme .cyber-text-2 {
+    color: rgba(147, 51, 255, 0.6); /* Más visible */
+}
+
+body.light-theme .menu-button {
+    background: rgba(230, 230, 255, 0.9);
+    color: #4a1a82; /* Púrpura más oscuro para contraste */
+    border-color: rgba(147, 51, 255, 0.7);
+    box-shadow: 0 0 15px rgba(147, 51, 255, 0.3);
+}
+
+body.light-theme .menu-button:hover {
+    background: rgba(240, 240, 255, 1);
+    box-shadow: 0 5px 15px rgba(147, 51, 255, 0.5);
+}
+
+body.light-theme .footer {
+    background: rgba(230, 230, 255, 0.9);
+    color: #4a1a82;
+    border-top: 1px solid rgba(147, 51, 255, 0.5);
+}
+
+body.light-theme .heart-main {
+    fill: #ff3377; /* Rosa más brillante */
+}
+
+body.light-theme .heart-glow {
+    stroke: #9333ff; /* Púrpura más brillante */
+}
+
+body.light-theme .config-button {
+    background: rgba(230, 230, 255, 0.9);
+    border-color: rgba(147, 51, 255, 0.7);
+}
+
+body.light-theme .config-menu {
+    background: rgba(240, 240, 255, 0.95);
+    border-color: rgba(147, 51, 255, 0.7);
+    box-shadow: 0 5px 25px rgba(147, 51, 255, 0.2);
+}
+
+body.light-theme .scan-lines {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(147, 51, 255, 0.03) 0px,
+        rgba(147, 51, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+}
+
+body.light-theme .dev-name,
+body.light-theme .dev-title,
+body.light-theme .skill {
+    color: #1a0f2e;
+}
+
+body.light-theme .skill {
+    background: rgba(147, 51, 255, 0.1);
+    border: 1px solid rgba(147, 51, 255, 0.3);
+}
+
+body.light-theme .footer {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a0f2e;
+}
+
+body.light-theme .social-links a {
+    color: #9333ff;
+}
+
+body.light-theme .social-links a:hover {
+    color: #6a24c9;
+}
+
+body.light-theme #text-container-animated {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a0f2e;
+    border-left: 3px solid #9333ff;
+}
+
+body.light-theme .config-menu {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #9333ff;
+}
+
+body.light-theme .config-menu-item {
+    background: rgba(147, 51, 255, 0.1);
+    color: #1a0f2e;
+}
+
+body.light-theme .config-menu-header h3 {
+    color: #1a0f2e;
+}
+
+body.light-theme .background-system {
+    opacity: 0.3;
+}
+
+body.light-theme .intro-animation {
+    background: linear-gradient(180deg, 
+        #ffffff 0%,
+        #f0f0f0 35%,
+        #e0e0e0 100%
+    );
+}
+
+/* Mejoras más distintivas para el menú de configuración en tema claro */
+body.light-theme .config-button {
+    background: linear-gradient(135deg, #E8B4B8, #EED6D3);
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 0 15px rgba(232, 180, 184, 0.6);
+    color: #67595E;
+}
+
+body.light-theme .config-button:hover {
+    transform: rotate(90deg);
+    background: linear-gradient(135deg, #E8B4B8, #A49393);
+    border-color: #A49393;
+    box-shadow: 0 0 20px rgba(232, 180, 184, 0.8);
+}
+
+body.light-theme .config-button i {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu {
+    background: linear-gradient(135deg, rgba(238, 214, 211, 0.95), rgba(232, 180, 184, 0.9));
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu::before {
+    background: linear-gradient(135deg, rgba(238, 214, 211, 0.95), rgba(232, 180, 184, 0.9));
+    border-left: 2px solid #E8B4B8;
+    border-top: 2px solid #E8B4B8;
+}
+
+body.light-theme .config-menu-header {
+    border-bottom: 2px solid rgba(232, 180, 184, 0.5);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+}
+
+body.light-theme .config-menu-header h3 {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .close-button {
+    background: rgba(255, 255, 255, 0.5);
+    color: #67595E;
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light-theme .close-button:hover {
+    background: rgba(232, 180, 184, 0.5);
+    color: #67595E;
+    transform: rotate(90deg);
+}
+
+body.light-theme .section-title {
+    color: #67595E;
+    border-bottom: 1px solid rgba(232, 180, 184, 0.5);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    color: #67595E;
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.light-theme .config-menu-item:hover {
+    background: rgba(232, 180, 184, 0.3);
+    border-color: #E8B4B8;
+    box-shadow: 0 2px 8px rgba(232, 180, 184, 0.4);
+    transform: translateY(-2px);
+}
+
+body.light-theme .config-menu-item i {
+    color: #A49393;
+    margin-right: 10px;
+}
+
+body.light-theme .config-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+body.light-theme .config-item:hover {
+    background: rgba(232, 180, 184, 0.2);
+    border-color: #E8B4B8;
+    transform: perspective(500px) rotateX(10deg);
+    transition: transform 0.3s ease;
+}
+
+body.light-theme .config-item label {
+    color: #67595E;
+    font-weight: bold;
+}
+
+body.light-theme .toggle-button {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.7);
+    color: #A49393;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+body.light-theme .toggle-button:hover {
+    background: rgba(232, 180, 184, 0.4);
+    color: #67595E;
+    box-shadow: 0 0 10px rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme input[type="range"] {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    height: 8px;
+    border-radius: 4px;
+}
+
+body.light-theme input[type="range"]::-webkit-slider-thumb {
+    background: #E8B4B8;
+    border: 2px solid #A49393;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+}
+
+/* Asegurar que el fondo cambie correctamente */
+body.light-theme {
+    background-color: #E8B4B8;
+}
+
+/* Eliminar estas definiciones duplicadas */
+body.light-theme .config-button {
+    background: rgba(230, 230, 255, 0.9);
+    border-color: rgba(147, 51, 255, 0.7);
+}
+
+body.light-theme .config-menu {
+    background: rgba(240, 240, 255, 0.95);
+    border-color: rgba(147, 51, 255, 0.7);
+    box-shadow: 0 5px 25px rgba(147, 51, 255, 0.2);
+}
+
+body.light-theme .scan-lines {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(147, 51, 255, 0.03) 0px,
+        rgba(147, 51, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+}
+
+body.light-theme .dev-name,
+body.light-theme .dev-title,
+body.light-theme .skill {
+    color: #1a0f2e;
+}
+
+body.light-theme .skill {
+    background: rgba(147, 51, 255, 0.1);
+    border: 1px solid rgba(147, 51, 255, 0.3);
+}
+
+body.light-theme .footer {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a0f2e;
+}
+
+body.light-theme .social-links a {
+    color: #9333ff;
+}
+
+body.light-theme .social-links a:hover {
+    color: #6a24c9;
+}
+
+body.light-theme #text-container-animated {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a0f2e;
+    border-left: 3px solid #9333ff;
+}
+
+body.light-theme .config-menu {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #9333ff;
+}
+
+body.light-theme .config-menu-item {
+    background: rgba(147, 51, 255, 0.1);
+    color: #1a0f2e;
+}
+
+body.light-theme .config-menu-header h3 {
+    color: #1a0f2e;
+}
+
+body.light-theme .background-system {
+    opacity: 0.3;
+}
+
+body.light-theme .intro-animation {
+    background: linear-gradient(180deg, 
+        #ffffff 0%,
+        #f0f0f0 35%,
+        #e0e0e0 100%
+    );
+}
+
+/* Mejoras más distintivas para el menú de configuración en tema claro */
+body.light-theme .config-button {
+    background: linear-gradient(135deg, #E8B4B8, #EED6D3);
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 0 15px rgba(232, 180, 184, 0.6);
+    color: #67595E;
+}
+
+body.light-theme .config-button:hover {
+    transform: rotate(90deg);
+    background: linear-gradient(135deg, #E8B4B8, #A49393);
+    border-color: #A49393;
+    box-shadow: 0 0 20px rgba(232, 180, 184, 0.8);
+}
+
+body.light-theme .config-button i {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu {
+    background: linear-gradient(135deg, rgba(238, 214, 211, 0.95), rgba(232, 180, 184, 0.9));
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu::before {
+    background: linear-gradient(135deg, rgba(238, 214, 211, 0.95), rgba(232, 180, 184, 0.9));
+    border-left: 2px solid #E8B4B8;
+    border-top: 2px solid #E8B4B8;
+}
+
+body.light-theme .config-menu-header {
+    border-bottom: 2px solid rgba(232, 180, 184, 0.5);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+}
+
+body.light-theme .config-menu-header h3 {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .close-button {
+    background: rgba(255, 255, 255, 0.5);
+    color: #67595E;
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light-theme .close-button:hover {
+    background: rgba(232, 180, 184, 0.5);
+    color: #67595E;
+    transform: rotate(90deg);
+}
+
+body.light-theme .section-title {
+    color: #67595E;
+    border-bottom: 1px solid rgba(232, 180, 184, 0.5);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    color: #67595E;
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.light-theme .config-menu-item:hover {
+    background: rgba(232, 180, 184, 0.3);
+    border-color: #E8B4B8;
+    box-shadow: 0 2px 8px rgba(232, 180, 184, 0.4);
+    transform: translateY(-2px);
+}
+
+body.light-theme .config-menu-item i {
+    color: #A49393;
+    margin-right: 10px;
+}
+
+body.light-theme .config-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+body.light-theme .config-item:hover {
+    background: rgba(232, 180, 184, 0.2);
+    border-color: #E8B4B8;
+}
+
+body.light-theme .config-item label {
+    color: #67595E;
+    font-weight: bold;
+}
+
+body.light-theme .toggle-button {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.7);
+    color: #A49393;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+body.light-theme .toggle-button:hover {
+    background: rgba(232, 180, 184, 0.4);
+    color: #67595E;
+    box-shadow: 0 0 10px rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme input[type="range"] {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    height: 8px;
+    border-radius: 4px;
+}
+
+body.light-theme input[type="range"]::-webkit-slider-thumb {
+    background: #E8B4B8;
+    border: 2px solid #A49393;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+}
+
+/* Estilos generales para el tema claro en todas las páginas */
+body.light-theme {
+    background-color: #E8B4B8;
+    color: #67595E;
+}
+
+/* Estilos para elementos comunes en todas las páginas */
+body.light-theme .header {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 10px rgba(232, 180, 184, 0.3);
+}
+
+body.light-theme .nav {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+body.light-theme .nav a {
+    color: #67595E;
+}
+
+body.light-theme .nav a:hover {
+    color: #A49393;
+}
+
+body.light-theme .back-button {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    color: #67595E;
+}
+
+body.light-theme .back-button:hover {
+    background: rgba(232, 180, 184, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 180, 184, 0.4);
+}
+
+/* Estilos para la página de proyectos */
+body.light-theme .projects-title {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .project-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+}
+
+body.light-theme .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4);
+}
+
+body.light-theme .project-title {
+    color: #67595E;
+}
+
+body.light-theme .project-description {
+    color: #A49393;
+}
+
+body.light-theme .demo-link {
+    background: linear-gradient(135deg, #E8B4B8, #EED6D3);
+    color: #67595E;
+    border: 1px solid #E8B4B8;
+}
+
+body.light-theme .code-link {
+    border: 2px solid #E8B4B8;
+    color: #67595E;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+body.light-theme .project-links a:hover {
+    transform: perspective(500px) rotateX(10deg);
+    box-shadow: 0 5px 15px rgba(232, 180, 184, 0.4);
+}
+
+/* Estilos para la página de CV */
+body.light-theme .cv-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.3);
+}
+
+body.light-theme .cv-header {
+    border-bottom: 1px solid rgba(232, 180, 184, 0.3);
+}
+
+body.light-theme .profile-pic {
+    border: 2px solid #E8B4B8;
+}
+
+body.light-theme .profile-glow {
+    box-shadow: 0 0 20px rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme .cv-name {
+    color: #67595E;
+}
+
+body.light-theme .cv-title {
+    color: #A49393;
+}
+
+body.light-theme .section-header h3 {
+    color: #67595E;
+    border-bottom: 1px solid rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme .timeline-item::before {
+    background: #E8B4B8;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.light-theme .timeline-date {
+    color: #E8B4B8;
+}
+
+body.light-theme .timeline-content h4 {
+    color: #67595E;
+}
+
+body.light-theme .timeline-content h5 {
+    color: #A49393;
+}
+
+/* Estilos para la página de certificados */
+body.light-theme .certificates-container {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+body.light-theme .certificates-title {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .filter-button {
+    background: rgba(232, 180, 184, 0.2);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    color: #67595E;
+}
+
+body.light-theme .filter-button:hover,
+body.light-theme .filter-button.active {
+    background: rgba(232, 180, 184, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 180, 184, 0.4);
+}
+
+body.light-theme .certificate-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+}
+
+body.light-theme .certificate-card:hover {
+    transform: perspective(500px) rotateX(5deg);
+    box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4);
+}
+
+body.light-theme .certificate-title {
+    color: #67595E;
+}
+
+body.light-theme .certificate-issuer {
+    color: #A49393;
+}
+
+body.light-theme .certificate-date {
+    color: #A49393;
+}
+
+body.light-theme .certificate-link {
+    background: linear-gradient(135deg, #E8B4B8, #EED6D3);
+    color: #67595E;
+    border: 1px solid #E8B4B8;
+}
+
+body.light-theme .certificate-link:hover {
+    background: rgba(232, 180, 184, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 180, 184, 0.4);
+}
+
+/* Estilos para la página de contacto */
+body.light-theme .contact-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.3);
+}
+
+body.light-theme .contact-title {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .contact-form input,
+body.light-theme .contact-form textarea {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    color: #67595E;
+}
+
+body.light-theme .contact-form input:focus,
+body.light-theme .contact-form textarea:focus {
+    border-color: #E8B4B8;
+    box-shadow: 0 0 10px rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme .submit-button {
+    background: linear-gradient(135deg, #E8B4B8, #EED6D3);
+    color: #67595E;
+    border: 1px solid #E8B4B8;
+}
+
+body.light-theme .submit-button:hover {
+    background: rgba(232, 180, 184, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 180, 184, 0.4);
+}
+
+/* Estilos para la página About Me */
+body.light-theme .about-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.3);
+}
+
+body.light-theme .about-title {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .about-content {
+    color: #67595E;
+}
+
+body.light-theme .about-image {
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 5px 15px rgba(232, 180, 184, 0.4);
+}
+
+/* Asegurar transiciones suaves para todos los elementos */
+body.light-theme * {
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+body.light-theme .menu-button.about {
+    background: linear-gradient(135deg, 
+        rgba(232, 180, 184, 0.9),
+        rgba(232, 180, 184, 0.5),
+        rgba(232, 180, 184, 0.9)
+    );
+    border: 1px solid #E8B4B8;
+    color: #67595E;
+}
+
+body.light-theme .menu-button.projects {
+    background: linear-gradient(135deg, 
+        rgba(238, 214, 211, 0.9),
+        rgba(238, 214, 211, 0.5),
+        rgba(238, 214, 211, 0.9)
+    );
+    border: 1px solid #EED6D3;
+    color: #67595E;
+}
+
+body.light-theme .menu-button.more {
+    background: linear-gradient(135deg, 
+        rgba(164, 147, 147, 0.9),
+        rgba(164, 147, 147, 0.5),
+        rgba(164, 147, 147, 0.9)
+    );
+    border: 1px solid #A49393;
+    color: #67595E;
+}
+
+body.light-theme .menu-button.extra {
+    background: linear-gradient(135deg, 
+        rgba(103, 89, 94, 0.9),
+        rgba(103, 89, 94, 0.5),
+        rgba(103, 89, 94, 0.9)
+    );
+    border: 1px solid #67595E;
+    color: #EED6D3;
+}
+
+
+body.light-theme.menu-button:hover {
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(232, 180, 184, 0.8);
+}
+
+/* Add tilt effect for volume and theme controls to match CV and certificates */
+body.light-theme .volume-control:hover,
+body.light-theme .theme-toggle:hover {
+    background: rgba(232, 180, 184, 0.2);
+    border-color: #E8B4B8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 180, 184, 0.4);
+}
+
+/* Ensure smooth transitions for volume and theme controls */
+body.light-theme .volume-control,
+body.light-theme .theme-toggle {
+    transition: all 0.3s ease;
+}
+
+body.light-theme .config-menu-item:hover {
+    background: rgba(232, 180, 184, 0.3);
+    border-color: #E8B4B8;
+    box-shadow: 0 2px 8px rgba(232, 180, 184, 0.4);
+    transform: translateY(-2px);
+}
+
+body.light-theme .config-menu-item i {
+    color: #A49393;
+    margin-right: 10px;
+}
+
+body.light-theme .config-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+body.light-theme .config-item:hover {
+    background: rgba(232, 180, 184, 0.2);
+    border-color: #E8B4B8;
+    transform: perspective(500px) rotateX(10deg);
+    transition: transform 0.3s ease;
+}
+
+body.light-theme .config-item label {
+    color: #67595E;
+    font-weight: bold;
+}
+
+body.light-theme .toggle-button {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.7);
+    color: #A49393;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+body.light-theme .toggle-button:hover {
+    background: rgba(232, 180, 184, 0.4);
+    color: #67595E;
+    box-shadow: 0 0 10px rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme input[type="range"] {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    height: 8px;
+    border-radius: 4px;
+}
+
+body.light-theme input[type="range"]::-webkit-slider-thumb {
+    background: #E8B4B8;
+    border: 2px solid #A49393;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+}
+
+/* Asegurar que el fondo cambie correctamente */
+body.light-theme {
+    background-color: #E8B4B8;
+}
+
+/* Eliminar estas definiciones duplicadas */
+body.light-theme .config-button {
+    background: rgba(230, 230, 255, 0.9);
+    border-color: rgba(147, 51, 255, 0.7);
+}
+
+body.light-theme .config-menu {
+    background: rgba(240, 240, 255, 0.95);
+    border-color: rgba(147, 51, 255, 0.7);
+    box-shadow: 0 5px 25px rgba(147, 51, 255, 0.2);
+}
+
+body.light-theme .scan-lines {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(147, 51, 255, 0.03) 0px,
+        rgba(147, 51, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+}
+
+body.light-theme .dev-name,
+body.light-theme .dev-title,
+body.light-theme .skill {
+    color: #1a0f2e;
+}
+
+body.light-theme .skill {
+    background: rgba(147, 51, 255, 0.1);
+    border: 1px solid rgba(147, 51, 255, 0.3);
+}
+
+body.light-theme .footer {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a0f2e;
+}
+
+body.light-theme .social-links a {
+    color: #9333ff;
+}
+
+body.light-theme .social-links a:hover {
+    color: #6a24c9;
+}
+
+body.light-theme #text-container-animated {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a0f2e;
+    border-left: 3px solid #9333ff;
+}
+
+body.light-theme .config-menu {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #9333ff;
+}
+
+body.light-theme .config-menu-item {
+    background: rgba(147, 51, 255, 0.1);
+    color: #1a0f2e;
+}
+
+body.light-theme .config-menu-header h3 {
+    color: #1a0f2e;
+}
+
+body.light-theme .background-system {
+    opacity: 0.3;
+}
+
+body.light-theme .intro-animation {
+    background: linear-gradient(180deg, 
+        #ffffff 0%,
+        #f0f0f0 35%,
+        #e0e0e0 100%
+    );
+}
+
+/* Mejoras más distintivas para el menú de configuración en tema claro */
+body.light-theme .config-button {
+    background: linear-gradient(135deg, #E8B4B8, #EED6D3);
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 0 15px rgba(232, 180, 184, 0.6);
+    color: #67595E;
+}
+
+body.light-theme .config-button:hover {
+    transform: rotate(90deg);
+    background: linear-gradient(135deg, #E8B4B8, #A49393);
+    border-color: #A49393;
+    box-shadow: 0 0 20px rgba(232, 180, 184, 0.8);
+}
+
+body.light-theme .config-button i {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu {
+    background: linear-gradient(135deg, rgba(238, 214, 211, 0.95), rgba(232, 180, 184, 0.9));
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu::before {
+    background: linear-gradient(135deg, rgba(238, 214, 211, 0.95), rgba(232, 180, 184, 0.9));
+    border-left: 2px solid #E8B4B8;
+    border-top: 2px solid #E8B4B8;
+}
+
+body.light-theme .config-menu-header {
+    border-bottom: 2px solid rgba(232, 180, 184, 0.5);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+}
+
+body.light-theme .config-menu-header h3 {
+    color: #67595E;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .close-button {
+    background: rgba(255, 255, 255, 0.5);
+    color: #67595E;
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light-theme .close-button:hover {
+    background: rgba(232, 180, 184, 0.5);
+    color: #67595E;
+    transform: rotate(90deg);
+}
+
+body.light-theme .section-title {
+    color: #67595E;
+    border-bottom: 1px solid rgba(232, 180, 184, 0.5);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme .config-menu-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    color: #67595E;
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.light-theme .config-menu-item:hover {
+    background: rgba(232, 180, 184, 0.3);
+    border-color: #E8B4B8;
+    box-shadow: 0 2px 8px rgba(232, 180, 184, 0.4);
+    transform: translateY(-2px);
+}
+
+body.light-theme .config-menu-item i {
+    color: #A49393;
+    margin-right: 10px;
+}
+
+body.light-theme .config-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 2px 5px rgba(232, 180, 184, 0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+body.light-theme .config-item:hover {
+    background: rgba(232, 180, 184, 0.2);
+    border-color: #E8B4B8;
+    transform: perspective(500px) rotateX(10deg);
+    transition: transform 0.3s ease;
+}
+
+body.light-theme .config-item label {
+    color: #67595E;
+    font-weight: bold;
+}
+
+body.light-theme .toggle-button {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.7);
+    color: #A49393;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+body.light-theme .toggle-button:hover {
+    background: rgba(232, 180, 184, 0.4);
+    color: #67595E;
+    box-shadow: 0 0 10px rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme input[type="range"] {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    height: 8px;
+    border-radius: 4px;
+}
+
+body.light-theme input[type="range"]::-webkit-slider-thumb {
+    background: #E8B4B8;
+    border: 2px solid #A49393;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+}
+
+/* Añadir estilos para los botones del menú principal en tema claro */
+body.light-theme .menu-button.about {
+    background: linear-gradient(135deg, 
+        rgba(232, 180, 184, 0.9),
+        rgba(232, 180, 184, 0.5),
+        rgba(232, 180, 184, 0.9)
+    );
+    border: 1px solid #E8B4B8;
+    color: #67595E;
+}
+
+body.light-theme .menu-button.projects {
+    background: linear-gradient(135deg, 
+        rgba(238, 214, 211, 0.9),
+        rgba(238, 214, 211, 0.5),
+        rgba(238, 214, 211, 0.9)
+    );
+    border: 1px solid #EED6D3;
+    color: #67595E;
+}
+
+body.light-theme .menu-button.more {
+    background: linear-gradient(135deg, 
+        rgba(164, 147, 147, 0.9),
+        rgba(164, 147, 147, 0.5),
+        rgba(164, 147, 147, 0.9)
+    );
+    border: 1px solid #A49393;
+    color: #67595E;
+}
+
+body.light-theme .menu-button.extra {
+    background: linear-gradient(135deg, 
+        rgba(103, 89, 94, 0.9),
+        rgba(103, 89, 94, 0.5),
+        rgba(103, 89, 94, 0.9)
+    );
+    border: 1px solid #67595E;
+    color: #EED6D3;
+}
+
+
+body.light-theme.menu-button:hover {
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(232, 180, 184, 0.8);
+}
+
+/* Add tilt effect for volume and theme controls */
+body.light-theme .volume-control:hover,
+body.light-theme .theme-toggle:hover {
+    transform: perspective(500px) rotateX(10deg);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4);
+}
+
+/* Ensure smooth transitions for all interactive elements */
+body.light-theme .volume-control,
+body.light-theme .theme-toggle,
+body.light-theme .config-item {
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-theme .about-container {
+    background-color: #f00216 ;
+}
+
+.body.light-theme .profile-card {
+    background-color: #001eff;
+    backdrop-filter: none;
+    border: none;
+}
+
+body.light-theme .about-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    box-shadow: 0 5px 25px rgba(232, 180, 184, 0.3);
+}
+
+
+/* Corregir el selector para profile-card (había un punto extra antes de body) */
+body.light-theme .profile-card {
+    background-color: rgba(224, 27, 27, 0.8);
+    backdrop-filter: blur(5px);
+    border: 2px solid #E8B4B8;
+    box-shadow: 0 0 30px rgba(232, 180, 184, 0.4);
+}
+
+/* ... existing code ... */
+
+/* Ocultar partículas en modo claro */
+/* ... existing code ... */
+
+/* Ocultar partículas en modo claro - versión mejorada */
+body.light-theme .scan-lines,
+body.light-theme .grid,
+body.light-theme .glow-points,
+body.light-theme .cyber-text,
+body.light-theme .cyber-text-2,
+body.light-theme .cyber-particles,
+body.light-theme .background-system {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* Eliminar efectos de fondo en modo claro */
+body.light-theme {
+    background-image: none !important;
+}
+
+body.light-theme::before,
+body.light-theme::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ... existing code ... */
+/* ... existing code ... */
+
+/* Añadir estilos específicos para elementos dentro del profile-card */
+body.light-theme .profile-header h2 {
+    color: #67595E;
+}
+
+body.light-theme .profile-bio p {
+    color: #67595E;
+}
+
+body.light-theme .profile-tag {
+    background: rgba(232, 180, 184, 0.3);
+    color: #67595E;
+    border: 1px solid rgba(232, 180, 184, 0.5);
+}
+
+body.light-theme .status-text {
+    color: #67595E;
+}
+
+body.light-theme .status-dot {
+    background: #E8B4B8;
+    box-shadow: 0 0 5px #E8B4B8;
+}
+
+body.light-theme .section-title {
+    color: #67595E;
+}
+
+body.light-theme .links-section a {
+    color: #67595E;
+    border: 1px solid rgba(232, 180, 184, 0.5);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+body.light-theme .links-section a:hover {
+    background: rgba(232, 180, 184, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 180, 184, 0.4);
+}

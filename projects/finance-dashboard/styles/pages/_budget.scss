@@ -1,0 +1,258 @@
+@use '../abstracts/variables' as *;
+
+.budget-page {
+  padding: $spacing-lg;
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+    
+    h1 {
+      font-size: 1.75rem;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+    }
+  }
+  
+  .budget-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+    
+    .overview-card {
+      background-color: $card-background;
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $shadow-sm;
+      
+      h2 {
+        font-size: 1rem;
+        color: $text-secondary;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .amount {
+        font-size: 1.75rem;
+        font-weight: $font-weight-bold;
+        color: $text-primary;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        margin-bottom: $spacing-xs;
+        
+        .percentage {
+          font-weight: $font-weight-bold;
+          
+          &.good {
+            color: $positive;
+          }
+          
+          &.warning {
+            color: $warning;
+          }
+          
+          &.danger {
+            color: $negative;
+          }
+        }
+      }
+      
+      .progress-bar {
+        height: 6px;
+        background-color: $border-color;
+        border-radius: $border-radius-sm;
+        overflow: hidden;
+        
+        .progress {
+          height: 100%;
+          transition: width 0.3s ease;
+          
+          &.good {
+            background-color: $positive;
+          }
+          
+          &.warning {
+            background-color: $warning;
+          }
+          
+          &.danger {
+            background-color: $negative;
+          }
+        }
+      }
+    }
+  }
+  
+  .budget-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+    
+    .category-card {
+      background-color: $card-background;
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $shadow-sm;
+      
+      .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $spacing-md;
+        
+        h3 {
+          font-size: 1.1rem;
+          font-weight: $font-weight-bold;
+          color: $text-primary;
+        }
+        
+        .actions {
+          display: flex;
+          gap: $spacing-xs;
+          
+          button {
+            background: none;
+            border: none;
+            padding: $spacing-xs;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: $text-secondary;
+            
+            &:hover {
+              background-color: rgba($primary-color, 0.1);
+              color: $primary-color;
+            }
+          }
+        }
+      }
+      
+      .budget-details {
+        margin-bottom: $spacing-md;
+        
+        .amount-info {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: $spacing-xs;
+          
+          .spent {
+            font-weight: $font-weight-bold;
+          }
+          
+          .limit {
+            color: $text-secondary;
+          }
+        }
+        
+        .progress-bar {
+          height: 8px;
+          background-color: $border-color;
+          border-radius: $border-radius-sm;
+          overflow: hidden;
+          margin-bottom: $spacing-sm;
+          
+          .progress {
+            height: 100%;
+            transition: width 0.3s ease;
+            
+            &.good {
+              background-color: $positive;
+            }
+            
+            &.warning {
+              background-color: $warning;
+            }
+            
+            &.danger {
+              background-color: $negative;
+            }
+          }
+        }
+        
+        .status {
+          font-size: 0.875rem;
+          
+          &.good {
+            color: $positive;
+          }
+          
+          &.warning {
+            color: $warning;
+          }
+          
+          &.danger {
+            color: $negative;
+          }
+        }
+      }
+      
+      .recent-expenses {
+        .expense-item {
+          display: flex;
+          justify-content: space-between;
+          padding: $spacing-sm 0;
+          border-bottom: 1px solid $border-color;
+          
+          &:last-child {
+            border-bottom: none;
+          }
+          
+          .expense-details {
+            .expense-name {
+              font-size: 0.875rem;
+              font-weight: $font-weight-bold;
+              margin-bottom: 2px;
+            }
+            
+            .expense-date {
+              font-size: 0.75rem;
+              color: $text-secondary;
+            }
+          }
+          
+          .expense-amount {
+            font-weight: $font-weight-bold;
+            color: $negative;
+          }
+        }
+      }
+    }
+  }
+  
+  .add-budget-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($primary-color, 0.1);
+    border: 2px dashed rgba($primary-color, 0.3);
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    i {
+      font-size: 1.5rem;
+      color: $primary-color;
+      margin-right: $spacing-sm;
+    }
+    
+    span {
+      font-weight: $font-weight-bold;
+      color: $primary-color;
+    }
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+}

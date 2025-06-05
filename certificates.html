@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certificates - Skilkry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/certificates.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="module" src="./assets/JavaScript/common.js"></script>
+</head>
+<body>
+    <div class="background-system">
+        <div class="grid"></div>
+        <div class="vignette"></div>
+        <div class="glow-points"></div>
+        <div class="scan-lines"></div>
+    </div>
+    
+    <header>
+        <nav class="nav">
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+          </a>
+        </nav>
+      </header>
+            <div class="filter-controls">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="web">Web Development</button>
+                <button class="filter-button" data-filter="design">Design</button>
+                <button class="filter-button" data-filter="programming">Programming</button>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="certificates-container">
+        <h1 class="page-title">My Certificates</h1>
+        
+        <div class="certificates-grid">
+            <!-- Web Development Certificates -->
+            <div class="certificate-card" data-category="web">
+                <div class="certificate-inner">
+                    <div class="certificate-front">
+                        <div class="certificate-image">
+                            <img src="./assets/images/certificates/css.png" class="css-cert" alt="CSS Certificate">
+                           <!--<div class="certificate-overlay"></div>--> 
+                        </div>
+                        <div class="certificate-info">
+                            <h3>CSS3 Avanzado</h3>
+                            <p class="certificate-issuer">Udemy</p>
+                            <p class="certificate-date">2025</p>
+                        </div>
+                    </div>
+                    <div class="certificate-back">
+                        <a href="https://i.postimg.cc/mrJjdbnh/image-2025-04-04-232325170.png" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Programming Certificate -->
+            <div class="certificate-card" data-category="programming">
+                <div class="certificate-inner">
+                    <div class="certificate-front">
+                        <div class="certificate-image">
+                            <img src="./assets/images/certificates/javascript.png" alt="JavaScript Certificate">
+                        </div>
+                        <div class="certificate-info">
+                            <h3>B2 English</h3>
+                            <p class="certificate-issuer">Cambridge</p>
+                            <p class="certificate-date">2023</p>
+                        </div>
+                    </div>
+                    <div class="certificate-back">
+                        <a href="https://example.com/certificate" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="footer-text">Made w 🫶 by Skilkry</div>
+    </footer>
+    
+    <script src="./assets/JavaScript/certificates.js"></script>
+</body>
+</html>

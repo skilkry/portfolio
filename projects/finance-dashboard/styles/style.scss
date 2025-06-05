@@ -1,0 +1,604 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/theme' as *;
+@use 'components/notifications' as *;
+@use 'components/user' as *;
+@use 'components/export' as *;
+@use 'components/modal' as *;
+@use 'pages/transactions' as *;
+@use 'pages/budget' as *;
+@use 'pages/reports' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// Estilos globales
+body {
+  font-family: $font-family-base;
+  background-color: $background-color;
+  color: $text-primary;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+// Sidebar
+.sidebar {
+  background-color: $card-background;
+  padding: $spacing-lg;
+  border-right: 1px solid $border-color;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+    
+    i {
+      font-size: 1.5rem;
+      color: $primary-color;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+    }
+  }
+  
+  .main-nav {
+    ul {
+      li {
+        margin-bottom: $spacing-md;
+        border-radius: $border-radius-md;
+        transition: all 0.3s ease;
+        
+        a {
+          display: flex;
+          align-items: center;
+          padding: $spacing-md;
+          border-radius: $border-radius-md;
+          transition: all 0.3s ease;
+          
+          i {
+            margin-right: $spacing-md;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+          }
+        }
+        
+        &:hover {
+          background-color: rgba($primary-color, 0.05);
+          transform: translateX(5px);
+        }
+        
+        &.active {
+          background-color: rgba($primary-color, 0.1);
+          
+          a {
+            color: $primary-color;
+            font-weight: $font-weight-bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Main content
+.main-content {
+  padding: $spacing-xl;
+  background-color: $background-color;
+}
+
+// Top bar
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: $card-background;
+    border-radius: $border-radius-lg;
+    padding: $spacing-sm $spacing-md;
+    box-shadow: $shadow-sm;
+    width: 300px;
+    
+    i {
+      color: $text-secondary;
+      margin-right: $spacing-sm;
+    }
+    
+    input {
+      border: none;
+      background: none;
+      outline: none;
+      color: $text-primary;
+      width: 100%;
+      
+      &::placeholder {
+        color: $text-secondary;
+      }
+    }
+  }
+  
+  .user-menu {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    
+    .notifications {
+      position: relative;
+      background: none;
+      border: none;
+      color: $text-secondary;
+      cursor: pointer;
+      padding: $spacing-sm;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.1);
+        color: $primary-color;
+      }
+      
+      .badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: $negative;
+        color: white;
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-weight: $font-weight-bold;
+      }
+    }
+    
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      padding: $spacing-sm $spacing-md;
+      border-radius: $border-radius-lg;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+      
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      
+      span {
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+// Dashboard grid
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: $spacing-lg;
+  
+  .card {
+    background: $card-background;
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: $spacing-md;
+      color: $text-primary;
+      font-weight: $font-weight-bold;
+    }
+  }
+  
+  .amount {
+    font-size: 2rem;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin: $spacing-md 0;
+  }
+  
+  .trend {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: 0.875rem;
+    
+    &.positive {
+      color: $positive;
+    }
+    
+    &.negative {
+      color: $negative;
+    }
+    
+    span:last-child {
+      color: $text-secondary;
+      margin-left: $spacing-xs;
+    }
+  }
+  
+  .balance-card, .income-card, .expenses-card {
+    height: 220px;
+  }
+  
+  .transactions-list {
+    grid-column: span 2;
+  }
+  
+  .spending-chart, .budget-progress {
+    grid-column: span 1;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Charts
+.chart {
+  height: 120px;
+  margin-top: $spacing-md;
+}
+
+.chart-container {
+  height: 250px;
+  margin-top: $spacing-md;
+}
+
+// Transactions
+.transactions-container {
+  max-height: 350px;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $border-color;
+    border-radius: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $text-secondary;
+    border-radius: 10px;
+  }
+  
+  .transaction {
+    display: flex;
+    align-items: center;
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-color;
+    transition: background-color 0.2s ease;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.02);
+    }
+    
+    .transaction-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: $spacing-md;
+      
+      &.income {
+        background-color: rgba($positive, 0.1);
+        color: $positive;
+      }
+      
+      &.expense {
+        background-color: rgba($negative, 0.1);
+        color: $negative;
+      }
+    }
+    
+    .transaction-details {
+      flex: 1;
+      
+      h3 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+        font-weight: $font-weight-bold;
+      }
+      
+      span {
+        font-size: 0.875rem;
+        color: $text-secondary;
+      }
+    }
+    
+    .transaction-amount {
+      font-weight: $font-weight-bold;
+      
+      &.income {
+        color: $positive;
+      }
+      
+      &.expense {
+        color: $negative;
+      }
+    }
+  }
+}
+
+// Budget progress
+.progress-container {
+  .budget-item {
+    margin-bottom: $spacing-md;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .budget-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: $spacing-xs;
+      
+      h3 {
+        font-size: 0.875rem;
+        color: $text-primary;
+        font-weight: $font-weight-bold;
+      }
+      
+      span {
+        font-size: 0.875rem;
+        color: $text-secondary;
+      }
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background-color: $border-color;
+      border-radius: $border-radius-sm;
+      overflow: hidden;
+      
+      .progress {
+        height: 100%;
+        transition: width 0.3s ease;
+        
+        &.good {
+          background-color: $positive;
+        }
+        
+        &.warning {
+          background-color: #f59e0b;
+        }
+        
+        &.danger {
+          background-color: $negative;
+        }
+      }
+    }
+  }
+}
+
+// Buttons
+.btn-add {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm $spacing-md;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+  }
+}
+
+// Modal styles
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-content {
+    background-color: $card-background;
+    border-radius: $border-radius-lg;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: $shadow-lg;
+    transform: translateY(20px);
+    animation: slideUp 0.3s forwards;
+    
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+      }
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $spacing-lg;
+      border-bottom: 1px solid $border-color;
+      
+      h2 {
+        margin: 0;
+        color: $text-primary;
+      }
+      
+      .close-modal {
+        background: none;
+        border: none;
+        color: $text-secondary;
+        cursor: pointer;
+        font-size: 1.25rem;
+        padding: $spacing-xs;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          color: $text-primary;
+          background-color: rgba($text-primary, 0.1);
+        }
+      }
+    }
+    
+    .modal-body {
+      padding: $spacing-lg;
+      
+      .form-group {
+        margin-bottom: $spacing-md;
+        
+        label {
+          display: block;
+          margin-bottom: $spacing-xs;
+          color: $text-primary;
+          font-weight: $font-weight-bold;
+        }
+        
+        input,
+        select {
+          width: 100%;
+          padding: $spacing-md;
+          border: 1px solid $border-color;
+          border-radius: $border-radius-md;
+          background-color: white;
+          color: $text-primary;
+          transition: all 0.3s ease;
+          
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+          }
+        }
+      }
+      
+      .btn-primary {
+        width: 100%;
+        padding: $spacing-md;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: $border-radius-md;
+        font-weight: $font-weight-bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: darken($primary-color, 10%);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+        }
+      }
+    }
+  }
+}
+
+// Media queries for responsiveness
+@media (max-width: $breakpoint-lg) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+    
+    .transactions-list,
+    .spending-chart,
+    .budget-progress {
+      grid-column: span 2;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    
+    .balance-card,
+    .income-card,
+    .expenses-card,
+    .transactions-list,
+    .spending-chart,
+    .budget-progress {
+      grid-column: span 1;
+    }
+  }
+  
+  .top-bar {
+    flex-direction: column;
+    gap: $spacing-md;
+    
+    .search-bar {
+      width: 100%;
+    }
+  }
+}
+
+.aside_footer{
+    margin-top: 100px;
+    text-align: center;
+    color: $text-primary;
+    font-family: $footer-font;
+    i{
+        color: red;
+    }
+  }

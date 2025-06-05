@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="../../projects.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Volver a Proyectos
+            </a>
+            <div class="app-info">
+                <h1 class="app-title">SkilManage</h1>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="app-container">
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="profile-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 class="welcome-text">Bienvenido</h3>
+            </div>
+            
+            <div class="categories">
+                <h3 class="sidebar-title">Categorías</h3>
+                <ul class="category-list" id="category-list">
+                    <li class="category active" data-category="all">
+                        <i class="fas fa-list"></i> Todas
+                    </li>
+                    <li class="category" data-category="work">
+                        <i class="fas fa-briefcase"></i> Trabajo
+                    </li>
+                    <li class="category" data-category="personal">
+                        <i class="fas fa-user"></i> Personal
+                    </li>
+                    <li class="category" data-category="shopping">
+                        <i class="fas fa-shopping-cart"></i> Compras
+                    </li>
+                </ul>
+                <button id="add-category-btn" class="add-category-btn">
+                    <i class="fas fa-plus"></i> Nueva Categoría
+                </button>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="task-controls">
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Buscar tareas...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <div class="filter-container">
+                    <select id="filter-priority" class="filter-select">
+                        <option value="all">Todas las prioridades</option>
+                        <option value="high">Alta prioridad</option>
+                        <option value="medium">Media prioridad</option>
+                        <option value="low">Baja prioridad</option>
+                    </select>
+                    
+                    <select id="filter-status" class="filter-select">
+                        <option value="all">Todos los estados</option>
+                        <option value="pending">Pendientes</option>
+                        <option value="in-progress">En progreso</option>
+                        <option value="completed">Completadas</option>
+                    </select>
+                </div>
+                
+                <button id="add-task-btn" class="add-task-btn">
+                    <i class="fas fa-plus"></i> Nueva Tarea
+                </button>
+            </div>
+            
+            <div class="tasks-container">
+                <h2 class="section-title">Mis Tareas</h2>
+                <div class="tasks-grid" id="tasks-grid">
+                    <!-- Las tareas se generarán dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal para añadir/editar tareas -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Nueva Tarea</h3>
+                <button id="close-modal-btn" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="task-title">Título</label>
+                        <input type="text" id="task-title" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-description">Descripción</label>
+                        <textarea id="task-description" class="form-input" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-category">Categoría</label>
+                            <select id="task-category" class="form-input">
+                                <option value="work">Trabajo</option>
+                                <option value="personal">Personal</option>
+                                <option value="shopping">Compras</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="task-priority">Prioridad</label>
+                            <select id="task-priority" class="form-input">
+                                <option value="low">Baja</option>
+                                <option value="medium">Media</option>
+                                <option value="high">Alta</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-due-date">Fecha límite</label>
+                            <input type="date" id="task-due-date" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="task-status">Estado</label>
+                            <select id="task-status" class="form-input">
+                                <option value="pending">Pendiente</option>
+                                <option value="in-progress">En progreso</option>
+                                <option value="completed">Completada</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancel-btn" class="cancel-btn">Cancelar</button>
+                        <button type="submit" id="save-task-btn" class="save-btn">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para añadir categoría -->
+    <div class="modal" id="category-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nueva Categoría</h3>
+                <button id="close-category-modal-btn" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="category-form">
+                    <div class="form-group">
+                        <label for="category-name">Nombre</label>
+                        <input type="text" id="category-name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category-icon">Icono</label>
+                        <div class="icon-selector" id="icon-selector">
+                            <div class="icon-option" data-icon="fas fa-home"><i class="fas fa-home"></i></div>
+                            <div class="icon-option" data-icon="fas fa-book"><i class="fas fa-book"></i></div>
+                            <div class="icon-option" data-icon="fas fa-coffee"><i class="fas fa-coffee"></i></div>
+                            <div class="icon-option" data-icon="fas fa-gift"><i class="fas fa-gift"></i></div>
+                            <div class="icon-option" data-icon="fas fa-heart"><i class="fas fa-heart"></i></div>
+                            <div class="icon-option" data-icon="fas fa-plane"><i class="fas fa-plane"></i></div>
+                        </div>
+                        <input type="hidden" id="category-icon-input" value="fas fa-list">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancel-category-btn" class="cancel-btn">Cancelar</button>
+                        <button type="submit" id="save-category-btn" class="save-btn">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-text">Made w <i class="fas fa-heart"></i> by Skilkry</div>
+    </footer>
+    
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+/* FocusFlow Timer - style.scss */
+
+// --- Sass Variables (Kept for layout, fonts, etc., not theme colors) ---
+$border-radius: 8px;
+$font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// --- CSS Variables for Theming --- (Default Colors)
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5a623; // Mantengamos este por defecto o para elementos específicos
+    --background-color: #f8f9fa;
+    --text-color: #343a40; // Color de texto base
+    --modal-background: #ffffff;
+    --button-text-color: #ffffff; // Texto para botones con --primary-color de fondo
+    --header-background: #ffffff;
+    --header-shadow: rgba(0,0,0,0.1);
+    --input-border-color: #ced4da; // Un gris estándar
+    --primary-text-color: #ffffff; // Default text color ON primary elements (e.g., buttons)
+
+    // Colores derivados (Estos podrían necesitar ajustes o ser establecidos por JS si el cálculo basado en variables no funciona bien)
+    // Por ahora, intentamos derivar del primario/fondo o usamos fijos.
+    --focus-bg-light: color-mix(in srgb, var(--primary-color) 15%, transparent);
+    --short-break-color: #28a745; // Fijo por ahora
+    --short-break-bg-light: color-mix(in srgb, #28a745 15%, transparent);
+    --long-break-color: #fd7e14; // Fijo por ahora (era secondary)
+    --long-break-bg-light: color-mix(in srgb, #fd7e14 15%, transparent);
+    --text-color-light: color-mix(in srgb, var(--text-color) 70%, transparent);
+    --text-color-muted: color-mix(in srgb, var(--text-color) 50%, transparent);
+    --primary-light: #87ceeb; // New variable for primary light color
+    --transition-speed: 0.3s; // New variable for transition speed
+}
+
+// --- Mixins --- (sin cambios)
+@mixin flex-center($direction: row) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+// --- Reset/Base Styles ---
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Eliminamos el bloque con la definición duplicada de body que pusiste antes */
+body {
+    font-family: $font-family;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.5s ease, color 0.3s ease; // Add color transition
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: $border-radius;
+    background-color: var(--primary-color); // Use CSS var
+    color: var(--primary-text-color); // Use CSS var
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+
+    &:hover {
+        // Calculate hover color based on the variable
+        // This needs a more complex approach or pre-defined hover vars if strict CSS vars needed
+        // Simple filter for now:
+        filter: brightness(90%);
+    }
+    &:active {
+        transform: scale(0.98);
+    }
+    &:disabled {
+        filter: brightness(120%);
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+}
+
+h1, h2 {
+    margin-bottom: 0.5em;
+}
+
+// --- Layout --- App Structure
+.app-header {
+    padding: 1rem 2rem;
+    background-color: var(--background-color); // Use main background color
+    box-shadow: 0 2px 4px var(--header-shadow); // Use CSS var
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--text-color); // Use main text color for contrast with header background
+    }
+
+    #settings-button {
+        background: none;
+        border: none;
+        font-size: 1.8rem; // Tamaño del icono
+        cursor: pointer;
+        color: var(--text-color); // Use CSS var
+        padding: 0.2em;
+        &:hover {
+            filter: none; // Reset filter for icon buttons
+            color: var(--primary-color);
+        }
+    }
+}
+
+.timer-container {
+    flex-grow: 1;
+    @include flex-center(column);
+    text-align: center;
+    padding: 2rem;
+}
+
+.app-footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto; // Push footer to bottom
+    font-size: 0.9rem;
+    background-color: color-mix(in srgb, var(--background-color) 95%, black); // Slightly darker than main background
+    color: var(--text-color); // Ensure text uses the main text color
+    border-top: 1px solid var(--primary-light);
+    transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+
+    p {
+        margin: 0;
+        opacity: 0.8; // Slightly faded text
+    }
+}
+
+// --- Timer Components ---
+.timer-display {
+    margin-bottom: 2rem;
+
+    #timer-mode {
+        display: block;
+        font-size: 1.2rem;
+        color: var(--text-color-light); // Use CSS var
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    #timer-time {
+        font-size: 6rem; // Grande y claro
+        font-weight: bold;
+        color: var(--primary-color); // Use CSS var
+        line-height: 1;
+        transition: color 0.5s ease; // Smooth color transition
+    }
+}
+
+.timer-controls {
+    button {
+        margin: 0 0.5rem;
+    }
+    #start-pause-button {
+        // Primary button style already applied
+    }
+    #reset-button, #skip-button {
+        background-color: var(--text-color-muted); // Use CSS var
+        color: var(--background-color); // Contrasting text
+        &:hover {
+            filter: brightness(90%);
+        }
+    }
+}
+
+.cycle-tracker {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--text-color-light); // Use CSS var
+}
+
+// --- Settings Modal ---
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); // Slightly darker overlay
+    @include flex-center();
+    z-index: 1000;
+
+    .modal-content {
+        background-color: var(--modal-background); // Use CSS var
+        color: var(--text-color); // Ensure text color contrasts with modal bg
+        padding: 2rem;
+        border-radius: $border-radius;
+        box-shadow: 0 5px 15px var(--header-shadow); // Use CSS var
+        width: 90%;
+        max-width: 500px; // Limita el ancho
+        position: relative;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: var(--text-color-muted); // Use CSS var
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        &:hover {
+            filter: none;
+            color: var(--primary-color);
+        }
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color); // Use CSS var
+        text-align: center;
+    }
+
+    form {
+        display: grid;
+        gap: 1rem;
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.2rem;
+            color: var(--text-color);
+        }
+
+        input[type="number"], input[type="checkbox"] {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 0.5em;
+            border: 1px solid var(--input-border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        input[type="checkbox"]{
+            width: auto;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+        input[type="color"] { // Estilos básicos para el selector de color
+            padding: 0.2em;
+            border: 1px solid var(--input-border-color);
+            border-radius: 4px;
+            height: 38px; // Alinea altura con otros inputs
+            cursor: pointer;
+            background-color: var(--background-color); // Fondo del control
+        }
+
+        label[for="enable-sound"] {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--input-border-color);
+            margin: 1rem 0;
+        }
+
+        // --- Custom Color Selector Styles ---
+        .settings-color-selector {
+            label {
+                margin-bottom: 0.5rem;
+                display: block; // Asegura que la etiqueta principal ocupe su línea
+            }
+            .color-inputs {
+                display: flex;
+                gap: 1.5rem; // Espacio entre selectores
+                align-items: center;
+            }
+            .color-input-group {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem; // Espacio entre label y input
+                label {
+                  margin-bottom: 0; // Anula el margen general para estas etiquetas
+                  font-weight: normal;
+                }
+            }
+        }
+
+        // Styles for the Color Mode Selector
+        .settings-color-mode {
+            margin-bottom: 20px;
+            .radio-group {
+                display: flex;
+                gap: 15px; // Space between radio buttons
+                margin-top: 5px;
+                label {
+                    font-weight: normal; // Normal weight for radio options
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                }
+                input[type="radio"] {
+                    margin-right: 5px;
+                    margin-bottom: 0; // Remove bottom margin for radios
+                }
+            }
+        }
+
+        // Styles for the Color Setting Groups
+        .color-settings-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px dashed var(--input-border-color);
+            border-radius: $border-radius;
+            background-color: rgba(0,0,0,0.02); // Slight background tint
+            transition: border-color 0.3s, background-color 0.3s;
+
+            &[hidden] {
+                display: none; // Ensure hidden groups are not displayed
+            }
+
+            > label { // Label for the whole group (e.g., "Color Principal", "Colores Específicos")
+                 display: block;
+                 margin-bottom: 10px;
+                 font-size: 1.1em;
+                 color: var(--text-color); // Use main text color, not primary
+                 font-weight: bold; // Make group titles bold
+                 transition: color 0.3s;
+             }
+
+            span { // Helper text in simple mode
+                font-size: 0.9em;
+                color: var(--text-color);
+                opacity: 0.8;
+                margin-left: 10px;
+                transition: color 0.3s;
+            }
+        }
+
+        // Styles for individual color input rows
+        .color-input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+            label {
+                font-weight: normal;
+                margin-bottom: 0; // Remove bottom margin from individual labels
+                min-width: 70px; // Align labels nicely
+                text-align: right;
+            }
+            input[type="color"] {
+                margin-bottom: 0; // Remove bottom margin from color pickers here
+            }
+        }
+
+        // Container specific for advanced color inputs if more structure is needed
+        .color-inputs-advanced {
+            display: flex;
+            flex-direction: column; // Stack advanced inputs vertically
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 1.1em;
+        }
+    }
+}
+
+// Utility to hide elements accessibly
+[hidden] {
+    display: none !important;
+}
+
+// --- Mode-specific background/timer styles ---
+
+body.focus-mode {
+    background-color: var(--focus-bg-light);
+    .timer-display #timer-time {
+        color: var(--primary-color);
+    }
+}
+
+body.short-break-mode {
+    background-color: var(--short-break-bg-light);
+    .timer-display #timer-time {
+        color: var(--short-break-color);
+    }
+}
+
+body.long-break-mode {
+    background-color: var(--long-break-bg-light);
+    .timer-display #timer-time {
+        color: var(--long-break-color);
+    }
+}
+
+
+// --- Responsive --- (Ejemplo básico)
+@media (max-width: 600px) {
+    .timer-display #timer-time {
+        font-size: 4rem;
+    }
+
+    .timer-controls {
+        button {
+            font-size: 0.9rem;
+            padding: 0.6em 1em;
+            margin: 0.3rem;
+        }
+    }
+
+    .app-header {
+        padding: 0.8rem 1rem;
+        h1 {
+            font-size: 1.3rem;
+        }
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .settings-color-selector .color-inputs {
+        flex-direction: column; // Apilar en pantallas pequeñas
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+}

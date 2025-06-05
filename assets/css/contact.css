@@ -1,0 +1,349 @@
+/* --- Colores Neón (Volviendo a la referencia de imagen inicial) --- */
+:root {
+    --glitch-cyan: #00FFFF;
+    --glitch-magenta: #FF00FF; /* O un rojo neón si prefieres para el glitch */
+    --glitch-red: #FF0033; /* Un rojo más vibrante para el glitch */
+    --neon-cyan: #00ffff8b;
+    --neon-magenta: #FF00FF; /* Asegúrate de que sea un magenta brillante */
+    --bright-white: #ffffffa8; /* Para el título */ /* O el color que decidas para el nav */
+    --dark-purple-bg: #0D0221; /* Fondo base si no hay imagen */
+    --form-panel-bg: rgba(18, 9, 32, 0.85); /* Panel: Morado oscuro, más opaco */
+    --input-bg: rgba(25, 15, 45, 0.8); /* Inputs: Un poco más claro que el panel */
+    --input-bg-focus: rgba(35, 20, 60, 0.9);
+    --text-color-labels: var(--neon-magenta); /* Color para las etiquetas */
+    --text-color-title: var(--bright-white);  
+    --text-color: #FFFFFF;
+    --pixel-font: 'Press Start 2P', cursive;
+    --normal-font: 'Quantico', sans-serif;
+}
+
+/* --- Estilos Base del Body --- */
+body {
+    /* ASEGÚRATE DE QUE TU IMAGEN DE FONDO ES EL GRID MAGENTA */
+    /* O si no, usa los linear-gradient para crear el grid como antes */
+    background-image: 
+        /* Capa oscura para que el grid no sea demasiado brillante y el panel resalte */
+        linear-gradient(rgba(13, 2, 33, 0.9), rgba(13, 2, 33, 0.92)), 
+        url('../images/background-landing.jpeg'); /* ASUMO QUE ESTA ES TU IMAGEN DE GRID */
+    background-size: cover, cover; /* El primer 'cover' es para el gradiente, el segundo para la imagen */
+    background-position: center bottom, center bottom;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: var(--normal-font);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+
+.main-contact-enhanced {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px; 
+    animation: fadeInContact 1s ease-out forwards;
+    position: relative; /* Para que el z-index del título funcione */
+    z-index: 5; /* Asegurar que el contenido principal esté por encima de cualquier fondo general */
+}
+
+/* ... (Keyframes fadeInContact sin cambios) ... */
+
+.contact-title-enhanced {
+    font-family: var(--pixel-font);
+    font-size: clamp(2.2em, 7vw, 3.2em); /* Un poco más grande para el efecto */
+    color: var(--text-color-title);
+    text-align: center;
+    line-height: 1.2;
+    position: relative; /* Clave para los pseudo-elementos y el glitch */
+    z-index: 2;
+    margin-bottom: 2rem; /* Ajusta según necesites */
+
+    /* Quitamos el text-shadow directo aquí, lo manejaremos con la animación y pseudo-elementos */
+    /* animation: neonPulse ... (quitamos la anterior si esta la reemplaza) */
+
+    /* Animación principal para el temblor/desplazamiento del texto base */
+    animation: glitch- hlavní 2.5s infinite linear alternate-reverse;
+}
+
+/* Pseudo-elementos para los "fantasmas" de color y cortes */
+.contact-title-enhanced::before,
+.contact-title-enhanced::after {
+    content: attr(data-text); /* Usamos el atributo data-text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Para que los cortes funcionen */
+    background: transparent; /* El fondo del body debe verse a través */
+}
+
+/* Fantasma Cian (o el color que prefieras) */
+.contact-title-enhanced::before {
+    color: var(--glitch-cyan);
+    left: 2px; /* Ligero desfase */
+    text-shadow: -2px 0 var(--glitch-magenta); /* Sombra magenta/roja en el fantasma cian */
+    /* Animación para el parpadeo y movimiento del fantasma cian */
+    animation: glitch-эффект-1 2s infinite linear alternate-reverse;
+    /* clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%); */ /* Ejemplo de corte inicial */
+}
+
+/* Fantasma Magenta/Rojo (o el color que prefieras) */
+.contact-title-enhanced::after {
+    color: var(--glitch-red); /* O --glitch-magenta */
+    left: -2px; /* Ligero desfase opuesto */
+    text-shadow: 2px 0 var(--glitch-cyan); /* Sombra cian en el fantasma rojo/magenta */
+    /* Animación para el parpadeo y movimiento del fantasma rojo/magenta */
+    animation: glitch-эффект-2 3s infinite linear alternate-reverse;
+    /* clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%); */ /* Ejemplo de corte inicial */
+}
+
+
+/* --- Keyframes para las Animaciones Glitch --- */
+
+/* Animación para el texto principal (temblor sutil) */
+@keyframes glitch-hlavní {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* Animación para el primer pseudo-elemento (fantasma cian) */
+@keyframes glitch-эффект-1 {
+    0% { clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%); transform: translate(-3px, -1px); opacity: 0.8; }
+    5% { clip-path: polygon(0 45%, 100% 45%, 100% 50%, 0 50%); transform: translate(2px, 2px); }
+    10% { clip-path: polygon(0 80%, 100% 80%, 100% 85%, 0 85%); transform: translate(-2px, 1px); }
+    15% { clip-path: polygon(0 35%, 100% 35%, 100% 40%, 0 40%); transform: translate(3px, -2px); opacity: 0.7; }
+    20% { clip-path: polygon(0 60%, 100% 60%, 100% 65%, 0 65%); transform: translate(-1px, -1px); }
+    25% { clip-path: polygon(0 10%, 100% 10%, 100% 15%, 0 15%); transform: translate(1px, 2px); opacity: 0.9; }
+    30% { clip-path: polygon(0 70%, 100% 70%, 100% 75%, 0 75%); transform: translate(-3px, 1px); }
+    35% { clip-path: polygon(0 5%, 100% 5%, 100% 10%, 0 10%); transform: translate(2px, -1px); opacity: 0.6; }
+    40% { clip-path: polygon(0 90%, 100% 90%, 100% 95%, 0 95%); transform: translate(-1px, 2px); }
+    45% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); transform: translate(3px, -2px); opacity: 0.8; }
+    50% { clip-path: polygon(0 20%, 100% 20%, 100% 25%, 0 25%); transform: translate(-2px, 1px); }
+    /* Continúa con más pasos variando el clip-path y transform para un efecto más largo y aleatorio */
+    /* ... (puedes añadir muchos más pasos para aleatorizar) ... */
+    100% { clip-path: polygon(0 55%, 100% 55%, 100% 60%, 0 60%); transform: translate(1px, -1px); opacity: 0.7; }
+}
+
+/* Animación para el segundo pseudo-elemento (fantasma rojo/magenta) */
+@keyframes glitch-эффект-2 {
+    0% { clip-path: polygon(0 72%, 100% 72%, 100% 78%, 0 78%); transform: translate(2px, 1px); opacity: 0.7; }
+    6% { clip-path: polygon(0 12%, 100% 12%, 100% 18%, 0 18%); transform: translate(-3px, -2px); }
+    12% { clip-path: polygon(0 48%, 100% 48%, 100% 54%, 0 54%); transform: translate(1px, 2px); opacity: 0.9; }
+    18% { clip-path: polygon(0 88%, 100% 88%, 100% 94%, 0 94%); transform: translate(-2px, -1px); }
+    24% { clip-path: polygon(0 28%, 100% 28%, 100% 34%, 0 34%); transform: translate(3px, 1px); opacity: 0.6; }
+    30% { clip-path: polygon(0 68%, 100% 68%, 100% 74%, 0 74%); transform: translate(-1px, 2px); }
+    36% { clip-path: polygon(0 2%, 100% 2%, 100% 8%, 0 8%); transform: translate(2px, -2px); opacity: 0.8; }
+    42% { clip-path: polygon(0 42%, 100% 42%, 100% 48%, 0 48%); transform: translate(-3px, 1px); }
+    48% { clip-path: polygon(0 78%, 100% 78%, 100% 84%, 0 84%); transform: translate(1px, -1px); opacity: 0.7; }
+    54% { clip-path: polygon(0 18%, 100% 18%, 100% 24%, 0 24%); transform: translate(-2px, 2px); }
+    /* Continúa con más pasos variando el clip-path y transform */
+    /* ... (puedes añadir muchos más pasos para aleatorizar) ... */
+    100% { clip-path: polygon(0 33%, 100% 33%, 100% 39%, 0 39%); transform: translate(-1px, 1px); opacity: 0.9; }
+}
+
+/* --- Panel de Fondo para el Formulario --- */
+.form-panel-wrapper {
+    background-color: var(--form-panel-bg);
+    border-radius: 12px;
+    padding: 2rem; /* Padding general */
+    width: 100%;
+    box-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.5), /* Sombra oscura más pronunciada */
+        0 0 35px rgba(0, 0, 0, 0.4),
+        /* Resplandor muy sutil del color del borde del panel */
+        0 0 15px rgba(0, 255, 255, 0.1); 
+    position: relative;
+    border: 1px solid rgba(0, 255, 255, 0.25); /* Borde cian sutil pero visible */
+    /* backdrop-filter: blur(3px); */ /* OPCIONAL: Si te gusta y el rendimiento es bueno */
+    z-index: 1; /* Detrás del título si se superponen */
+}
+
+/* --- Decoraciones HUD (Ahora relativas al .form-panel-wrapper) --- */
+.hud-decoration {
+    content: '';
+    position: absolute;
+    width: 28px; 
+    height: 28px;
+    border-color: var(--neon-cyan); /* HUD en Cian */
+    border-style: solid;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.form-panel-wrapper:hover .hud-decoration {
+    opacity: 0.9;
+    /* box-shadow: 0 0 5px var(--neon-cyan); */
+}
+
+.hud-decoration.top-left { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.hud-decoration.top-right { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.hud-decoration.bottom-left { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+.hud-decoration.bottom-right { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+/* --- Formulario y Grupos (Dentro del .form-panel-wrapper) --- */
+.contact-form-enhanced {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; 
+    width: 100%;
+}
+
+.form-group-enhanced label {
+    font-family: var(--pixel-font);
+    font-size: 0.75em; /* Un pelín más grande si se perdían mucho */
+    color: var(--bright-white); /* MAGENTA BRILLANTE */
+    text-shadow: /* Sombras para efecto neón MAGENTA */
+        0 0 3px var(--text-color-labels), /* Sombra del mismo color para potenciar */
+        0 0 5px var(--text-color-labels),
+        0 0 8px rgba(255, 0, 255, 0.7); /* Aura magenta más difusa */
+    padding-left: 3px;
+    margin-bottom: 0.4rem; /* Un poco más de espacio */
+}
+
+.form-group-enhanced input,
+.form-group-enhanced textarea {
+    font-family: var(--normal-font);
+    background-color: var(--input-bg);
+    border: 1.5px solid var(--neon-cyan); /* Borde Cian */
+    border-radius: 7px; /* Un poco menos redondeado */
+    padding: 12px 15px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    box-shadow:
+        0 0 7px rgba(0, 255, 255, 0.3), 
+        0 0 10px rgba(0, 255, 255, 0.2),
+        inset 0 0 5px rgba(0, 255, 255, 0.18);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group-enhanced input:focus,
+.form-group-enhanced textarea:focus {
+    border-color: var(--neon-cyan);
+    background-color: var(--input-bg-focus);
+    box-shadow:
+        0 0 10px rgba(0, 255, 255, 0.65),
+        0 0 18px rgba(0, 255, 255, 0.45),
+        0 0 30px rgba(0, 255, 255, 0.25),
+        inset 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+.form-group-enhanced textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ... (Placeholder sin cambios) ... */
+
+/* --- Botón de Envío --- */
+.submit-btn-enhanced {
+    font-family: var(--pixel-font);
+    background-color: var(--input-bg);
+    color: var(--neon-cyan); /* Texto "SEND" Cian */
+    border: 2px solid var(--neon-magenta); /* Borde Magenta */
+    padding: 11px 14px; /* Un poco más compacto */
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    text-shadow: 0 0 4px var(--neon-cyan), 0 0 7px var(--neon-cyan);
+    box-shadow:
+        0 0 7px rgba(255, 0, 255, 0.45), 
+        0 0 10px rgba(255, 0, 255, 0.35);
+    border-radius: 5px;
+    align-self: center;
+    min-width: 140px;
+}
+
+.submit-btn-enhanced .chevron-icon-enhanced {
+    width: 17px;
+    height: 17px;
+    transition: transform 0.3s ease;
+    fill: var(--neon-cyan);
+    filter: drop-shadow(0 0 3px var(--neon-cyan));
+}
+
+.submit-btn-enhanced:hover,
+.submit-btn-enhanced:focus {
+    background-color: var(--input-bg-focus);
+    color: var(--text-color);
+    border-color: var(--neon-magenta);
+    box-shadow:
+        0 0 10px rgba(255, 0, 255, 0.7),
+        0 0 18px rgba(255, 0, 255, 0.5),
+        0 0 28px rgba(255, 0, 255, 0.3);
+    text-shadow: 0 0 5px var(--text-color), 0 0 8px var(--neon-cyan);
+    outline: none;
+}
+
+.submit-btn-enhanced:hover .chevron-icon-enhanced {
+    transform: translateX(3px);
+    fill: var(--text-color);
+    filter: drop-shadow(0 0 4px var(--text-color));
+}
+
+/* ... (Media Queries sin cambios significativos, pero revisa los tamaños y paddings si es necesario) ... */
+
+.contact-header {
+    position: absolute; /* O fixed si quieres que permanezca al hacer scroll */
+    top: 20px;
+    left: 20px;
+    z-index: 100; /* Asegurar que esté por encima de otros elementos */
+}
+
+.back-button-synth span { /* Asumiendo que esta es la clase del texto del enlace */
+    font-family: var(--pixel-font);
+    color: var(--neon-magenta); /* Color base del texto */
+    text-decoration: none;
+    font-size: 0.8em; /* Un poco más grande para legibilidad */
+    text-shadow: /* Efecto neón magenta */
+        0 0 3px var(--neon-magenta),
+        0 0 5px var(--neon-magenta),
+        0 0 8px rgba(255, 0, 255, 0.7); /* Aura magenta más difusa */
+    padding: 5px 8px; /* Pequeño padding para que no se vea tan pegado */
+    border: 1px solid transparent; /* Para que el tamaño no cambie en hover si añades borde */
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Para que el padding y transform funcionen bien */
+}
+
+.back-button-synth span:hover {
+    color: var(--text-color); /* Texto blanco en hover */
+    text-shadow: /* Efecto neón blanco con aura del color original o cian */
+        0 0 4px var(--text-color),
+        0 0 7px var(--neon-cyan), /* O var(--neon-magenta) si prefieres mantener el color */
+        0 0 10px var(--neon-cyan);
+    transform: scale(1.05); /* Ligero aumento de tamaño en hover */
+    /* Opcional: un borde sutil en hover */
+    /* border-color: rgba(255, 0, 255, 0.5); */
+}
+
+/* Si tienes un icono dentro del enlace (como <i class="fas fa-arrow-left"></i>), también podrías estilizarlo */
+.back-button-synth i { /* Ejemplo si tuvieras un icono */
+    margin-right: 8px; /* Espacio entre icono y texto */
+    font-size: 0.9em; /* Ajustar tamaño del icono relativo al texto */
+    /* Los colores y text-shadow se heredarán del span, o puedes definirlos específicamente */
+}
+
+.contact-footer{
+    margin-top: 250px;
+    opacity: 0.3;
+    font-family: 'Press Start 2P';
+}

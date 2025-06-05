@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transacciones - Finance Dashboard</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <h1>FinDash</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transacciones</a>
+                    </li>
+                    <li>
+                        <a href="budget.html"><i class="fas fa-piggy-bank"></i> Presupuesto</a>
+                    </li>
+                    <li>
+                        <a href="reports.html"><i class="fas fa-file-alt"></i> Reportes</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content transactions-page">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar transacciones...">
+                </div>
+                <div class="user-menu">
+                    <button class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="profile">
+                        <img src="./assets/default-avatar.svg" alt="Profile">
+                        <span>Usuario</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>Transacciones</h1>
+                <button class="btn-add"><i class="fas fa-plus"></i> Nueva Transacción</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Tipo:</label>
+                    <select id="typeFilter">
+                        <option value="all">Todos</option>
+                        <option value="income">Ingresos</option>
+                        <option value="expense">Gastos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Categoría:</label>
+                    <select id="categoryFilter">
+                        <option value="all">Todas</option>
+                        <option value="Salario">Salario</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Alquiler">Alquiler</option>
+                        <option value="Servicios">Servicios</option>
+                        <option value="Comida">Comida</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Desde:</label>
+                    <input type="date" id="dateFromFilter">
+                </div>
+                <div class="filter-group">
+                    <label>Hasta:</label>
+                    <input type="date" id="dateToFilter">
+                </div>
+            </div>
+
+            <div class="transactions-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Categoría</th>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTableBody">
+                        <!-- Transactions will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./js/transactions.js"></script>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

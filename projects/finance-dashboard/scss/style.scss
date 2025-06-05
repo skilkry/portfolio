@@ -1,0 +1,288 @@
+// Importar abstracts
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+// Importar base
+@import 'base/reset';
+
+// Layout
+.app-container {
+  @include flex;
+  min-height: 100vh;
+}
+
+// Sidebar
+.sidebar {
+  width: 250px;
+  background: $background-primary;
+  border-right: 1px solid $border-color;
+  padding: $spacing-unit;
+
+  .logo {
+    @include flex(row, flex-start, center);
+    gap: $spacing-unit;
+    padding: $spacing-unit 0;
+    margin-bottom: $spacing-unit * 2;
+
+    i {
+      font-size: 1.5rem;
+      color: $primary-color;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+
+  .main-nav {
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: $spacing-unit * 0.5;
+
+        a {
+          @include flex(row, flex-start, center);
+          gap: $spacing-unit;
+          padding: $spacing-unit * 0.75;
+          color: $text-secondary;
+          text-decoration: none;
+          border-radius: $border-radius;
+          transition: all 0.2s;
+
+          i {
+            width: 20px;
+          }
+
+          &:hover {
+            background: rgba($primary-color, 0.1);
+            color: $primary-color;
+          }
+        }
+
+        &.active a {
+          background: rgba($primary-color, 0.1);
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// Main Content
+.main-content {
+  flex: 1;
+  padding: $spacing-unit * 2;
+
+  .top-bar {
+    @include flex(row, space-between, center);
+    margin-bottom: $spacing-unit * 2;
+
+    .search-bar {
+      @include flex(row, flex-start, center);
+      gap: $spacing-unit;
+      background: $background-primary;
+      padding: $spacing-unit * 0.75;
+      border-radius: $border-radius;
+      width: 300px;
+
+      i {
+        color: $text-secondary;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 0.875rem;
+
+        &::placeholder {
+          color: $text-secondary;
+        }
+      }
+    }
+
+    .user-menu {
+      @include flex(row, flex-start, center);
+      gap: $spacing-unit * 2;
+
+      .notifications {
+        position: relative;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $text-secondary;
+
+        .badge {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background: $danger-color;
+          color: white;
+          font-size: 0.75rem;
+          padding: 2px 5px;
+          border-radius: 10px;
+        }
+      }
+
+      .profile {
+        @include flex(row, flex-start, center);
+        gap: $spacing-unit;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+// Dashboard Grid
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-unit * 2;
+
+  .card {
+    @include card;
+
+    h2 {
+      font-size: 1rem;
+      color: $text-secondary;
+      margin-bottom: $spacing-unit;
+    }
+
+    .amount {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: $spacing-unit;
+    }
+
+    .trend {
+      @include flex(row, flex-start, center);
+      gap: $spacing-unit * 0.5;
+      font-size: 0.875rem;
+
+      &.positive {
+        color: $success-color;
+      }
+
+      &.negative {
+        color: $danger-color;
+      }
+    }
+  }
+
+  .chart {
+    height: 200px;
+    margin-top: $spacing-unit;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+
+  .transactions-container {
+    .transaction {
+      @include flex(row, space-between, center);
+      padding: $spacing-unit;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .transaction-icon {
+        width: 40px;
+        height: 40px;
+        @include flex(row, center, center);
+        background: rgba($primary-color, 0.1);
+        border-radius: 50%;
+        color: $primary-color;
+      }
+
+      .transaction-details {
+        flex: 1;
+        margin: 0 $spacing-unit;
+
+        h3 {
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+
+        span {
+          font-size: 0.75rem;
+          color: $text-secondary;
+        }
+      }
+
+      .transaction-amount {
+        font-weight: 500;
+
+        &.income {
+          color: $success-color;
+        }
+
+        &.expense {
+          color: $danger-color;
+        }
+      }
+    }
+  }
+
+  .progress-container {
+    .budget-item {
+      margin-bottom: $spacing-unit;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .budget-info {
+        @include flex(row, space-between, center);
+        margin-bottom: $spacing-unit * 0.5;
+
+        h3 {
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+
+        span {
+          font-size: 0.75rem;
+          color: $text-secondary;
+        }
+      }
+
+      .progress-bar {
+        height: 8px;
+        background: $border-color;
+        border-radius: 4px;
+        overflow: hidden;
+
+        .progress {
+          height: 100%;
+          transition: width 0.3s ease;
+
+          &.good {
+            background: $success-color;
+          }
+
+          &.warning {
+            background: $warning-color;
+          }
+
+          &.danger {
+            background: $danger-color;
+          }
+        }
+      }
+    }
+  }
+}

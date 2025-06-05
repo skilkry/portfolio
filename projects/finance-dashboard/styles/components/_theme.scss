@@ -1,0 +1,62 @@
+@use '../abstracts/variables' as *;
+
+// Dark theme styles
+.dark-theme {
+  background-color: $dark-background;
+  color: $dark-text-primary;
+  
+  .sidebar, 
+  .card, 
+  .search-bar,
+  .modal-content {
+    background-color: $dark-card-background;
+    border-color: $dark-border-color;
+  }
+  
+  .text-primary,
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-text-primary;
+  }
+  
+  .text-secondary,
+  .search-bar i,
+  .transaction span,
+  .budget-info span {
+    color: $dark-text-secondary;
+  }
+  
+  .border-color,
+  .transaction {
+    border-color: $dark-border-color;
+  }
+  
+  input, select {
+    background-color: $dark-card-background;
+    border-color: $dark-border-color;
+    color: $dark-text-primary;
+    
+    &::placeholder {
+      color: $dark-text-secondary;
+    }
+  }
+  
+  .progress-bar {
+    background-color: $dark-border-color;
+  }
+}
+
+// Theme toggle button
+.theme-toggle {
+  background: none;
+  border: none;
+  color: $text-secondary;
+  cursor: pointer;
+  padding: $spacing-sm;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow Timer</title>
+    <link rel="stylesheet" href="./style.css"> <!-- Usaremos main.css compilado -->
+    <meta name="description" content="Temporizador flexible (Pomodoro) para mejorar la concentración y productividad.">
+    <!-- Favicon (ejemplo) -->
+    <!-- <link rel="icon" href="assets/icons/favicon.ico"> -->
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>FocusFlow Timer</h1>
+        <button id="settings-button" aria-label="Abrir configuración">⚙️</button>
+    </header>
+
+    <main class="timer-container">
+        <div class="timer-display">
+            <span id="timer-mode">Focus</span>
+            <span id="timer-time">25:00</span>
+        </div>
+        <div class="timer-controls">
+            <button id="start-pause-button">Start</button>
+            <button id="reset-button">Reset</button>
+            <button id="skip-button">Skip</button>
+        </div>
+        <div class="cycle-tracker">
+            <span>Ciclos completados: <span id="cycle-count">0</span></span>
+        </div>
+    </main>
+
+    <section id="settings-modal" class="modal" hidden>
+        <div class="modal-content">
+            <h2>Configuración</h2>
+            <button id="close-settings-button" class="close-button" aria-label="Cerrar configuración">&times;</button>
+            <form id="settings-form">
+                <label for="focus-duration">Duración Focus (min):</label>
+                <input type="number" id="focus-duration" min="1" value="25">
+
+                <label for="short-break-duration">Descanso Corto (min):</label>
+                <input type="number" id="short-break-duration" min="1" value="5">
+
+                <label for="long-break-duration">Descanso Largo (min):</label>
+                <input type="number" id="long-break-duration" min="1" value="15">
+
+                <label for="cycles-before-long-break">Ciclos para Descanso Largo:</label>
+                <input type="number" id="cycles-before-long-break" min="1" value="4">
+
+                <label for="enable-sound">Activar sonido:</label>
+                <input type="checkbox" id="enable-sound">
+
+                <hr> <!-- Separador visual -->
+
+                <!-- Color Customization Mode Selector -->
+                <div class="settings-color-mode">
+                    <label>Modo de Personalización de Color:</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="color-mode" value="simple" checked> Simple
+                        </label>
+                        <label>
+                            <input type="radio" name="color-mode" value="advanced"> Avanzado
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Simple Color Settings (Visible when simple mode is active) -->
+                <div id="simple-color-settings" class="color-settings-group">
+                    <label for="simple-primary-color-picker">Color Principal:</label>
+                    <div class="color-input-group">
+                        <input type="color" id="simple-primary-color-picker" value="#4a90e2">
+                        <span>Elige un color y la app ajustará el resto para asegurar buena legibilidad.</span>
+                    </div>
+                </div>
+
+                <!-- Advanced Color Settings (Visible when advanced mode is active) -->
+                <div id="advanced-color-settings" class="color-settings-group" hidden>
+                    <label>Colores Específicos:</label>
+                    <div class="color-inputs-advanced">
+                        <div class="color-input-group">
+                            <label for="adv-primary-color-picker">Primario:</label>
+                            <input type="color" id="adv-primary-color-picker" value="#4a90e2">
+                        </div>
+                        <div class="color-input-group">
+                            <label for="adv-background-color-picker">Fondo:</label>
+                            <input type="color" id="adv-background-color-picker" value="#f8f9fa">
+                        </div>
+                        <div class="color-input-group">
+                            <label for="adv-text-color-picker">Texto:</label>
+                            <input type="color" id="adv-text-color-picker" value="#343a40">
+                        </div>
+                         <!-- Podríamos añadir más aquí: secundario, fondo focus, fondo break, etc. -->
+                    </div>
+                </div>
+
+                <button type="submit">Guardar</button> 
+            </form>
+        </div>
+    </section>
+
+    <footer class="app-footer">
+        <p>Made w ❤️ by Skilkry</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./js/settings.js"></script>
+    <script src="./js/timer.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/notifications.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+</html>

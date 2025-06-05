@@ -1,0 +1,124 @@
+@use '../abstracts/variables' as *;
+
+// Notifications panel
+.notifications-panel {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 350px;
+  background-color: $card-background;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  z-index: 100;
+  overflow: hidden;
+  animation: slideDown 0.3s forwards;
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-color;
+    
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    
+    .close-notifications {
+      background: none;
+      border: none;
+      color: $text-secondary;
+      cursor: pointer;
+      padding: $spacing-xs;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba($text-primary, 0.1);
+        color: $text-primary;
+      }
+    }
+  }
+  
+  .notifications-list {
+    max-height: 400px;
+    overflow-y: auto;
+    
+    .notification-item {
+      display: flex;
+      padding: $spacing-md;
+      border-bottom: 1px solid $border-color;
+      transition: background-color 0.2s ease;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .notification-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: $spacing-md;
+        
+        &.success {
+          background-color: rgba($positive, 0.1);
+          color: $positive;
+        }
+        
+        &.warning {
+          background-color: rgba($warning, 0.1);
+          color: $warning;
+        }
+        
+        &.info {
+          background-color: rgba($info, 0.1);
+          color: $info;
+        }
+        
+        &.danger {
+          background-color: rgba($negative, 0.1);
+          color: $negative;
+        }
+      }
+      
+      .notification-content {
+        flex: 1;
+        
+        h4 {
+          margin: 0 0 $spacing-xs 0;
+          font-size: 0.95rem;
+        }
+        
+        p {
+          margin: 0 0 $spacing-xs 0;
+          font-size: 0.85rem;
+          color: $text-secondary;
+        }
+        
+        .notification-time {
+          font-size: 0.75rem;
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,421 @@
+/* === FUENTES Y ESTILOS GLOBALES === */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Opcional: Si usas Minecraft.ttf y otras fuentes de base.css */
+@font-face {
+    font-family: 'Minecraft'; /* */
+    src: url(../fonts/Minecraft.ttf); /* Ajusta la ruta si es necesario */
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    /* Paleta de colores inspirada en tu base.css y el look general */
+    --primary-glow-color: rgba(218, 87, 238, 0.7); /* Rosa/Púrpura para brillos */
+    --terminal-border-outer: rgb(218, 87, 238);
+    --terminal-border-inner: rgb(93, 139, 196);
+    --text-color-light: #ffffff;
+    --text-color-darker: rgba(255, 255, 255, 0.8);
+    --terminal-bg: #000000;
+    --font-main: 'Press Start 2P', monospace;
+    --font-accent: 'Minecraft', monospace; /* Ejemplo de uso */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../images/background-landing.jpeg'); /* De tu background.css */ /* */
+    background-color: #12011d; /* Color de respaldo más oscuro si la imagen falla */
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Para que el fondo no se mueva con el scroll */
+    min-height: 100vh;
+    font-family: var(--font-main);
+    color: var(--text-color-light);
+    overflow-x: hidden; /* Evita scroll horizontal accidental */
+    position: relative; /* Para z-index si es necesario */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* === ANIMACIÓN DE INTRO === */
+.intro-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #1a0f2e 0%, #2d1b4e 35%, #371C69 100%); /* */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Muy alto para estar encima de todo */
+    /* Considera añadir una animación para ocultarlo: animation: hideIntro 0.5s forwards 3s; (3s de delay) */
+}
+/* @keyframes hideIntro { to { opacity: 0; visibility: hidden; } } */
+
+.logo-container { /* */
+    /* Estilos del logo de intro */
+}
+.circle { stroke-dasharray: 565; stroke-dashoffset: 565; /* Animaciones de stroke si las tienes */ } /* */
+.letter { stroke-dasharray: 300; stroke-dashoffset: 300; } /* */
+
+
+/* === HEADER Y NAVEGACIÓN (SI EXISTE VISIBLE) === */
+.header {
+    /* Si tienes un header visible, estilízalo aquí */
+    padding: 1rem 0;
+    text-align: center;
+}
+/* #text-container-animated { ... } si lo usas */
+
+
+/* === CONTENIDO PRINCIPAL === */
+.main-content-area {
+    position: relative; /* Para z-index y posicionamiento de hijos */
+    z-index: 1;
+    min-height: 100vh; /* Asegura que ocupa la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Padding general */
+}
+
+.main-text-container {
+    text-align: center;
+    margin-top: clamp(40px, 10vh, 100px); /* Margen superior adaptable */ /* */
+    margin-bottom: 40px; /* Espacio antes de la terminal */
+}
+
+.main-text-container h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Tamaño de fuente adaptable */ /* */
+    text-shadow: 0 0 10px var(--primary-glow-color), 0 0 15px var(--primary-glow-color);
+    margin-bottom: 0.5em;
+}
+
+.main-text-container h2 {
+    font-size: clamp(0.9rem, 2vw, 1.1rem); /* Tamaño de fuente adaptable */
+    color: var(--text-color-darker);
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+/* === VENTANA DE TERMINAL === */
+.terminal-window {
+    background-color: var(--terminal-bg);
+    border: 6px solid var(--terminal-border-outer); /* Borde exterior más grueso */
+    border-radius: 12px; /* Un poco menos redondeado */
+    width: clamp(300px, 60vw, 900px); /* Ancho adaptable, máximo 900px */
+    /* height: auto; /* Altura automática basada en contenido */
+    margin: 0 auto; /* Centrado */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 25px var(--primary-glow-color), inset 0 0 10px rgba(0,0,0,0.5);
+    position: relative; /* Para elementos internos si es necesario */
+    z-index: 10;
+    margin-bottom: 40px; /* Espacio antes de la flor */
+}
+
+.terminal-top-bar {
+    width: 100%;
+    height: 35px; /* Más compacto */
+    background-color: var(--terminal-bg); /* Mismo fondo que la terminal */
+    border-bottom: 3px solid var(--terminal-border-inner); /* Borde interior */
+    border-radius: 6px 6px 0 0; /* Redondeo solo arriba, ajustado al nuevo border-radius del parent */
+    display: flex;
+    align-items: center;
+    padding: 0 15px; /* Padding horizontal */
+    position: relative; /* Para los botones */
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+    /* position: absolute; left: 15px; top: 50%; transform: translateY(-50%); */ /* Alternativa si no están en el flujo */
+}
+
+.terminal-btn {
+    width: 14px; /* Un poco más pequeños */
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s, filter 0.2s;
+}
+.terminal-btn:hover { transform: scale(1.2); filter: brightness(1.2); } /* */
+.terminal-btn.close { background: linear-gradient(135deg, #ff5f57, #e0443e); } /* */
+.terminal-btn.min { background: linear-gradient(135deg, #ffbd2e, #e0a128); } /* */ /* Cambié el color del botón min a amarillo como es más común */
+.terminal-btn.max { background: linear-gradient(135deg, #28ca42, #1da235); } /* */ /* Cambié el color del botón max a verde */
+
+.main-text-span{
+color: red;
+}
+
+/* Estilos existentes para .intro-animation, .logo-container, etc. se mantienen */
+
+.intro-animation {
+    /* ... tus estilos ... */
+    display: flex; /* Asegúrate que es flex si no lo es ya, para centrar */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1; /* Inicialmente visible */
+    visibility: visible;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out; /* Para desvanecer */
+}
+
+.intro-animation.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Para que no interfiera una vez oculto */
+}
+
+.intro-text-sequence p {
+    font-family: 'Press Start 2P', monospace;
+    color: #00ff00; /* Verde típico de terminal */
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-align: center;
+    opacity: 0; /* Inicialmente oculto, aparecerá con JS */
+    white-space: nowrap; /* Para efecto máquina de escribir */
+    overflow: hidden; /* Para efecto máquina de escribir */
+    border-right: .15em solid #00ff00; /* Cursor de máquina de escribir */
+    letter-spacing: .15em;
+}
+
+/* Animación de máquina de escribir y parpadeo del cursor */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ff00; }
+}
+
+.intro-welcome-message h1 {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--text-color-light, white);
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0; /* Inicialmente oculto */
+    transform: translateY(20px); /* Para un efecto de subida */
+    transition: opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s; /* 0.5s de delay */
+}
+
+.intro-animation.hidden .intro-text-sequence p,
+.intro-animation.hidden .logo-container,
+.intro-animation.hidden .intro-welcome-message h1 {
+    /* Se pueden añadir animaciones de salida específicas si se desea antes de ocultar el contenedor principal */
+}
+
+/* Tus animaciones para .circle y .letter ya deberían estar en base.css */
+/* Tu @keyframes scaleFadeOut ya debería estar en base.css */
+.intro-animation.fade-out-final {
+    animation: scaleFadeOut 1s forwards; /* Usa tu animación existente */
+}
+
+.terminal-window-title {
+    font-size: 0.65rem;
+    color: var(--text-color-darker);
+    margin-left: 45px; /* Espacio después de los botones */
+    text-transform: uppercase;
+}
+
+.terminal-main-content {
+    padding: 20px;
+    flex-grow: 1; /* Ocupa el espacio restante */
+    background-color: rgba(0,0,0,0.8); /* Fondo ligeramente transparente si se desea, o sólido */
+    border-radius: 0 0 6px 6px; /* Ajusta al parent */
+}
+
+.terminal-grid-layout {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.terminal-left-section {
+    flex-basis: 35%; /* Un poco menos de espacio para el avatar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.avatar-image {
+    width: clamp(100px, 15vw, 140px); /* Tamaño adaptable */
+    height: clamp(100px, 15vw, 140px);
+    border: 3px solid var(--terminal-border-inner);
+    border-radius: 8px;
+    object-fit: cover;
+    margin-top: 10px; /* Pequeño margen superior */
+}
+
+.stats-text {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem); /* Tamaño adaptable */
+    line-height: 1.6;
+    color: var(--text-color-darker);
+    padding: 0 5px; /* Pequeño padding para que no toque los bordes si es muy largo */
+}
+.stats-text p { margin: 0; }
+
+
+.terminal-right-section {
+    flex-basis: 65%; /* Más espacio para los botones */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra los botones verticalmente */
+    align-items: stretch; /* Estira el contenedor de botones */
+}
+
+.terminal-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2vh, 15px); /* Espacio adaptable */
+    width: 100%; /* Ocupa todo el espacio del panel derecho */
+}
+
+.terminal-button { /* Estilo unificado para botones de terminal */
+    font-family: var(--font-main);
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-color-light);
+    background: rgba(20, 20, 20, 0.6); /* Fondo oscuro semi-transparente */
+    border: 2px solid var(--terminal-border-inner); /* Borde a juego con la terminal */
+    border-radius: 5px;
+    padding: clamp(10px, 2vh, 15px);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: block; /* Para que ocupe todo el ancho si está dentro de un <a> */
+    width: 100%;
+}
+
+.terminal-button:hover {
+    background-color: var(--terminal-border-inner);
+    color: var(--terminal-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(93, 139, 196, 0.4);
+}
+.terminal-button:active {
+    transform: translateY(0px);
+}
+/* Colores específicos para botones si los necesitas, como antes */
+.terminal-button.about { border-color: #23A0BE; } /* */
+.terminal-button.projects { border-color: #A334B7; } /* */
+.terminal-button.contact { border-color: #9B4C9A; } /* */
+
+
+/* === ELEMENTO DECORATIVO (FLOR) === */
+.decorative-pixel-flower {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; 
+    width: clamp(60px, 8vw, 80px); /* Tamaño adaptable */
+    z-index: 5; /* Por si acaso */
+    image-rendering: pixelated; /* Para que se vea bien pixelada si es una imagen de baja res */
+}
+
+
+/* === FOOTER === */
+.site-footer {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-color-darker);
+    width: 100%;
+    margin-top: auto; /* Empuja el footer hacia abajo si el contenido es corto */
+    z-index: 5;
+    position: relative; /* O fixed si quieres que esté siempre visible */
+}
+
+.footer-heart {
+    color: #ff0055; /* Color del corazón */
+    font-size: 1em; /* Para que coincida con el texto */
+}
+
+/* === ANIMACIONES DE BOTONES (ADAPTADO DE TU base.css y layout.css) === */
+/* Si usas los botones con iconos y efectos de brillo del .menu-container lateral,
+   esos estilos (.menu-button, .menu-button i, .menu-button::before, etc.)
+   se mantendrían si ese menú lateral sigue existiendo fuera de la terminal.
+   Si los botones de la terminal son los únicos, los estilos .terminal-button son suficientes.
+   Si quieres añadir efectos de brillo a .terminal-button, puedes adaptar las keyframes:
+*/
+
+@keyframes pulse-glow { /* */
+    from { box-shadow: 0 0 5px rgba(255, 255, 255, 0.1), 0 0 8px var(--terminal-border-inner); }
+    to { box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px var(--terminal-border-inner); }
+}
+/* .terminal-button:hover { animation: pulse-glow 1.5s infinite alternate; } */ /* Opcional */
+
+/* Media Queries para responsividad (Ejemplo básico, expandir según necesidad) */
+@media (max-width: 768px) {
+    .terminal-window {
+        width: 90vw; /* Más ancho en pantallas pequeñas */
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .terminal-grid-layout {
+        flex-direction: column; /* Paneles uno encima del otro */
+        align-items: center; /* Centra los paneles */
+    }
+    .terminal-left-section, .terminal-right-section {
+        flex-basis: auto; /* Quita la base flexible */
+        width: 100%; /* Ocupan todo el ancho disponible */
+    }
+    .terminal-right-section {
+        margin-top: 20px; /* Espacio si se apilan */
+    }
+    .main-text-container h1 { font-size: 1.6rem; }
+    .main-text-container h2 { font-size: 0.85rem; }
+
+    .decorative-pixel-flower {
+        width: 50px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-top-bar { height: 30px; padding: 0 10px; }
+    .terminal-btn { width: 12px; height: 12px; }
+    .terminal-buttons { gap: 6px; }
+    .terminal-window-title { font-size: 0.3rem; margin-left: 10px; }
+    .terminal-main-content { padding: 15px; }
+    .avatar-image { width: 80px; height: 80px; }
+    .stats-text { font-size: 0.7rem; }
+    .terminal-button { font-size: 0.75rem; padding: 10px; }
+}
+
+/* En tu archivo CSS principal */
+.terminal-button.tutorial-active-step {
+    /* Un brillo o borde más prominente para indicar el siguiente paso */
+    box-shadow: 0 0 12px rgba(0, 225, 255, 0.8), 0 0 8px rgba(0, 225, 255, 0.6) inset;
+    border-color: #00e1ff !important; /* Asegura que se vea sobre otros bordes de botón */
+    transform: scale(1.03); /* Un ligero aumento para destacar */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.stats-text p { /* Para asegurar que el texto del tutorial se vea bien */
+    margin-bottom: 0.5em; /* Espacio entre líneas del tutorial */
+    min-height: 1.2em; /* Para evitar saltos cuando el texto se está escribiendo */
+}
+.stats-text p:last-child {
+    margin-bottom: 0;
+}

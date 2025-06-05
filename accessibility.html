@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+    <title>Accessibility Settings - Mi Portfolio</title>
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/accessibility.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/background.css">
+    <meta name="description" content="Accessibility settings for Skilkry's portfolio">
+</head>
+<body>
+    <div class="background-system">
+        <div class="grid"></div>
+        <div class="vignette"></div>
+        <div class="glow-points"></div>
+        <div class="scan-lines"></div>
+    </div>
+    <div class="background-overlay"></div>
+    <div class="scan-lines"></div>
+    <div class="parallax-bg"></div>
+    
+    <header>
+        <nav class="nav">
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+          </a>
+        </nav>
+      </header>
+    
+    <main>
+        <div class="accessibility-container">
+            <section class="a11y-section">
+                <h2>Text Size</h2>
+                <div class="a11y-controls">
+                    <button class="a11y-btn" data-action="decrease-font">A-</button>
+                    <button class="a11y-btn" data-action="reset-font">Reset</button>
+                    <button class="a11y-btn" data-action="increase-font">A+</button>
+                </div>
+            </section>
+            
+            <section class="a11y-section">
+                <h2>Color Mode</h2>
+                <div class="a11y-controls">
+                    <button class="a11y-btn" data-action="high-contrast">High Contrast</button>
+                    <button class="a11y-btn" data-action="color-blind">Color Blind</button>
+                    <button class="a11y-btn" data-action="reset-colors">Normal</button>
+                </div>
+            </section>
+            
+            <section class="a11y-section">
+                <h2>Animations</h2>
+                <div class="a11y-controls">
+                    <button class="a11y-btn" data-action="reduce-motion">Reduce Motion</button>
+                    <button class="a11y-btn" data-action="enable-motion">Enable Motion</button>
+                </div>
+            </section>
+            
+            <section class="a11y-section">
+                <h2>Screen Reader</h2>
+                <div class="a11y-controls">
+                    <button class="a11y-btn" data-action="enable-reader">Enable Descriptions</button>
+                    <button class="a11y-btn" data-action="disable-reader">Disable Descriptions</button>
+                </div>
+            </section>
+            
+            <section class="a11y-section">
+                <h2>Reading Mode</h2>
+                <div class="a11y-controls">
+                    <button class="a11y-btn" data-action="enable-reading-mode">Enable</button>
+                    <button class="a11y-btn" data-action="disable-reading-mode">Disable</button>
+                </div>
+            </section>
+            
+            <section class="a11y-section">
+                <h2>Keyboard Shortcuts</h2>
+                <div class="keyboard-shortcuts">
+                    <p><strong>Alt + A:</strong> Toggle accessibility menu</p>
+                    <p><strong>Alt + C:</strong> High contrast</p>
+                    <p><strong>Alt + F:</strong> Increase font</p>
+                    <p><strong>Esc:</strong> Close menus</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-text">
+            Made w 
+            <svg class="cyber-heart" width="24" height="24" viewBox="0 0 24 24">
+                <path class="heart-main" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                <path class="heart-glow" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            by Skilkry
+        </div>
+    </footer>
+    
+    <script src="./assets/JavaScript/accessibility-page.js"></script>
+</body>
+</html>

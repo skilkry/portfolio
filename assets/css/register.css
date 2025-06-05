@@ -1,0 +1,339 @@
+@import './nav.css';
+@import './global.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.nav {
+  background-color: #1d1818e0;
+  font-family: 'Poppins', sans-serif;
+  padding: 1rem 2rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  height: 90px;
+  align-items: center;
+  justify-content: space-between; /* Añadido para separar el botón de atrás y los enlaces */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav span{
+  color: #fff;
+  display: flex;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  margin-left: 5px;
+}
+
+
+
+body {
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+.container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.822);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 580px;
+  display: flex;
+  margin-top: 70px; /* Añadir margen para la barra de navegación */
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: linear-gradient(135deg, #30b4b5, #2aa09f);
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+form {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+h1 {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 24px;
+  color: #333;
+}
+
+.overlay-panel h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.overlay-panel p {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.social-container {
+  margin: 20px 0;
+}
+
+.social-container a {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+  color: #333;
+  text-decoration: none;
+}
+
+span {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.input-container {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  width: 100%;
+  margin: 8px 0;
+  position: relative; /* Asegura que el contenedor tenga posicionamiento relativo */
+  display: flex;
+  align-items: center; /* Para alinear los iconos verticalmente */
+}
+
+.input-container i {
+  position: absolute; /* Posiciona el icono de manera absoluta dentro del contenedor */
+  left: 15px; /* Ajusta la distancia a la izquierda */
+  color: #777;
+  font-size: 18px;
+}
+
+input {
+  background: transparent;
+  border: none;
+  padding: 12px 15px 12px 40px; /* Deja espacio en el lado izquierdo para el icono */
+  width: 100%;
+  font-size: 14px;
+  height: 40px; /* Asegúrate de que el input tenga suficiente altura */
+}
+
+input:focus {
+  outline: none;
+}
+
+
+button {
+  border-radius: 20px;
+  border: 1px solid #30b4b5;
+  background-color: #30b4b5;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  transform: scale(0.98);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+}
+
+.signin-btn, .signup-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.forgot {
+  color: #999;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.forgot:hover {
+  color: #30b4b5;
+}
+
+.emoji-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  top: 45px;
+  left: 40px;
+}
+
+#emoji {
+  width: 120px;
+  height: 120px;
+  overflow: visible;
+  animation: float 3s ease-in-out infinite;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.checkbox-container input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.checkbox-container label {
+  font-size: 14px;
+  color: #777;
+  cursor: pointer;
+}
+
+.checkbox-container input:focus {
+  outline: none;
+}
+
+.input-container i.toggle-password {
+    position: absolute;
+    right: 10px; /* Posiciona el icono a la derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+}
+
+footer{
+  position: fixed;
+  top: 0;
+}
