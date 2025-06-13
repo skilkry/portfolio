@@ -9,19 +9,43 @@
     <link rel="stylesheet" href="./assets/css/projects.css"> 
     <script type="module" src="./assets/JavaScript/common.js"></script>
 </head>
-<body class="projects-page-body"> <header class="projects-header">
+<body class="projects-page-body">
+    <header class="projects-header">
         <nav class="projects-nav">
             <a href="index.html" class="nav-back-button">
                 <i class="fas fa-arrow-left"></i>
                 <span>VOLVER AL INICIO</span>
             </a>
-            </nav>
+        </nav>
     </header>
 
     <main class="projects-main-container">
         <h1 class="section-title glitch-effect" data-text="MIS PROYECTOS">MIS PROYECTOS</h1>
         
         <div class="projects-showcase-grid">
+
+            <article class="project-item" tabindex="0">
+                <div class="project-item-image-container">
+                    <img src="./assets/images/qr-image.png" alt="Vista previa de Bot de Seguridad y Automatización">
+                    <div class="project-item-overlay">
+                        <h3 class="project-item-title-overlay">Bot de Seguridad y API</h3>
+                        <div class="project-item-links-overlay">
+                            <a href="https://github.com/skilkry/alcampo-loyalty-card-bot.git" target="_blank" class="project-action-btn demo"><i class="fas fa-book-open"></i> Ver Caso</a>
+                            <a href="https://github.com/skilkry/alcampo-loyalty-card-bot.git" target="_blank" class="project-action-btn code"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item-content">
+                    <h2 class="project-item-title" id="proj-title-security-bot">Bot de Análisis y Automatización</h2>
+                    <p class="project-item-description">
+                        Estudio de caso práctico sobre seguridad móvil. Creación de un bot que supera SSL Pinning y defensas anti-debugging para interactuar con una API interna.
+                    </p>
+                    <div class="project-item-tags">
+                        <span>Python</span><span>Security</span><span>API</span><span>Automation</span><span>Frida</span><span>Playwright</span>
+                    </div>
+                </div>
+            </article>
+
             <article class="project-item" tabindex="0">
                 <div class="project-item-image-container">
                     <img src="./assets/images/project1.jpg" alt="Vista previa de Instagram Profile Clone">
@@ -88,33 +112,12 @@
                 </div>
             </article>
 
-            <article class="project-item" tabindex="0">
-                <div class="project-item-image-container">
-                    <img src="./assets/images/placeholder-project.png" alt="Vista previa de Proyecto Ejemplo 4"> <div class="project-item-overlay">
-                        <h3 class="project-item-title-overlay">Proyecto Ejemplo 4</h3>
-                        <div class="project-item-links-overlay">
-                            <a href="#" target="_blank" class="project-action-btn demo"><i class="fas fa-eye"></i> Demo</a>
-                            <a href="#" target="_blank" class="project-action-btn code"><i class="fab fa-github"></i> Código</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-item-content">
-                    <h2 class="project-item-title" id="proj-title-example4">Proyecto Ejemplo 4</h2>
-                    <p class="project-item-description">
-                        Descripción breve y atractiva de este cuarto proyecto, destacando tecnologías y funcionalidades clave.
-                    </p>
-                     <div class="project-item-tags">
-                        <span>React</span><span>Node.js</span><span>API</span>
-                    </div>
-                </div>
-            </article>
-
         </div>
     </main>
 
     <footer class="projects-footer">
         <p>&copy; 2024-2025 Skilkry. Todos los derechos reservados.</p>
-        </footer>
+    </footer>
     
-    </body>
+</body>
 </html>

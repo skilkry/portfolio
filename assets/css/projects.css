@@ -1,16 +1,13 @@
-/* === projects_reloaded.css === */
-
-/* --- Importaciones y Fuentes Globales --- */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
     --font-primary: 'Press Start 2P', monospace;
     --color-text: #e0e0e0;
     --color-text-darker: #a0a0a0;
-    --color-accent-primary: #ff00ff; /* Rosa neón */
-    --color-accent-secondary: #00ffff; /* Cian neón */
-    --color-background: #0a0014; /* Fondo muy oscuro, casi negro con tinte púrpura */
-    --color-card-bg: rgba(20, 5, 30, 0.85); /* Fondo de tarjeta oscuro y translúcido */
+    --color-accent-primary: #ff00ff;
+    --color-accent-secondary: #00ffff;
+    --color-background: #0a0014;
+    --color-card-bg: rgba(20, 5, 30, 0.85);
     --color-card-border: var(--color-accent-secondary);
     --color-card-border-hover: var(--color-accent-primary);
     --color-button-bg: var(--color-accent-primary);
@@ -24,7 +21,6 @@
     --color-button-code-hover-text: #000000;
 }
 
-/* --- Estilos Base de la Página --- */
 * {
     margin: 0;
     padding: 0;
@@ -36,15 +32,8 @@
     font-family: var(--font-primary);
     color: var(--color-text);
     line-height: 1.6;
-    /* Si quieres mantener tu imagen de fondo de rejilla aquí también: */
-    /* background-image: url('../images/background-landing.jpeg'); */
-    /* background-size: cover; */
-    /* background-position: center bottom; */
-    /* background-repeat: no-repeat; */
-    /* background-attachment: fixed; */
 }
 
-/* --- Header y Navegación --- */
 .projects-header {
     padding: 1.5rem 2rem;
     background-color: rgba(0,0,0,0.3);
@@ -75,11 +64,10 @@
     transform: translateX(-4px);
 }
 
-/* --- Contenedor Principal y Título --- */
 .projects-main-container {
-    max-width: 1400px; /* Un poco más ancho para más tarjetas */
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem 1.5rem; /* Ajusta padding */
+    padding: 2rem 1.5rem;
 }
 
 .section-title {
@@ -90,7 +78,6 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
-    /* Efecto Glitch (opcional, requiere JS para data-text o CSS más complejo) */
 }
 
 .glitch-effect {
@@ -100,22 +87,19 @@
     animation: glitch-anim 5s infinite steps(1);
 }
 
-@keyframes glitch-anim { /* Animación de glitch más sutil */
+@keyframes glitch-anim {
     0% { text-shadow: 2px 2px 0px var(--color-accent-primary), -2px -2px 0px var(--color-accent-secondary); }
     10% { text-shadow: -2px 2px 0px var(--color-accent-primary), 2px -2px 0px var(--color-accent-secondary); }
     20% { text-shadow: 2px -2px 0px var(--color-accent-primary), -2px 2px 0px var(--color-accent-secondary); }
     30% { clip-path: inset(20% 0 50% 0); }
     40% { clip-path: inset(50% 0 20% 0); }
     50% { clip-path: initial; text-shadow: 2px 0px 0px var(--color-accent-primary), 0px -2px 0px var(--color-accent-secondary); }
-    /* ... más pasos para un glitch más elaborado ... */
     100% { text-shadow: 2px 2px 0px var(--color-accent-primary), -2px -2px 0px var(--color-accent-secondary); }
 }
 
-
-/* --- Grid de Proyectos --- */
 .projects-showcase-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); /* Ancho mínimo de tarjeta */
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 2.5rem;
 }
 
@@ -127,22 +111,22 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
-    position: relative; /* Para el overlay */
+    position: relative;
 }
 
 .project-item:hover,
-.project-item:focus-within { /* :focus-within para accesibilidad con teclado */
+.project-item:focus-within {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--color-card-border-hover);
     border-color: var(--color-card-border-hover);
-    outline: none; /* Quita el outline por defecto al enfocar si se aplica un borde custom */
+    outline: none;
 }
 
 .project-item-image-container {
     position: relative;
-    aspect-ratio: 16 / 9; /* Mantiene la proporción de la imagen */
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    background-color: #111; /* Color de fondo mientras carga la imagen */
+    background-color: #111;
 }
 
 .project-item-image-container img {
@@ -163,7 +147,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 0, 20, 0.7); /* Overlay oscuro al pasar el ratón */
+    background-color: rgba(10, 0, 20, 0.7);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -230,7 +214,7 @@
 
 .project-item-content {
     padding: 1.2rem;
-    flex-grow: 1; /* Para que el contenido ocupe espacio */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
@@ -245,26 +229,25 @@
     font-size: 0.85rem;
     color: var(--color-text-darker);
     margin-bottom: 1rem;
-    flex-grow: 1; /* Empuja los tags hacia abajo si la descripción es corta */
+    flex-grow: 1;
 }
 
 .project-item-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: auto; /* Empuja los tags al final si es necesario */
+    margin-top: auto;
 }
 
 .project-item-tags span {
     font-size: 0.7rem;
-    background-color: rgba(0, 255, 255, 0.15); /* Fondo para tags con color cian */
+    background-color: rgba(0, 255, 255, 0.15);
     color: var(--color-accent-secondary);
     padding: 0.3em 0.7em;
     border-radius: 3px;
     text-transform: uppercase;
 }
 
-/* --- Footer --- */
 .projects-footer {
     text-align: center;
     padding: 2rem;
@@ -274,7 +257,6 @@
     margin-top: 3rem;
 }
 
-/* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
     .projects-main-container {
         padding: 1.5rem 1rem;
@@ -284,7 +266,7 @@
         margin-bottom: 2rem;
     }
     .projects-showcase-grid {
-        grid-template-columns: 1fr; /* Una columna en móviles */
+        grid-template-columns: 1fr;
         gap: 2rem;
     }
     .project-item-title-overlay {
@@ -311,6 +293,3 @@
         font-size: 0.65rem;
     }
 }
-
-/* Considera si quieres mantener el sidebar-pixel o integrar sus elementos de otra forma */
-/* Los estilos de .sidebar-pixel de tu projects.css se podrían mantener si aún lo usas */
