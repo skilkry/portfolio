@@ -3,14 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Skilkry</title>
-    <link rel="stylesheet" href="./assets/css/aboutMe.css">
+    <title>Skilkry - Portfolio Interactivo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { margin: 0; background-color: #111214; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        #canvas-container { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 1; }
+        .hero-section { height: 100vh; }
+        
+        #contenido-scroll {
+            /* Este margen crea el espacio para hacer scroll */
+            margin-top: 100vh; 
+            min-height: 100vh; /* Altura mínima para que la animación de scroll tenga recorrido */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        #info-panel {
+            max-width: 500px;
+            text-align: center;
+            padding: 20px;
+            opacity: 0; /* Empieza invisible, GSAP lo hará aparecer */
+            background: rgba(20, 20, 22, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+        #info-panel h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        #info-panel img {
+            width: 40px;
+            height: 40px;
+        }
+        #info-panel p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            min-height: 100px; /* Para que no salte el layout al cambiar de texto */
+        }
+    </style>
 </head>
 <body>
-    <div id="bios-container">
-        <pre id="bios-output"></pre>
-    </div>
+    <div id="canvas-container"></div>
     
-    <script src="./assets/JavaScript/aboutMe.js"></script>
+    <section class="hero-section"></section>
+
+    <section id="contenido-scroll">
+        <div id="info-panel">
+            <h2 id="info-title">
+                <img id="info-icon" src="" alt=""/>
+                <span>Mis Habilidades</span>
+            </h2>
+            <p id="info-description">
+                Haz scroll para ver mis habilidades en perspectiva. Después, pasa el ratón sobre una de ellas para ver la descripción.
+            </p>
+        </div>
+    </section>
+
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.158.0/build/three.module.js" } }</script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- SETUP BÁSICO ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const container = document.getElementById('canvas-container');
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+        
+        // --- LUCES ---
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        dirLight.position.set(8, 10, 8);
+        scene.add(dirLight);
+        camera.position.z = 8;
+
+        // --- DATOS DE HABILIDADES (¡COMPLETA LAS DESCRIPCIONES!) ---
+        const techData = [
+            { name: 'React', id: 'react', description: 'Experiencia creando interfaces dinámicas y complejas con React, usando Hooks, Context API y librerías del ecosistema como React Router.' },
+            { name: 'JavaScript', id: 'js', description: 'Sólida base en JavaScript moderno (ES6+), incluyendo asincronía, manipulación del DOM y estructuras de datos. Es el pilar de todo mi trabajo.' },
+            // ... Añade aquí el resto de tus tecnologías con sus descripciones
+        ];
+        const allTechs = ['React', 'Vue', 'Angular', 'Svelte', 'JavaScript', 'TypeScript', 'Node.js', 'Python', 'HTML5', 'CSS3', 'Sass', 'Webpack', 'Figma', 'Git', 'Docker', 'AWS'];
+        allTechs.forEach(name => {
+            if (!techData.find(t => t.name === name)) {
+                const id = name.toLowerCase().replace(/[\.53]/g, '').replace(' ', '-');
+                techData.push({ name, id, description: `Descripción para ${name} pendiente de añadir.` });
+            }
+        });
+        
+        // --- CREACIÓN DEL TECLADO ---
+        const keyboardLayout = [
+            ['React', 'Vue', 'Angular', 'Svelte'],
+            ['JavaScript', 'TypeScript', 'Node.js', 'Python'],
+            ['HTML5', 'CSS3', 'Sass', 'Webpack'],
+            ['Figma', 'Git', 'Docker', 'AWS']
+        ];
+        const textureLoader = new THREE.TextureLoader();
+        const keyboardGroup = new THREE.Group();
+        const keys = [];
+        const keySize = 1.2, keySpacing = 0.3;
+        const keyboardWidth = keyboardLayout[0].length * (keySize + keySpacing) - keySpacing;
+        const keyboardHeight = keyboardLayout.length * (keySize + keySpacing) - keySpacing;
+        keyboardLayout.forEach((row, rowIndex) => {
+            row.forEach((techName, colIndex) => {
+                const techInfo = techData.find(t => t.name === techName);
+                if (!techInfo) return;
+                const geometry = new THREE.BoxGeometry(keySize, keySize, keySize);
+                const texture = textureLoader.load(`icons/${techInfo.id}.svg`);
+                const material = new THREE.MeshStandardMaterial({ map: texture, color: 0xffffff, roughness: 0.6, metalness: 0.2 });
+                const key = new THREE.Mesh(geometry, material);
+                key.position.set(colIndex * (keySize + keySpacing), -rowIndex * (keySize + keySpacing), 0);
+                key.userData = techInfo;
+                keyboardGroup.add(key);
+                keys.push(key);
+            });
+        });
+        keyboardGroup.position.set(-keyboardWidth / 2 + (keySize/2), keyboardHeight / 2 - (keySize/2), 0);
+        scene.add(keyboardGroup);
+
+        // --- INTERACCIÓN Y ANIMACIONES ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        const infoPanel = document.getElementById('info-panel');
+        const infoTitle = document.getElementById('info-title').querySelector('span');
+        const infoIcon = document.getElementById('info-icon');
+        const infoDescription = document.getElementById('info-description');
+
+        // Línea de tiempo que se activa con el scroll
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: "#contenido-scroll",
+                start: "top bottom",
+                end: "center center", 
+                scrub: 1, 
+            }
+        })
+        .to(camera.position, { z: 10, ease: 'power1.in' }) 
+        .to(keyboardGroup.rotation, { 
+            x: -0.9, // La inclinación "TUMBADA"
+            y: -0.4, 
+            z: -0.2,
+            ease: 'power1.in' 
+        }, "<")
+        // ¡HEMOS BORRADO LA LÍNEA QUE LO HACÍA PEQUEÑO (la de .scale)!
+        // También ajustamos la posición para que se quede más centrado.
+        .to(keyboardGroup.position, { 
+            x: keyboardGroup.position.x, // Mantiene la X centrada
+            y: keyboardGroup.position.y + 1, // Lo sube un poco
+            z: -2, // Lo echa un poco para atrás para que no esté tan encima
+            ease: 'power1.in' 
+        }, "<")
+        .to(infoPanel, { opacity: 1 }, "-=0.5");
+
+        // Lógica del hover para actualizar el panel
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2(-100, -100);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        let lastHoveredKey = null;
+        function animate() {
+            requestAnimationFrame(animate);
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(keys);
+            
+            if (intersects.length > 0) {
+                const hoveredKey = intersects[0].object;
+                if(lastHoveredKey !== hoveredKey){
+                    const skill = hoveredKey.userData;
+                    infoTitle.textContent = skill.name;
+                    infoIcon.src = `icons/${skill.id}.svg`;
+                    infoDescription.textContent = skill.description;
+                    
+                    gsap.to(hoveredKey.scale, { x: 1.1, y: 1.1, z: 1.1, duration: 0.3, ease: 'power2.out'});
+                    
+                    if(lastHoveredKey) {
+                        gsap.to(lastHoveredKey.scale, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'power2.out'});
+                    }
+                    lastHoveredKey = hoveredKey;
+                }
+            } else {
+                if(lastHoveredKey){
+                    gsap.to(lastHoveredKey.scale, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'power2.out'});
+                    lastHoveredKey = null;
+                    
+                    infoTitle.textContent = 'Mis Habilidades';
+                    infoIcon.src = '';
+                    infoDescription.textContent = 'Pasa el ratón sobre una habilidad para ver la descripción.';
+                }
+            }
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>

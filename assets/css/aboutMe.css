@@ -1,44 +1,41 @@
-/* about.css */
-
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    background-color: #000000;
-    color: #00FF41; /* Verde fósforo clásico */
-    font-family: 'VT323', monospace; /* Fuente perfecta para terminales retro */
-    font-size: 22px;
-    line-height: 1.5;
+    margin: 0;
+    background-color: #ffffff;
+    color: white;
+    font-family: sans-serif;
 }
 
-#bios-container {
-    padding: 2rem;
-    width: 100%;
+#canvas-container {
+    width: 100vw;
     height: 100vh;
-    overflow-y: auto; /* Permite scroll si el texto es muy largo */
+    position: fixed;
+    /* Lo dejamos fijo al principio */
+    top: 0;
+    left: 0;
 }
 
-/* El texto tendrá un ligero brillo para el efecto CRT */
-#bios-output {
-    text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
-    white-space: pre-wrap; /* Mantiene los espacios y saltos de línea del JS */
-    word-wrap: break-word;
+#contenido {
+    /* Dejamos un espacio arriba del tamaño de la pantalla para que el canvas se vea */
+    margin-top: 100vh;
+    padding: 50px;
+    position: relative;
+    z-index: 10;
+    background-color: #222222;
 }
 
-/* Animación del cursor parpadeante */
-.cursor {
-    display: inline-block;
-    background-color: #00FF41;
-    width: 12px; /* Ancho del cursor */
-    animation: blink 1s step-end infinite;
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes blink {
-    from, to { background-color: transparent; }
-    50% { background-color: #00FF41; }
+.gato-container {
+    margin-right: 50px;
 }
+
+#gato {
+    width: 300px;
+    opacity: 0;
+}
+
+/* El gato empieza invisible */
