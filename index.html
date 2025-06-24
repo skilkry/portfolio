@@ -18,56 +18,72 @@
     <meta property="og:description" content="Portfolio profesional mostrando trabajos de desarrollo y diseño web.">
 </head>
 <body>
-    <div class="config-menu-container"> 
-        <button class="config-button" id="configButton"><i class="fas fa-cog"></i></button> 
-        <div class="config-menu" id="configMenu"> 
-            <div class="config-menu-header">
-                <h3 data-i18n="menu">Menú</h3>
-                <button class="close-button" id="closeConfigButton"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="config-menu-sections">
-                <!-- Sección de Configuración -->
-                <div class="config-section">
-                    <h4 class="section-title" data-i18n="settings">Configuración</h4>
-                    <div class="config-menu-items">
-                        <!-- Control de Tema -->
-                    
-                        <!-- Control de Sonido -->
-                    
-                        <!-- Selector de Idioma -->
-                        <div class="config-item language-container">
-                            <label for="language-selector" data-i18n="language">Idioma</label>
-                            <select id="language-selector" class="language-dropdown">
-                                <option value="es">Español</option>
-                                <option value="en">English</option>
-                            </select>
-                        </div>
-                    </div>
+   <div class="config-menu-container">
+
+    <button class="config-button" id="configButton">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <div class="config-menu" id="configMenu">
+
+        <div class="config-menu-header">
+            <h3 data-i18n="menu">Menú</h3>
+            <button class="close-button" id="closeConfigButton"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="config-menu-body">
+
+            <div class="config-section">
+                <h4 class="section-title" data-i18n="settings">Configuración</h4>
+                <div class="config-item">
+                    <span>Idioma</span>
+                    <select id="language-selector" class="config-select">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                    </select>
                 </div>
-                
-                <!-- Sección de Enlaces -->
-                <div class="config-section">
-                    <h4 class="section-title" data-i18n="links">Enlaces</h4>
-                    <div class="config-menu-items">
-                        <!-- Enlace a CV -->
-                        <div class="config-item">
-                            <a href="./cv.html" class="config-link">
-                                <i class="fas fa-file-alt"></i>
-                                <span data-i18n="cv">CV</span>
-                            </a>
-                        </div>
-                        <!-- Enlace a Certificados -->
-                        <div class="config-item">
-                            <a href="./certificates.html" class="config-link">
-                                <i class="fas fa-certificate"></i>
-                                <span data-i18n="certificates">Certificados</span>
-                            </a>
-                        </div>
-                    </div>
+                <div class="config-item">
+                    <span>Tema</span>
+                    <select id="theme-selector" class="config-select">
+                        <option value="neon-pink">Neón Rosa</option>
+                        <option value="cyber-cyan">Cyber Cian</option>
+                        <option value="hacker-green">Hacker Green</option>
+                    </select>
                 </div>
             </div>
+
+            <div class="config-section">
+                <h4 class="section-title" data-i18n="accessibility">Accesibilidad</h4>
+                <div class="config-item">
+                    <label for="high-contrast-toggle">Alto Contraste</label>
+                    <button class="toggle-button" id="high-contrast-toggle" role="switch" aria-checked="false">OFF</button>
+                </div>
+                <div class="config-item">
+                    <label for="reduce-motion-toggle">Reducir Movimiento</label>
+                    <button class="toggle-button" id="reduce-motion-toggle" role="switch" aria-checked="false">OFF</button>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h4 class="section-title" data-i18n="links">Enlaces</h4>
+                <a href="https://github.com/skilkry" target="_blank" class="config-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/daniel-sardina-sedano-220223370" target="_blank" class="config-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="./cv.html" class="config-link">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Mi CV</span>
+                </a>
+            </div>
+
         </div>
     </div>
+</div>
+
     <div class="config-menu a11y-menu" id="a11yMenu">
         </div>
     <header class="header">
@@ -76,10 +92,11 @@
     </header>
    
     <main class="main-content-area" id="sobre-mi">  
-        <div class="main-text-container">
-            <h1>HI! I'M <span class="main-text-span">DANIEL</span></h1> 
-            <h2>Front-end &amp; Android Dev, Modder</h2> 
-        </div> 
+       <div class="main-text-container">
+        <h1 class="header-greeting">Hi! I'm</h1>
+    <h1 class="main-title">DANIEL</h1>
+    <h2 class="main-subtitle">Interactive Experience Developer</h2>
+</div>
     
         <div class="terminal-window">
             <div class="terminal-top-bar">
@@ -88,7 +105,7 @@
                     <div class="terminal-btn min"></div>
                     <div class="terminal-btn max"></div>
                 </div>
-                <span class="terminal-window-title">Made w 🫶 by Skilkry</span>
+                <span class="terminal-window-title">skilkry@terminal</span>
             </div>
     
             <div class="terminal-main-content">
@@ -108,7 +125,7 @@
                                 <button class="terminal-button projects" id="tutorial-proyectos-button">PROJECTS</button>
                             </a>
                             <a href="./contact.html" class="terminal-link-button">
-                                <button class="terminal-button contact" id="tutorial-contacto-button">CONTACT ME</button>
+                                <button class="terminal-button contact" id="tutorial-contacto-button">CONTACT <span>ME</span></button>
                             </a>
                         </div>
                     </div>

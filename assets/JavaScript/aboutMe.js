@@ -1,129 +1,147 @@
 import * as THREE from 'three';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
-// --- SETUP, LUCES, TECLADO (Todo esto se queda igual que antes) ---
+
+gsap.registerPlugin(ScrollTrigger);
+
+// ESCENA
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const container = document.getElementById('canvas-container');
+
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.z = 8;
+
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-container.appendChild(renderer.domElement);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xffffff, 1.5, 100);
-pointLight.position.set(4, 8, 12);
-scene.add(pointLight);
+const ambient = new THREE.AmbientLight(0x00c6ff, 0.5);
+scene.add(ambient);
 
-const keyboardLayout = [
-    ['react', 'angular', 'vue', 'svelte'],
-    ['js', 'ts', 'node', 'python'],
-    ['html', 'css', 'sass', 'webpack'],
-    ['figma', 'git', 'docker', 'aws']
-];
-const keySize = 1;
-const keySpacing = 0.2;
+const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+dirLight.position.set(5, 10, 5);
+scene.add(dirLight);
+
+// TECLADO DE CUBOS
 const textureLoader = new THREE.TextureLoader();
 const keyboardGroup = new THREE.Group();
 const keys = [];
+const keySize = 1.2, keySpacing = 0.3;
 
-const keyboardWidth = keyboardLayout[0].length * (keySize + keySpacing) - keySpacing;
-const keyboardHeight = keyboardLayout.length * (keySize + keySpacing) - keySpacing;
+const layout = [
+  ['React', 'JavaScript', 'Python'],
+  ['HTML5', 'CSS3', 'Sass'],
+  ['Git']
+];
 
-keyboardLayout.forEach((row, rowIndex) => {
-    row.forEach((keyName, colIndex) => {
-        const geometry = new THREE.BoxGeometry(keySize, keySize, keySize);
-        const texture = textureLoader.load(`icons/${keyName}.svg`); // Usando SVG como pediste
-        const material = new THREE.MeshStandardMaterial({ map: texture, color: 0xeeeeee });
-        const key = new THREE.Mesh(geometry, material);
-        key.position.x = colIndex * (keySize + keySpacing);
-        key.position.y = -rowIndex * (keySize + keySpacing);
-        key.originalY = key.position.y;
-        keyboardGroup.add(key);
-        keys.push(key);
+const techData = [
+  { name: 'React', id: 'react', description: '...' },
+  { name: 'JavaScript', id: 'js', description: '...' },
+  { name: 'Python', id: 'python', description: '...' },
+  { name: 'HTML5', id: 'html', description: '...' },
+  { name: 'CSS3', id: 'css', description: '...' },
+  { name: 'Sass', id: 'sass', description: '...' },
+  { name: 'Git', id: 'git', description: '...' }
+];
+
+layout.forEach((row, rowIndex) => {
+  row.forEach((name, colIndex) => {
+    const tech = techData.find(t => t.name === name);
+    const geo = new THREE.BoxGeometry(keySize, keySize, keySize);
+    const mat = new THREE.MeshStandardMaterial({
+      map: textureLoader.load(`icons/${tech.id}.svg`),
+      color: 0xffffff,
+      roughness: 0.6,
+      metalness: 0.2
     });
+    const key = new THREE.Mesh(geo, mat);
+    key.position.set(
+      colIndex * (keySize + keySpacing),
+      -rowIndex * (keySize + keySpacing),
+      0
+    );
+    key.userData = tech;
+    keyboardGroup.add(key);
+    keys.push(key);
+  });
 });
 
-keyboardGroup.position.x = -keyboardWidth / 2;
-keyboardGroup.position.y = keyboardHeight / 2;
+const width = layout[0].length * (keySize + keySpacing) - keySpacing;
+const height = layout.length * (keySize + keySpacing) - keySpacing;
+keyboardGroup.position.set(-width / 2 + keySize / 2, height / 2 - keySize / 2, 0);
 scene.add(keyboardGroup);
 
-camera.position.set(0, 0, 10);
-camera.lookAt(0, 0, 0);
+// ANIMACIONES INICIALES
+keyboardGroup.position.y += 2;
+gsap.to(keyboardGroup.position, {
+  y: keyboardGroup.position.y - 2,
+  duration: 1.5,
+  ease: "power2.out"
+});
+gsap.from(keyboardGroup.rotation, {
+  y: -1,
+  duration: 1.5,
+  ease: "power2.out"
+});
+gsap.to(keyboardGroup.rotation, {
+  y: "+=0.05",
+  duration: 2,
+  ease: "sine.inOut",
+  yoyo: true,
+  repeat: -1
+});
 
-// --- INTERACCIÓN CON RATÓN (Se queda igual) ---
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2(-100, -100);
-let hoveredKey = null;
+// HINT SCROLL
+gsap.to("#scroll-hint", {
+  opacity: 0,
+  y: 20,
+  duration: 0.5,
+  ease: "power1.out",
+  scrollTrigger: {
+    trigger: "#contenido-scroll",
+    start: "top bottom",
+    toggleActions: "play none none reverse"
+  }
+});
 
-function onMouseMove(event) {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-}
-window.addEventListener('mousemove', onMouseMove, false);
-
-// --- NUEVA ANIMACIÓN CON SCROLL (LA MAGIA DE VERDAD) ---
-gsap.registerPlugin(ScrollTrigger);
-
-// Hacemos que la cámara haga un zoom suave hacia el teclado al principio
-gsap.to(camera.position, { z: 8, duration: 1.5, ease: "power2.out" });
-
-// La línea de tiempo del scroll
+// PANEL Y CÁMARA
 gsap.timeline({
-    
-    scrollTrigger: {
-        trigger: "#contenido",
-        start: "top bottom",
-        end: "top top",
-        scrub: 1,
-    }
+  scrollTrigger: {
+    trigger: "#contenido-scroll",
+    start: "top bottom",
+    end: "center center",
+    scrub: 1
+  }
 })
-
-.to("#canvas-container", {
-    width: "40px",     
-    height: "20px",  
-    top: "20%",
-    left: "4%",
-    ease: "power2.inOut"
-})
-// En vez de animar el grupo 3D, animamos el CONTENEDOR del canvas
-.to(keyboardGroup.rotation, { 
-    x: -0.7, // <-- ¡ESTE ES EL VALOR CLAVE! Un número negativo lo "tumba" hacia atrás.
-    y: -0.25, // Una ligera rotación lateral para que no sea tan plano.
-    z: -0.1  // Una inclinación lateral muy sutil.
+.to(camera.position, { z: 10, ease: "power1.in" })
+.to(keyboardGroup.rotation, {
+  x: -0.9,
+  y: -0.4,
+  z: -0.2,
+  ease: "power1.in"
 }, "<")
-// Y al mismo tiempo que el canvas se mueve, hacemos aparecer el gato y el texto
-.to("#gato", { opacity: 1, ease: "power2.inOut" }, "<")
-.to("#texto-animado", { opacity: 1, ease: "power2.inOut" }, "<");
+.to(keyboardGroup.position, {
+  x: keyboardGroup.position.x,
+  y: keyboardGroup.position.y + 1,
+  z: -2,
+  ease: "power1.in"
+}, "<")
+.to("#info-panel", { opacity: 1 }, "-=0.5");
 
-
-// --- BUCLE DE RENDER (La parte del hover se queda igual) ---
 function animate() {
-    requestAnimationFrame(animate);
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(keys);
-    if (intersects.length > 0) {
-        const intersectedObject = intersects[0].object;
-        if (hoveredKey !== intersectedObject) {
-            if (hoveredKey) {
-                gsap.to(hoveredKey.position, { y: hoveredKey.originalY, duration: 0.2, ease: "power2.out" });
-            }
-            hoveredKey = intersectedObject;
-            gsap.to(hoveredKey.position, { y: hoveredKey.originalY - 0.2, duration: 0.2, ease: "power2.out" });
-        }
-    } else {
-        if (hoveredKey) {
-            gsap.to(hoveredKey.position, { y: hoveredKey.originalY, duration: 0.2, ease: "power2.out" });
-            hoveredKey = null;
-        }
-    }
-    renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
 }
 animate();
 
-// --- AJUSTE DE VENTANA ---
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    // No redimensionamos el renderer aquí para no interferir con GSAP
-    // renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
