@@ -16,74 +16,79 @@
     <meta property="og:description" content="Portfolio profesional mostrando trabajos de desarrollo y diseño web.">
 </head>
 <body>
-   <div class="config-menu-container">
-
-    <button class="config-button" id="configButton">
+<div class="config-toggle-wrapper">
+    <button id="config-toggle-btn" aria-label="Abrir configuración">
         <i class="fas fa-cog"></i>
     </button>
-
-    <div class="config-menu" id="configMenu">
-
-        <div class="config-menu-header">
-            <h3 data-i18n="menu">Menú</h3>
-            <button class="close-button" id="closeConfigButton"><i class="fas fa-times"></i></button>
-        </div>
-
-        <div class="config-menu-body">
-
-            <div class="config-section">
-                <h4 class="section-title" data-i18n="settings">Configuración</h4>
-                <div class="config-item">
-                    <span>Idioma</span>
-                    <select id="language-selector" class="config-select">
-                        <option value="es">Español</option>
-                        <option value="en">English</option>
-                    </select>
-                </div>
-                <div class="config-item">
-                    <span>Tema</span>
-                    <select id="theme-selector" class="config-select">
-                        <option value="neon-pink">Neón Rosa</option>
-                        <option value="cyber-cyan">Cyber Cian</option>
-                        <option value="hacker-green">Hacker Green</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="config-section">
-                <h4 class="section-title" data-i18n="accessibility">Accesibilidad</h4>
-                <div class="config-item">
-                    <label for="high-contrast-toggle">Alto Contraste</label>
-                    <button class="toggle-button" id="high-contrast-toggle" role="switch" aria-checked="false">OFF</button>
-                </div>
-                <div class="config-item">
-                    <label for="reduce-motion-toggle">Reducir Movimiento</label>
-                    <button class="toggle-button" id="reduce-motion-toggle" role="switch" aria-checked="false">OFF</button>
-                </div>
-            </div>
-
-            <div class="config-section">
-                <h4 class="section-title" data-i18n="links">Enlaces</h4>
-                <a href="https://github.com/skilkry" target="_blank" class="config-link">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/daniel-sardina-sedano-220223370" target="_blank" class="config-link">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="./cv.html" class="config-link">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Mi CV</span>
-                </a>
-            </div>
-
-        </div>
-    </div>
 </div>
 
-    <div class="config-menu a11y-menu" id="a11yMenu">
-        </div>
+<div id="config-overlay" class="config-overlay"></div>
+
+<aside id="config-menu" class="config-menu">
+    <div class="config-menu-header">
+        <h3>CONFIGURACIÓN</h3>
+        <button id="config-close-btn" class="close-button" aria-label="Cerrar menú">&times;</button>
+    </div>
+
+    <div class="config-menu-body">
+        <section class="config-section">
+            <h4 class="section-title">Apariencia</h4>
+            <div class="config-item">
+                <label for="theme-select">Tema</label>
+                <select name="theme" id="theme-select" class="config-select">
+                    <option value="cyber-cian">Cyber Cian</option>
+                    <option value="matrix-green">Matrix Green</option>
+                    <option value="vaporwave-pink">Vaporwave Pink</option>
+                </select>
+            </div>
+        </section>
+
+        <hr class="menu-divider">
+
+        <section class="config-section">
+            <h4 class="section-title">Accesibilidad</h4>
+            <div class="config-item">
+                <label for="motion-toggle">Reducir Movimiento</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="motion-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="config-item">
+                <label for="contrast-toggle">Alto Contraste</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="contrast-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="config-item">
+    <label for="serious-mode-toggle">Modo Serio</label>
+    <label class="toggle-switch">
+        <input type="checkbox" id="serious-mode-toggle">
+        <span class="slider"></span>
+    </label>
+</div>
+        </section>
+        
+        <hr class="menu-divider">
+
+        <section class="config-section config-links-container">
+            <h4 class="section-title">Enlaces</h4>
+            <a href="URL_GITHUB" class="config-link" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="URL_LINKEDIN" class="config-link" target="_blank">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+             <a href="URL_CV.pdf" class="config-link" target="_blank">
+                <i class="fas fa-file-pdf"></i>
+                <span>Descargar CV</span>
+            </a>
+        </section>
+    </div>
+</aside>
     <header class="header">
         <nav class="navbar">
             </nav>
@@ -136,6 +141,7 @@
     </main>
 
     <script type="module" src="./assets/JavaScript/index.js"></script>
+    <script type="module" src="./assets/JavaScript/seriousModeManager.js"></script>
     <script type="module" src="./assets/JavaScript/parallax.js"></script>
     <script type="module" src="./assets/JavaScript/configMenu.js"></script>
     <script src="./assets/JavaScript/accessibility.js"></script>

@@ -306,10 +306,19 @@ function initializeInteractiveTutorial() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Tus otras inicializaciones aquí...
-    // if (typeof playIntroAnimation === 'function' && document.querySelector('.intro-animation')) {
-    //     playIntroAnimation();
-    // }
-    
+    const openBtn = document.getElementById('config-toggle-btn');
+    const closeBtn = document.getElementById('config-close-btn');
+    const menu = document.getElementById('config-menu');
+    const overlay = document.getElementById('config-overlay');
+
+    const toggleMenu = () => {
+        menu.classList.toggle('active');
+        overlay.classList.toggle('active');
+    };
+
+    openBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu); //
     initializeInteractiveTutorial();
+
 });

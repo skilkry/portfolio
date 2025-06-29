@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Análisis de App - Skilkry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/case-study.css"> </head>
+<body class="case-study-page">
+
+    <header class="page-header">
+        <a href="projects.html" class="back-to-home-link">← Volver a Proyectos</a>
+    </header>
+
+    <main>
+        <section class="case-study-hero">
+            <div class="hero-content">
+                <span class="hero-tag">Backend & DevOps</span>
+                <h1 class="hero-title">Bot Multifunción para Telegram con Docker</h1>
+                <p class="hero-subtitle">Un asistente personal modular construido en Python, diseñado para ser extensible y desplegado como un microservicio containerizado.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <div class="section-content">
+                <h2>Arquitectura y Módulos</h2>
+                 <p>El proyecto se ha construido siguiendo una filosofía modular para facilitar su mantenimiento y la adición de nuevas funcionalidades. El núcleo del bot (`main_bot.py`) actúa como un orquestador que gestiona la comunicación con la API de Telegram, mientras que cada "superpoder" reside en su propio módulo dentro de la carpeta `bots/`.</p>
+                <p>La estructura modular permite que cada funcionalidad sea independiente, lo que facilita la depuración y la extensión del bot. Cada módulo puede ser activado o desactivado según las necesidades del usuario.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Módulo 1: Lector de OCR</h3>
+                    <p>Utiliza `Pytesseract` y `Pillow` para extraer texto de cualquier imagen enviada al bot. El módulo incluye pasos de preprocesamiento de imagen (escala de grises, autocontraste) para maximizar la precisión del reconocimiento.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Módulo 2: Descargador de Contenido</h3>
+                    <p>Emplea `yt-dlp` para descargar contenido multimedia de cientos de URLs. La característica principal es una función de **compresión de vídeo inteligente** que usa `ffmpeg` para analizar la duración del vídeo y calcular el bitrate exacto necesario para no superar el límite de 50MB de Telegram, asegurando una entrega exitosa.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+        
+        <section class="case-study-section tech-stack-section">
+            <div class="section-content">
+                <h2>El Arsenal Tecnológico</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                    <strong>Python 3.11+</strong>
+                        Lenguaje principal del backend.
+                    </div>
+                    <div class="tech-item">
+                        <strong>Aiogram</strong>
+                       Framework moderno y asíncrono para la API de Telegram.
+                    </div>
+                    <div class="tech-item">
+                      <strong>Pytesseract & Pillow</strong>
+                      Para el procesamiento de imágenes y OCR. </div>
+                    <div class="tech-item">
+                        <strong>yt-dlp & ffmpeg</strong>
+                         Para la descarga y transcodificación de vídeo.</li>
+                </div>
+                     <div class="tech-item">
+                      <strong>Docker</strong>
+                       Para la containerización de la aplicación y todas sus dependencias del sistema (Tesseract, ffmpeg).</li>
+             </div>
+                    <div class="tech-item">
+                       <strong>GitHub Actions</strong>
+                        Configurado para un pipeline de CI/CD que construye y publica la imagen de Docker automáticamente.</li>
+               </div>
+                   
+                </div>
+            </div>
+        </section>
+         <section class="highlight-box">
+            <h2>Despliegue y DevOps</h2>
+            <p>El bot no es solo un script local, sino una aplicación preparada para producción. El `Dockerfile` incluido se encarga de instalar todas las dependencias, tanto de Python (`pip`) como del sistema operativo (`apt-get`), creando una imagen autónoma y portable. El workflow de GitHub Actions automatiza el proceso de construcción de esta imagen, preparándola para un despliegue sencillo en cualquier plataforma de cloud compatible con contenedores.</p>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>Hecho con 🫶 por Skilkry</p>
+    </footer>
+
+</body>
+</html>

@@ -1,200 +1,134 @@
-/* ==========================================================================
-   MENÚ DE CONFIGURACIÓN - REFACTORIZADO Y MEJORADO
-   ========================================================================== */
-
-/* --- Contenedor Principal y Botón de Engranaje --- */
-.config-menu-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+/* === CONFIG MENU - VERSIÓN "CYBER-GLASS" === */
+:root {
+    --font-primary: 'Press Start 2P', monospace;
+    --font-secondary: 'JetBrains Mono', monospace;
+    --color-text: #e0e0e0;
+    --color-text-darker: #a0a0a0;
+    --color-accent-primary: #c039ff; /* Un púrpura más vibrante */
+    --color-accent-secondary: #00ffff; /* Cian neón */
+    --color-accent-success: #00ff9c;
+    --color-panel-bg: rgba(18, 12, 28, 0.85); /* Fondo con tinte púrpura */
+    --color-panel-border: rgba(192, 57, 255, 0.4);
+    --transition-menu: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.config-button {
-    width: 45px; /* Un poco más pequeño para ser más sutil */
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(16, 10, 28, 0.8);
-    border: 2px solid var(--terminal-border-inner, rgba(93, 139, 196, 0.6));
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.4s ease, border-color 0.4s, box-shadow 0.4s;
-    box-shadow: 0 0 15px rgba(147, 51, 255, 0.3);
-    backdrop-filter: blur(5px);
+.config-toggle-wrapper {
+    position: fixed; top: 20px; right: 20px; z-index: 1001;
 }
 
-.config-button:hover {
-    transform: rotate(90deg);
-    border-color: var(--accent-color, #9333ff);
-    box-shadow: 0 0 20px var(--accent-color, #9333ff);
+#config-toggle-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--color-panel-bg);
+    border: 1px solid var(--color-panel-border);
+    color: var(--color-text); font-size: 1.4rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s ease; backdrop-filter: blur(10px);
+}
+#config-toggle-btn:hover {
+    transform: rotate(90deg); border-color: var(--color-accent-primary);
+    box-shadow: 0 0 20px var(--color-accent-primary);
 }
 
-/* --- Panel del Menú Principal --- */
+.config-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 0, 20, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0; visibility: hidden;
+    transition: all var(--transition-menu);
+    pointer-events: none;
+}
+.config-overlay.active {
+    opacity: 1; visibility: visible; pointer-events: auto;
+}
+
 .config-menu {
-    position: absolute;
-    top: 60px; /* Espacio desde el botón */
-    right: 0;
-    width: 290px; /* Más ancho para el nuevo contenido */
-    background: rgba(16, 10, 28, 0.9);
-    border: 2px solid rgba(147, 51, 255, 0.5);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    
-    /* Animación de entrada/salida */
-    transform: translateY(-10px) scale(0.95);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.config-menu.active {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    visibility: visible;
-}
-
-/* --- Encabezado del Menú --- */
-.config-menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 0.8rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(147, 51, 255, 0.3);
-}
-
-.config-menu-header h3 {
-    color: white;
-    font-size: 0.8rem;
-    margin: 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.close-button {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 0; /* Asegurar que no tenga padding extra */
-    transition: color 0.3s, transform 0.3s;
-}
-
-.close-button:hover {
-    color: white;
-    transform: rotate(90deg);
-}
-
-/* --- Cuerpo y Secciones del Menú --- */
-.config-menu-body {
+    position: fixed; top: 0; right: 0;
+    width: clamp(300px, 90vw, 350px);
+    height: 100%;
+    background: var(--color-panel-bg);
+    border-left: 1px solid var(--color-panel-border);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform var(--transition-menu);
     display: flex;
     flex-direction: column;
-    gap: 1.2rem; /* Espacio entre secciones */
+    padding: 1.5rem 2rem;
 }
+.config-menu.active {
+    transform: translateX(0);
+}
+
+.config-menu-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 1rem; margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-panel-border);
+}
+.config-menu-header h3 {
+    font-family: var(--font-primary); color: white; font-size: 1rem;
+    text-shadow: 0 0 5px var(--color-accent-primary);
+}
+.close-button {
+    background: none; border: none; color: var(--color-text-darker);
+    font-size: 2rem; cursor: pointer; transition: all 0.3s ease;
+}
+.close-button:hover { color: var(--color-accent-primary); transform: scale(1.2); }
+
+.config-menu-body {
+    overflow-y: auto; scrollbar-width: thin;
+    scrollbar-color: var(--color-accent-primary) transparent;
+}
+/* Estilos para la barra de scroll en Webkit (Chrome, Safari) */
+.config-menu-body::-webkit-scrollbar { width: 6px; }
+.config-menu-body::-webkit-scrollbar-track { background: transparent; }
+.config-menu-body::-webkit-scrollbar-thumb { background-color: var(--color-accent-primary); border-radius: 3px; }
+
+.config-section { margin-bottom: 2rem; }
 
 .section-title {
-    color: var(--accent-color, #9333ff);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    padding-left: 1.2rem;
-    position: relative;
+    font-family: var(--font-primary); font-size: 0.7rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--color-accent-secondary); margin-bottom: 1.5rem;
 }
 
-.section-title::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    opacity: 0.8;
-}
-
-/* --- Items de Configuración (con controles) --- */
 .config-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0.2rem;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.9);
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.2rem; font-family: var(--font-secondary);
 }
 
-/* Estilos unificados para Selectores y Botones Toggle */
-.config-select,
-.toggle-button {
-    font-family: 'Press Start 2P', sans-serif;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(147, 51, 255, 0.5);
+.config-select { /* Estilo unificado para los dropdowns */
+    background: rgba(0,0,0,0.3); border: 1px solid #444;
+    color: var(--color-text); padding: 0.5rem; border-radius: 4px;
+    font-family: var(--font-secondary); min-width: 130px;
+}
+
+.toggle-switch { /* El interruptor que ya teníamos */
+    position: relative; display: inline-block; width: 50px; height: 26px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333; border-radius: 26px; transition: .4s;
+}
+.slider:before {
+    position: absolute; content: ""; height: 18px; width: 18px;
+    left: 4px; bottom: 4px; background-color: white;
+    border-radius: 50%; transition: .4s;
+}
+input:checked + .slider { background-color: var(--color-accent-success); }
+input:checked + .slider:before { transform: translateX(24px); }
+
+.config-links-container a {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; border-radius: 6px; color: var(--color-text-darker);
+    text-decoration: none; font-family: var(--font-secondary);
+    transition: background-color 0.2s, color 0.2s, padding-left 0.2s;
+}
+.config-links-container a:hover {
+    background-color: rgba(192, 57, 255, 0.1);
     color: white;
-    border-radius: 4px;
-    padding: 0.4rem;
-    cursor: pointer;
-    font-size: 0.7rem;
-    text-align: center;
+    padding-left: 1.5rem;
 }
-
-.config-select {
-    min-width: 120px;
-}
-
-.toggle-button {
-    padding: 0.4rem 0.8rem;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.toggle-button:hover {
-    background-color: var(--accent-color, #9333ff);
-    border-color: var(--accent-color, #9333ff);
-}
-
-/* Estado 'ON' para los interruptores de accesibilidad */
-.toggle-button[aria-checked="true"] {
-    background-color: #00ff9c;
-    border-color: #00ff9c;
-    color: #000;
-    font-weight: bold;
-}
-
-/* --- Items de Enlaces (GitHub, LinkedIn, CV) --- */
-.config-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.8rem;
-    border-radius: 6px;
-    color: white;
-    text-decoration: none;
-    transition: transform 0.2s ease-out, background-color 0.2s, border-color 0.2s, color 0.2s;
-    background: rgba(147, 51, 255, 0.05);
-    border: 1px solid transparent;
-    margin-bottom: 0.5rem;
-}
-
-.config-link:hover {
-    background: rgba(147, 51, 255, 0.15);
-    border-color: rgba(147, 51, 255, 0.4);
-    transform: translateX(4px);
-    color: #e08aff; /* Usamos un color de tu cabecera para la cohesión */
-}
-
-.config-link i {
-    font-size: 1.1rem;
-    width: 20px; /* Ancho fijo para alinear los textos */
-    text-align: center;
-    color: rgba(147, 51, 255, 0.8);
-    transition: color 0.3s;
-}
-
-.config-link:hover i {
-    color: #e08aff;
-}
-
-.config-link span {
-    font-size: 0.8rem;
+.config-links-container a i {
+    font-size: 1.2rem; width: 20px; text-align: center;
 }

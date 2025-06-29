@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Análisis de App - Skilkry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/case-study.css"> </head>
+<body class="case-study-page">
+
+    <header class="page-header">
+        <a href="projects.html" class="back-to-home-link">← Volver a Proyectos</a>
+    </header>
+
+    <main>
+        <section class="case-study-hero">
+            <div class="hero-content">
+                <span class="hero-tag">Caso de Estudio / Ingeniería Inversa & Seguridad</span>
+                <h1 class="hero-title">Anatomía de una App Moderna: De SSL Pinning a Fingerprinting</h1>
+                <p class="hero-subtitle">Una investigación de una semana para realizar ingeniería inversa a la API de una app comercial, superando múltiples capas de seguridad y diagnosticando defensas anti-bot avanzadas.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <div class="section-content">
+                <h2>El Problema</h2>
+                <p>El objetivo inicial era simple: crear un bot que automatizara la obtención de datos de una cuenta de fidelidad para evitar el uso de una aplicación móvil que se percibía como lenta. El reto real, sin embargo, no era la automatización, sino la serie de barreras de seguridad diseñadas para impedir precisamente este tipo de análisis, convirtiendo el proyecto en un profundo ejercicio de ciberseguridad.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">1 Semana</span>
+                        <span class="stat-label">Duración del Proyecto</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8+</span>
+                        <span class="stat-label">Herramientas Utilizadas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Capas de Seguridad Analizadas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="case-study-section tech-stack-section">
+            <div class="section-content">
+                <h2>El Arsenal Tecnológico</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <strong>Python y Aiogram</strong>
+                        Seleccionado para la orquestación del bot de Telegram y la lógica de negocio, conectando todas las piezas del sistema.
+                    </div>
+                    <div class="tech-item">
+                        <strong>Frida</strong>
+                        La herramienta estrella para el "hooking" dinámico. Fundamental para parchear en memoria la lógica de la app y desactivar defensas en tiempo real.
+                    </div>
+                    <div class="tech-item">
+                        <strong>Playwright</strong>
+                        Utilizado para la automatización del flujo de login web, superando la complejidad de una SPA (Single-Page App) con `ViewState` dinámico.
+                    </div>
+                    <div class="tech-item">
+                        <strong>Burp Suite</strong>
+                        Esencial para la interceptación y análisis del tráfico de red. Permitió descubrir los endpoints de la API y el flujo de autenticación.
+                    </div>
+                     <div class="tech-item">
+                        <strong>iptables</strong>
+                        Utilizado a bajo nivel en el emulador para crear un proxy transparente y forzar la redirección de todo el tráfico, superando las defensas de evasión de proxy.
+                    </div>
+                    <div class="tech-item">
+                        <strong>Docker</strong>
+                        Se exploró la containerización del proyecto final para entender el ciclo de vida de despliegue y las prácticas de DevOps.
+                    </div>
+                    <div class="tech-item">
+                        <strong>ADB y Emuladores</strong>
+                        Manejo de emuladores Android (AVD) en macOS (ARM64) y Windows (x86_64), depuración y gestión de archivos en entornos rooteados.
+                    </div>
+                    <div class="tech-item">
+                        <strong>JADX-GUI</strong>
+                        Herramienta de análisis estático para descompilar el APK y buscar pistas en el código fuente sobre las defensas de seguridad.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section challenge-section">
+            <div class="section-content">
+                <h2>Los Muros: Crónica de una Depuración Compleja</h2>
+                <p>El proyecto se convirtió en una batalla contra una serie de defensas en cascada. Cada solución revelaba un nuevo muro.</p>
+                
+                <h3>Muro 1: El Sistema de Archivos Blindado (macOS M2)</h3>
+                <p>El plan inicial de instalar un certificado de sistema falló porque las imágenes de emulador AVD para Apple Silicon tienen particiones <code>/system</code> inmutables, haciendo inútiles los comandos <code>adb remount</code> y otras técnicas de montaje. Esto forzó un cambio de estrategia fundamental.</p>
+
+                <h3>Muro 2: La Incompatibilidad de Herramientas (macOS M2)</h3>
+                <p>Al pivotar a la automatización web, tanto Playwright como Selenium resultaron ser inestables en el entorno de pruebas, crasheando silenciosamente. Se diagnosticó una incompatibilidad de bajo nivel con la arquitectura, lo que obligó a migrar el entorno de desarrollo a una máquina Windows.</p>
+
+                <h3>Muro 3: Las Defensas de la App Móvil</h3>
+                <p>Una vez en un entorno funcional, se atacó la app móvil directamente. Esta presentaba múltiples defensas que tuvieron que ser superadas en orden:</p>
+                <ul>
+                    <li><strong>SSL Pinning:</strong> La app rechazaba el certificado de Burp. Se superó usando Frida y un script de `unpinning` para parchear en memoria las comprobaciones de certificados.</li>
+                    <li><strong>Detección de Proxy:</strong> La app ignoraba el proxy del sistema. Se superó forzando todo el tráfico con `iptables` a nivel de red en el emulador rooteado.</li>
+                    <li><strong>Anti-Debugging:</strong> La app se cerraba al detectar a Frida. Se superó usando una técnica de "ataque sigiloso", adjuntando (`-p`) Frida a un proceso ya en ejecución en lugar de lanzar (`-f`) la app con él.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Momento Eureka:</strong> La combinación de `iptables` + `Burp (invisible)` + `Frida (attach)` permitió finalmente interceptar el tráfico cifrado de la app, revelando su comunicación con una API de Salesforce y una API propia (`api.ari.auchan.com`).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <div class="section-content">
+                <h2>Resultado y Diagnóstico Final</h2>
+                <p>Tras interceptar y replicar con éxito todo el flujo de autenticación (un login web complejo con `ViewState` dinámico que devolvía un token `Bearer`), el bot seguía fallando en el último paso: la llamada a la API que debía devolver los datos del QR nunca se producía en el entorno automatizado.</p>
+                
+                <p>El diagnóstico final es que la aplicación web implementa una capa de seguridad de última generación: **fingerprinting de navegador**. La plataforma es capaz de detectar las sutiles diferencias entre un navegador controlado por Playwright y uno usado por un humano. Como defensa, no bloquea el login, sino que de forma silenciosa **opta por no realizar las peticiones de red sensibles post-login**, dejando al bot en una sesión funcional pero inútil.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Reflexión:</strong> El proyecto es un éxito en tanto que se logró realizar una ingeniería inversa completa de un sistema robusto y se diagnosticó una defensa anti-bot avanzada. Demuestra que la seguridad en aplicaciones modernas no es una única barrera, sino un ecosistema de defensas en profundidad.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>Hecho con 🚀 por Skilkry</p>
+    </footer>
+
+</body>
+</html>

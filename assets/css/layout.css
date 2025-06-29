@@ -77,6 +77,25 @@ a {
     text-align: center;
 }
 
+@keyframes upAndDown {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.main-text-container{
+    position: relative;
+    z-index: 2;
+    animation: upAndDown 3s ease-in-out infinite;
+}
 
 .main-content-area {
     position: relative;
@@ -347,56 +366,150 @@ a {
     padding: clamp(10px, 2vh, 25px);
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: block;
     width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
-#tutorial-sobremi-button:hover {
-    border-color: #00d9ff;
-    scale: 1.02;
-    color: #00d9ff;
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+/* Efecto de línea de escaneo */
+.terminal-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
 }
 
+.terminal-button:hover::before {
+    left: 100%;
+}
+
+/* Botón START */
 #tutorial-start-button:hover {
     border-color: #00ff9c;
-      scale: 1.02;
     color: #00ff9c;
-    box-shadow: 0 0 10px rgba(0, 255, 156, 0.5); /* Sombra de neón opcional */
+    background: radial-gradient(circle at center, rgba(0, 255, 156, 0.1), rgba(20, 20, 20, 0.8));
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 156, 0.6),
+        0 0 40px rgba(0, 255, 156, 0.3),
+        inset 0 0 10px rgba(0, 255, 156, 0.1);
+    text-shadow: 0 0 10px rgba(0, 255, 156, 0.7);
 }
 
+/* Botón ABOUT ME */
+#tutorial-sobremi-button:hover {
+    border-color: #00d9ff;
+    color: #00d9ff;
+    background: radial-gradient(circle at center, rgba(0, 217, 255, 0.1), rgba(20, 20, 20, 0.8));
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(0, 217, 255, 0.6),
+        0 0 40px rgba(0, 217, 255, 0.3),
+        inset 0 0 10px rgba(0, 217, 255, 0.1);
+    text-shadow: 0 0 10px rgba(0, 217, 255, 0.7);
+}
+
+/* Botón PROJECTS */
 #tutorial-proyectos-button:hover {
-   border-color: #bf55ff;
-     scale: 1.02;
+    border-color: #bf55ff;
     color: #bf55ff;
-    box-shadow: 0 0 10px rgba(191, 85, 255, 0.5);
+    background: radial-gradient(circle at center, rgba(191, 85, 255, 0.1), rgba(20, 20, 20, 0.8));
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(191, 85, 255, 0.6),
+        0 0 40px rgba(191, 85, 255, 0.3),
+        inset 0 0 10px rgba(191, 85, 255, 0.1);
+    text-shadow: 0 0 10px rgba(191, 85, 255, 0.7);
 }
 
-.terminal-menu-buttons:active{
-    transform: translateY(2px);
-}
-
-
+/* Botón CONTACT ME */
 .terminal-button.contact {
     border-color: #ff01af;
     font-style: italic;
+    position: relative;
 }
 
-.terminal-button.contact:hover{
-     background-color: rgba(255, 1, 175, 0.15);
-    box-shadow: 0 1px 15px rgba(255, 1, 175, 0.9);
-      scale: 1.02;
+.terminal-button.contact::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 1, 175, 0.1) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.terminal-button.contact:hover {
+    border-color: #ff01af;
+    color: #ff01af;
+    background: radial-gradient(circle at center, rgba(255, 1, 175, 0.15), rgba(20, 20, 20, 0.8));
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+        0 0 25px rgba(255, 1, 175, 0.8),
+        0 0 50px rgba(255, 1, 175, 0.4),
+        inset 0 0 15px rgba(255, 1, 175, 0.1);
+    text-shadow: 0 0 10px rgba(255, 1, 175, 0.8);
+}
+
+.terminal-button.contact:hover::after {
+    opacity: 1;
+}
+
+/* Estado activo del tutorial */
+.terminal-button.tutorial-active-step {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
 .terminal-button.tutorial-active-step:hover {
-    box-shadow: 0 0 20px rgba(0, 225, 255, 1), 0 0 12px rgba(0, 225, 255, 0.8) inset;
+    background: radial-gradient(circle at center, rgba(0, 225, 255, 0.2), rgba(20, 20, 20, 0.9));
+    box-shadow: 
+        0 0 30px rgba(0, 225, 255, 1), 
+        0 0 15px rgba(0, 225, 255, 0.8) inset,
+        0 0 60px rgba(0, 225, 255, 0.5);
     color: #ffffff;
+    transform: scale(1.08) translateY(-3px);
+    text-shadow: 0 0 15px rgba(0, 225, 255, 1);
+}
+
+/* Efectos al hacer clic */
+.terminal-button:active {
+    transform: scale(0.98) translateY(1px);
+    transition: all 0.1s ease;
 }
 
 .terminal-button.tutorial-active-step:active {
-    transform: translateY(2px);
-    box-shadow: none;
+    transform: scale(1.02) translateY(-1px);
+    box-shadow: 
+        0 0 15px rgba(0, 225, 255, 0.8),
+        0 0 8px rgba(0, 225, 255, 0.6) inset;
+}
+
+/* Animación de pulso para el botón activo */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 225, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0, 225, 255, 0.8), 0 0 25px rgba(0, 225, 255, 0.4);
+    }
+}
+
+/* Efecto de escritura para el texto al hacer hover */
+.terminal-button:hover {
+    animation: text-flicker 0.1s ease-in-out;
+}
+
+@keyframes text-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
 }
 
 .decorative-pixel-flower {
@@ -443,6 +556,11 @@ a {
 
 
 @media (max-width: 768px) {
+
+    html{
+        animation: none;
+    }
+
     .terminal-window {
         width: 90vw;
         margin-top: 30px;
@@ -538,23 +656,358 @@ a {
 
 
 
+/* <===================== PORTFOLIO: MODO SERIO ===============================================> */
+/* ===========================================
+   SERIOUS MODE - TRANSFORMACIÓN COMPLETA
+   =========================================== */
 
-
-/*.config-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(26, 15, 46, 0.8);
-    border: 2px solid rgba(147, 51, 255, 0.5);
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(147, 51, 255, 0.3);
-    backdrop-filter: blur(5px);
+/* Variables para modo serio */
+body.serious-mode {
+  --primary-color: #2c3e50;
+  --secondary-color: #34495e;
+  --accent-color: #3498db;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --background-main: #ffffff;
+  --background-secondary: #f8f9fa;
+  --border-color: #e9ecef;
+  --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-medium: 0 4px 12px rgba(0,0,0,0.15);
+  --transition: all 0.3s ease;
 }
 
-*/
+/* Reset completo del body en modo serio */
+body.serious-mode {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: var(--background-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Ocultar elementos decorativos del modo pro */
+body.serious-mode .decorative-pixel-flower {
+  display: none;
+}
+
+/* ===========================================
+   HEADER Y NAVEGACIÓN
+   =========================================== */
+body.serious-mode .header {
+  background: var(--background-main);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-light);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0;
+}
+
+body.serious-mode .navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===========================================
+   ÁREA PRINCIPAL - LAYOUT COMPLETAMENTE NUEVO
+   =========================================== */
+body.serious-mode .main-content-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, var(--background-main) 0%, var(--background-secondary) 100%);
+  padding-top: 80px; /* Espacio para header fijo */
+}
+
+/* Contenedor principal en modo serio */
+body.serious-mode .main-content-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Nuevo contenedor principal para modo serio */
+body.serious-mode .main-content-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background-main);
+  z-index: -1;
+}
+
+/* ===========================================
+   HERO SECTION - DISEÑO PROFESIONAL
+   =========================================== */
+body.serious-mode .main-text-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+  padding: 0;
+}
+
+body.serious-mode .header-greeting {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+body.serious-mode .main-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 1rem 0;
+  letter-spacing: -2px;
+  text-transform: none;
+}
+
+body.serious-mode .main-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--accent-color);
+  margin-bottom: 3rem;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================================
+   TERMINAL → CARD PROFESIONAL
+   =========================================== */
+body.serious-mode .terminal-window {
+  background: var(--background-main);
+  border: none;
+  border-radius: 16px;
+  box-shadow: var(--shadow-medium);
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  transform: none;
+  position: static;
+}
+
+/* Eliminar la barra superior del terminal */
+body.serious-mode .terminal-top-bar {
+  display: none;
+}
+
+/* Nuevo contenido principal */
+body.serious-mode .terminal-main-content {
+  padding: 4rem;
+  background: var(--background-main);
+}
+
+body.serious-mode .terminal-grid-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ===========================================
+   SECCIÓN IZQUIERDA - PERFIL PROFESIONAL
+   =========================================== */
+body.serious-mode .terminal-left-section {
+  text-align: center;
+  padding: 2rem;
+  background: var(--background-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+body.serious-mode .avatar-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-color);
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+body.serious-mode .avatar-image:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-medium);
+}
+
+body.serious-mode .stats-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ===========================================
+   SECCIÓN DERECHA - NAVEGACIÓN PROFESIONAL
+   =========================================== */
+body.serious-mode .terminal-right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+body.serious-mode .terminal-menu-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Botones profesionales */
+body.serious-mode .terminal-button,
+body.serious-mode .terminal-link-button .terminal-button {
+  background: var(--background-main);
+  color: var(--primary-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+body.serious-mode .terminal-button:hover,
+body.serious-mode .terminal-link-button .terminal-button:hover {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+body.serious-mode .terminal-button:active,
+body.serious-mode .terminal-link-button .terminal-button:active {
+  transform: translateY(0);
+}
+
+/* Botón START especial */
+body.serious-mode #tutorial-start-button {
+  grid-column: span 2;
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+body.serious-mode #tutorial-start-button:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+@media (max-width: 768px) {
+  body.serious-mode .terminal-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  body.serious-mode .terminal-main-content {
+    padding: 2rem;
+  }
+  
+  body.serious-mode .terminal-menu-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  body.serious-mode .main-text-container {
+    margin-bottom: 2rem;
+  }
+  
+  body.serious-mode .terminal-left-section {
+    order: 2;
+  }
+  
+  body.serious-mode .terminal-right-section {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  body.serious-mode .terminal-main-content {
+    padding: 1.5rem;
+  }
+  
+  body.serious-mode .terminal-button,
+  body.serious-mode .terminal-link-button .terminal-button {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  body.serious-mode .main-text-container {
+    padding: 0 1rem;
+  }
+}
+
+/* ===========================================
+   ANIMACIONES SUAVES PARA TRANSICIÓN
+   =========================================== */
+body.serious-mode * {
+  transition: var(--transition);
+}
+
+/* Efecto de entrada suave */
+body.serious-mode .terminal-window {
+  animation: seriousFadeIn 0.6s ease-out;
+}
+
+@keyframes seriousFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================================
+   MENU DE CONFIGURACIÓN EN MODO SERIO
+   =========================================== */
+body.serious-mode .config-menu {
+  background: var(--background-main);
+  color: var(--text-primary);
+  border-left: 1px solid var(--border-color);
+}
+
+body.serious-mode .config-menu-header {
+  background: var(--background-secondary);
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.serious-mode .config-select,
+body.serious-mode .toggle-switch .slider {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+body.serious-mode .config-link {
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+body.serious-mode .config-link:hover {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
