@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caso de Estudio: Análisis de App - Skilkry</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/case-study.css"> </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caso de Estudio: Reverse Engineering & App Security - Skilkry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/case-study.css" />
+</head>
 <body class="case-study-page">
+  <header class="page-header">
+    <a href="projects.html" class="back-to-home-link">← Volver a Proyectos</a>
+  </header>
 
-    <header class="page-header">
-        <a href="projects.html" class="back-to-home-link">← Volver a Proyectos</a>
-    </header>
-
-    <main>
-        <section class="case-study-hero">
-            <div class="hero-content">
-                <span class="hero-tag">Caso de Estudio / Ingeniería Inversa & Seguridad</span>
-                <h1 class="hero-title">Anatomía de una App Moderna: De SSL Pinning a Fingerprinting</h1>
-                <p class="hero-subtitle">Una investigación de una semana para realizar ingeniería inversa a la API de una app comercial, superando múltiples capas de seguridad y diagnosticando defensas anti-bot avanzadas.</p>
-            </div>
-        </section>
+  <main>
+    <section class="case-study-hero">
+      <div class="hero-content">
+        <span class="hero-tag">Caso de Estudio / Ingeniería Inversa & Seguridad</span>
+        <h1 class="hero-title">Análisis de Seguridad en App Móvil Comercial</h1>
+        <p class="hero-subtitle">
+          Investigación técnica realizada sobre una app de fidelidad de una cadena de retail europea, con foco en técnicas de inspección de tráfico, bypass de pinning y evaluación de defensas anti-bot modernas.
+        </p>
+      </div>
+    </section>
 
         <section class="case-study-section">
             <div class="section-content">
@@ -103,8 +105,10 @@
                 </ul>
 
                 <div class="highlight-box">
-                    <p><strong>Momento Eureka:</strong> La combinación de `iptables` + `Burp (invisible)` + `Frida (attach)` permitió finalmente interceptar el tráfico cifrado de la app, revelando su comunicación con una API de Salesforce y una API propia (`api.ari.auchan.com`).</p>
-                </div>
+                   <p>
+  Finalmente se interceptó el tráfico cifrado de la app, revelando su comunicación con dos APIs clave:
+  una solución externa de terceros (similar a Salesforce) y una API propia tipo <code>api.retail.example</code>.
+</p>     </div>
             </div>
         </section>
 

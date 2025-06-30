@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema DNS Privado End-to-End - Documentación</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://kit.fontawesome.com/699afbb322.js" crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/vpn-details.css">
+</head>
+
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="logo">DNS Privacy System</a>
+    </div>
+
+    <div class="nav-menu">
+      <div class="nav-section">
+        <h2 class="nav-title">Documentación</h2>
+        <a href="#overview" class="nav-link active">Visión General</a>
+        <a href="#architecture" class="nav-link">Arquitectura</a>
+        <a href="#client" class="nav-link">Cliente Android</a>
+        <a href="#server" class="nav-link">Servidor DoH</a>
+        <a href="#skills" class="nav-link">Habilidades</a>
+      </div>
+    </div>
+
+    <div class="sidebar-disclaimer" role="note">
+      <p>
+       <i style="color: red;" class="fa-solid fa-exclamation"></i> Todas las capturas corresponden a un entorno configurado por mí durante mis prácticas profesionales.
+        Se presentan con fines formativos, sin incluir información sensible ni operativa.
+        Nombres de host, usuarios y rutas han sido anonimizados o modificados cuando ha sido necesario.
+      </p>
+    </div>
+  </nav>
+
+    <main class="main-content">
+        <header class="header">
+            <h1>Sistema DNS Privado End-to-End</h1>
+            <p>Solución completa de privacidad de red que protege todas las consultas DNS mediante cifrado DoH y
+                arquitectura cliente-servidor propia.</p>
+        </header>
+
+        <section id="overview" class="content-section">
+            <h2 class="section-title">Visión General del Proyecto</h2>
+
+            <div class="highlight-box">
+                <p class="content-text"><strong>Objetivo:</strong> Eliminar cualquier punto de fuga de información
+                    en el proceso de resolución de dominios, asegurando privacidad y soberanía sobre los datos
+                    absolutas.</p>
+            </div>
+
+            <p class="content-text">Este sistema de privacidad de red End-to-End está diseñado para proteger por
+                completo las consultas DNS de un usuario. A diferencia de las soluciones estándar donde el ISP u
+                otros gigantes tecnológicos pueden registrar el historial de navegación, este sistema garantiza que
+                todas las consultas viajen cifradas desde el dispositivo móvil hasta un servidor bajo control total
+                del usuario.</p>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Android/Kotlin</span>
+                <span class="tech-tag secondary">DNS-over-HTTPS</span>
+                <span class="tech-tag warning">Ubuntu Server</span>
+                <span class="tech-tag">Nginx</span>
+                <span class="tech-tag secondary">Let's Encrypt</span>
+            </div>
+
+            <!-- Media placeholder: Overview diagram or hero image -->
+            <div class="media-placeholder">
+                <div class="media-content">
+                    <h4> Imagen/Video de Presentación</h4>
+                    <p>Aquí podría ir una imagen hero del sistema funcionando, captura de pantalla de la app, o un
+                        video corto de demostración.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2 class="section-title">Arquitectura del Sistema</h2>
+
+            <div class="architecture-diagram">
+                <div class="flow-step">Cliente Android</div>
+                <div class="flow-step">Túnel VPN Local</div>
+                <div class="flow-step">DoH Cifrado</div>
+                <div class="flow-step">Servidor Privado</div>
+                <div class="flow-step">Resolución DNS</div>
+            </div>
+
+
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4> Privacidad Total</h4>
+                    <p>Todas las consultas DNS viajan cifradas mediante HTTPS, siendo indistinguibles del tráfico
+                        web normal para el ISP.</p>
+                </div>
+                <div class="feature-card">
+                    <h4> Alto Rendimiento</h4>
+                    <p>Sistema de caché inteligente en el servidor que acelera drásticamente las consultas a
+                        dominios previamente visitados.</p>
+                </div>
+                <div class="feature-card">
+                    <h4> Seguridad Avanzada</h4>
+                    <p>Certificate Pinning y protección contra fugas DNS para máxima seguridad contra ataques MITM.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4> Control Granular</h4>
+                    <p>Interceptación selectiva solo del tráfico DNS (puerto 53), sin afectar el resto de
+                        conexiones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="client" class="content-section">
+            <h2 class="section-title">Cliente Android (Kotlin)</h2>
+
+            <p class="content-text">Aplicación nativa que utiliza la API VpnService de Android para crear un túnel
+                local y actuar como un filtro inteligente a nivel de dispositivo.</p>
+
+            <!-- Media placeholder: Android app screenshots -->
+            <div class="media-placeholder">
+                <div class="media-content">
+                    <h4> Capturas de Pantalla de la App</h4>
+                    <p>Screenshots de la interfaz de usuario, configuraciones, y estado de conexión de la aplicación
+                        Android.</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Características Técnicas Principales</h3>
+
+            <div class="subsection-subtitle">Interceptación de Tráfico a Bajo Nivel</div>
+            <p class="content-text">El servicio VPN establece una interfaz de red virtual que captura selectivamente
+                todo el tráfico destinado al puerto 53 (DNS). Lee los paquetes de red crudos directamente desde el
+                descriptor de fichero del túnel, manejándolos a nivel de ByteBuffer.</p>
+
+            <div class="subsection-subtitle">Análisis y Procesamiento de Paquetes</div>
+            <p class="content-text">Implementación de un PacketParser personalizado que analiza las cabeceras de
+                cada paquete para identificar su estructura (IP y UDP), permitiendo decisiones inteligentes sobre el
+                procesamiento del tráfico.</p>
+
+            <!-- Media placeholder: Code screenshot or diagram -->
+            <div class="media-placeholder">
+                <div class="media-content">
+                    <h3 class="subsection-title">Fragmento de Código</h3>
+
+                    <pre><code class="language-kotlin">
+// Kotlin - PacketParser
+data class UDPHeader(
+    val sourcePort: Int,
+    val destinationPort: Int,
+    val length: Int
+)
+
+object PacketParser {
+    fun parseIP4Header(buffer: ByteBuffer): IP4Header {
+        buffer.position(0)
+        val versionAndIHL = buffer.get().toInt()
+        val version = versionAndIHL shr 4
+        val headerLength = (versionAndIHL and 0x0F) * 4
+        buffer.position(2)
+        val totalLength = buffer.getShort().toInt() and 0xFFFF
+        buffer.position(9)
+        val protocol = buffer.get().toUByte()
+        val sourceAddressBytes = ByteArray(4)
+        buffer.position(12)
+        buffer.get(sourceAddressBytes)
+        val destinationAddressBytes = ByteArray(4)
+        buffer.position(16)
+        buffer.get(destinationAddressBytes)
+        buffer.position(headerLength)
+        return IP4Header(
+            version,
+            headerLength,
+            totalLength,
+            protocol,
+            InetAddress.getByAddress(sourceAddressBytes) as Inet4Address,
+            InetAddress.getByAddress(destinationAddressBytes) as Inet4Address
+        )
+    }
+
+    fun parseUDPHeader(buffer: ByteBuffer): UDPHeader {
+        val sourcePort = buffer.getShort().toInt() and 0xFFFF
+        val destinationPort = buffer.getShort().toInt() and 0xFFFF
+        val length = buffer.getShort().toInt() and 0xFFFF
+        buffer.position(buffer.position() + 2) // Skip checksum
+        return UDPHeader(sourcePort, destinationPort, length)
+    }
+}
+</code></pre>
+                </div>
+            </div>
+
+            <div class="subsection-subtitle">Resolución Segura con DoH</div>
+            <p class="content-text">Las consultas DNS estándar son extraídas del paquete UDP interceptado y
+                convertidas en peticiones seguras DNS-over-HTTPS. Se utiliza OkHttp configurado con
+                VpnService.protect() para prevenir bucles de red.</p>
+
+            <div class="subsection-subtitle">Construcción de Respuestas Sintéticas</div>
+            <p class="content-text">La aplicación construye manualmente paquetes de respuesta DNS desde cero,
+                ensamblándolos meticulosamente para que sean idénticos a una respuesta DNS estándar, conservando el
+                ID de transacción original.</p>
+            <pre><code class="language-kotlin">
+fun buildDnsResponse(queryPacket: ByteBuffer, ips: List&lt;String&gt;): ByteBuffer {
+    // 1. Parsear headers originales
+    val originalIpHeader = PacketParser.parseIP4Header(queryPacket)
+    val originalUdpHeader = PacketParser.parseUDPHeader(queryPacket)
+    val queryDnsData = ByteArray(queryPacket.remaining())
+    queryPacket.get(queryDnsData)
+
+    // 2. Copiar ID de transacción y construir respuesta DNS cruda
+    val queryPayload = ByteBuffer.wrap(queryDnsData)
+    val responseBuffer = ByteBuffer.allocate(4096)
+    val originalId = queryPayload.getShort(0)
+    responseBuffer.putShort(originalId)         // ID original
+    responseBuffer.putShort(0x8180.toShort())   // Flags estándar de respuesta
+    responseBuffer.putShort(1)                  // QDCOUNT
+    responseBuffer.putShort(ips.size.toShort()) // ANCOUNT
+    responseBuffer.putShort(0)                  // NSCOUNT
+    responseBuffer.putShort(0)                  // ARCOUNT
+
+    // 3. Copiar sección de pregunta
+    // (saltamos parsing por brevedad)
+
+    // 4. Construir sección de respuesta con IP(s)
+    ips.forEach { ip ->
+        responseBuffer.put(0xC0.toByte())       // Pointer a QNAME
+        responseBuffer.put(12)                  // Offset a QNAME
+        responseBuffer.putShort(1)              // TYPE A
+        responseBuffer.putShort(1)              // CLASS IN
+        responseBuffer.putInt(60)               // TTL
+        responseBuffer.putShort(4)              // Longitud de RDATA
+        ip.split('.').forEach { part ->
+            responseBuffer.put(part.toInt().toByte())
+        }
+    }
+
+    // 5. Empaquetar dentro de UDP + IP y devolver
+    return packageUdpAndIp(responseBuffer, originalIpHeader, originalUdpHeader)
+}
+</code></pre>
+
+            <h3 class="subsection-title">Características de Seguridad Avanzadas</h3>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4> Certificate Pinning</h4>
+                    <p>Anclaje de certificados con verificación SHA-256 para máxima protección contra ataques
+                        Man-in-the-Middle.</p>
+                </div>
+                <div class="feature-card">
+                    <h4> Protección Anti-Fugas</h4>
+                    <p>Bloqueo activo de consultas a servidores DNS públicos conocidos, forzando el 100% del tráfico
+                        por el túnel seguro.</p>
+                </div>
+            </div>
+        </section>
+        <section id="server" class="content-section">
+            <h2 class="section-title">Implementación Real en el Servidor</h2>
+            <p class="content-text">
+                A continuación se muestran fragmentos reales capturados durante el despliegue del servidor DoH en
+                Ubuntu Server.
+                Reflejan la configuración activa de Nginx, certificados TLS emitidos por Let's Encrypt y el estado
+                funcional del sistema.
+            </p>
+
+            <div class="gallery-grid">
+                <figure>
+                    <img src="./assets/images/def_server.png" alt="Configuración Nginx para DoH" class="zoomable">
+                    <figcaption>Archivo de configuración de Nginx redirigiendo el endpoint <code>/dns-query</code>
+                        hacia el backend DoH.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="./assets/images/certs.png" alt="Certificados Let's Encrypt" class="zoomable">
+                    <figcaption>Certificados SSL activos emitidos por Let's Encrypt para el dominio del servidor.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="./assets/images/nginx.png" alt="Estado de Nginx activo" class="zoomable">
+                    <figcaption>Servicio Nginx activo y corriendo correctamente en el servidor.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="./assets/images/access_log.png" alt="Logs de peticiones DoH" class="zoomable">
+                    <figcaption>Logs en tiempo real del servidor mostrando peticiones DNS cifradas desde el cliente
+                        Android.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="./assets/images/port-443.png" alt="Puerto 443 abierto en el VPS" class="zoomable">
+                    <figcaption>El puerto 443/TCP abierto, escuchando conexiones HTTPS para el endpoint DoH.
+                    </figcaption>
+                </figure>
+            </div>
+            <br>
+            <p>Pulse en las imágenes para verlas al completo.</p>
+        </section>
+
+
+        <h3 class="subsection-title">Componentes del Servidor</h3>
+
+        <div class="subsection-subtitle">Nginx - Servidor Web y Proxy Inverso</div>
+        <p class="content-text">Actúa como puerta de entrada pública gestionando todo el tráfico HTTPS entrante
+            y terminando las conexiones TLS para "desenvolver" el cifrado de las peticiones DoH.</p>
+
+        <div class="subsection-subtitle">Let's Encrypt - Seguridad y Cifrado</div>
+        <p class="content-text">Certificado SSL/TLS gratuito y reconocido universalmente que asegura la
+            autenticidad y el cifrado del servidor.</p>
+
+        <h3 class="subsection-title">Desafíos Técnicos Superados</h3>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4>🔧 Manipulación de Paquetes</h4>
+                <p>Parsing y construcción manual de paquetes IP/UDP/DNS sin librerías externas.</p>
+            </div>
+            <div class="feature-card">
+                <h4> Prevención de Bucles</h4>
+                <p>Configuración cuidadosa para evitar que las peticiones DoH entren en bucle infinito.</p>
+            </div>
+            <div class="feature-card">
+                <h4>⏱ Gestión de Timeouts</h4>
+                <p>Manejo robusto de timeouts y reconexiones para mantener la estabilidad.</p>
+            </div>
+            <div class="feature-card">
+                <h4> Seguridad SSL</h4>
+                <p>Implementación correcta de certificate pinning y validación de certificados.</p>
+            </div>
+        </div>
+        </section>
+
+
+        <section id="skills" class="content-section">
+            <h2 class="section-title">Habilidades y Logros Demostrados</h2>
+
+            <p class="content-text">Este proyecto demuestra un conjunto completo de habilidades que abarcan
+                múltiples disciplinas de la ingeniería de software:</p>
+
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h4>Desarrollo Android Nativo Avanzado</h4>
+                    <p>Dominio de VpnService, gestión de servicios en primer plano, multithreading, OkHttp y diseño
+                        UI/UX con Material Design.</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Ingeniería de Red y Protocolos</h4>
+                    <p>Comprensión y manipulación práctica de protocolos de bajo nivel IP, UDP, DNS, HTTPS y TLS.
+                    </p>
+                </div>
+                <div class="skill-item">
+                    <h4>Ciberseguridad Aplicada</h4>
+                    <p>Implementación de Certificate Pinning para prevenir ataques MITM y protección contra fugas de
+                        DNS.</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Administración de Sistemas Linux</h4>
+                    <p>Despliegue y configuración de servicios en Ubuntu Server: Nginx y gestión de certificados
+                        Let's Encrypt.</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Arquitectura de Software</h4>
+                    <p>Diseño de sistemas cliente-servidor complejos con separación clara de responsabilidades y
+                        resolución de problemas arquitectónicos.</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Documentación Técnica</h4>
+                    <p>Capacidad para documentar y explicar sistemas complejos de forma clara, estructurada y
+                        profesional.</p>
+                </div>
+            </div>
+
+            <!-- Media placeholder: Skills demonstration -->
+            <div class="media-placeholder">
+                <div class="media-content">
+                    <h4> Certificaciones y Logros</h4>
+                    <p>Capturas de certificaciones relevantes, badges, o reconocimientos relacionados con las
+                        tecnologías utilizadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer-note">
+            <h3>Sobre esta App</h3>
+            <div class="info-card">
+                <p>
+                    Este proyecto fue desarrollado durante mis prácticas profesionales. La solución presentada
+                    refleja el trabajo que diseñé y ejecuté directamente: desde la arquitectura inicial hasta la
+                    implementación funcional.
+                    <br><br>
+                    Cabe destacar que, como es habitual en entornos corporativos, la empresa pudo haber realizado
+                    ajustes posteriores. Lo aquí mostrado representa la versión funcional entregada durante mi
+                    participación.
+                </p>
+            </div>
+        </footer>
+    </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', () => {
+                const viewer = window.open(img.src, '_blank');
+                viewer.focus();
+            });
+        });
+
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Auto-close sidebar on mobile when clicking outside
+        document.addEventListener('click', function (event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+
+            if (window.innerWidth <= 768 &&
+                !sidebar.contains(event.target) &&
+                !menuBtn.contains(event.target) &&
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Update active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
