@@ -87,14 +87,14 @@ class SeriousModeManager {
 
     toggleMode(isSerious) {
         this.isSerious = isSerious;
-        
+
         if (isSerious) {
             this.saveOriginalContent();
             this.loadSeriousMode();
         } else {
             this.restoreOriginalContent();
         }
-        
+
         document.body.classList.toggle('serious-mode', isSerious);
     }
 
@@ -106,7 +106,7 @@ class SeriousModeManager {
             bodyClass: document.body.className.replace(' serious-mode', ''), // Excluir la clase serious-mode
             headContent: this.getHeadStylesSnapshot()
         };
-        
+
         // Guardar scripts originales si es necesario
         this.saveOriginalScripts();
     }
@@ -134,15 +134,20 @@ class SeriousModeManager {
     loadSeriousMode() {
         // Cargar estilos del modo serio
         this.loadSeriousCSS();
-        
+
         // Cambiar título
         document.title = "Daniel Sardina - Software Developer";
-        
+
         // Reemplazar contenido
         const mainArea = document.querySelector('.main-content-area');
         if (mainArea) {
             mainArea.innerHTML = this.seriousContentHTML;
-            
+            document.querySelectorAll('h2').forEach(el => {
+                el.style.fontFamily = 'Poppins, sans-serif'
+                el.style.fontStyle = 'italic';
+            });
+
+
             // Agregar event listeners para el nuevo contenido
             this.attachSeriousEventListeners();
         }
@@ -171,7 +176,7 @@ class SeriousModeManager {
     scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);
         if (element) {
-            element.scrollIntoView({ 
+            element.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -180,16 +185,16 @@ class SeriousModeManager {
 
     handleContactForm(event) {
         event.preventDefault();
-        
+
         const formData = new FormData(event.target);
         const data = {
             name: formData.get('name'),
             email: formData.get('email'),
             message: formData.get('message')
         };
-        
+
         console.log('Contact form data:', data);
-        
+
         // Mostrar mensaje de confirmación
         alert('Thank you for your message! I\'ll get back to you soon.');
         event.target.reset();
@@ -199,18 +204,18 @@ class SeriousModeManager {
         if (this.originalContent) {
             // Remover estilos del modo serio
             this.removeSeriousCSS();
-            
+
             // Restaurar título y contenido
             document.title = this.originalContent.title;
-            
+
             const mainArea = document.querySelector('.main-content-area');
             if (mainArea) {
                 mainArea.innerHTML = this.originalContent.mainContent;
             }
-            
+
             // Restaurar clases del body (sin serious-mode)
             document.body.className = this.originalContent.bodyClass;
-            
+
             // Recargar scripts originales si es necesario
             this.reloadOriginalScripts();
         }
@@ -219,7 +224,7 @@ class SeriousModeManager {
     reloadOriginalScripts() {
         // Aquí puedes recargar los scripts del modo original si es necesario
         // Por ejemplo, si tienes animaciones o funcionalidades específicas
-        
+
         // Ejemplo de cómo podrías recargar un script:
         /*
         this.originalScripts.forEach(scriptInfo => {
@@ -230,7 +235,7 @@ class SeriousModeManager {
             }
         });
         */
-        
+
         // Si tienes funciones específicas del modo original que necesitas reinicializar:
         this.reinitializeOriginalMode();
     }
@@ -238,14 +243,14 @@ class SeriousModeManager {
     reinitializeOriginalMode() {
         // Aquí puedes reinicializar cualquier funcionalidad del modo original
         // Por ejemplo, si tienes animaciones, event listeners específicos, etc.
-        
+
         // Ejemplo:
         /*
         if (window.initOriginalAnimations) {
             window.initOriginalAnimations();
         }
         */
-        
+
         // Disparar un evento personalizado para que otros scripts sepan que se restauró el modo original
         const event = new CustomEvent('originalModeRestored', {
             detail: { timestamp: Date.now() }
@@ -257,7 +262,7 @@ class SeriousModeManager {
     destroy() {
         this.removeSeriousCSS();
         this.restoreOriginalContent();
-        
+
         const toggle = document.getElementById('serious-mode-toggle');
         if (toggle) {
             toggle.removeEventListener('change', this.toggleMode);

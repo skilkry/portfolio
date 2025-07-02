@@ -3,113 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FocusFlow Timer</title>
-    <link rel="stylesheet" href="./style.css"> <!-- Usaremos main.css compilado -->
-    <meta name="description" content="Temporizador flexible (Pomodoro) para mejorar la concentración y productividad.">
-    <!-- Favicon (ejemplo) -->
-    <!-- <link rel="icon" href="assets/icons/favicon.ico"> -->
+    <title>FocusFlow Timer Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Timer de productividad avanzado con análisis en tiempo real y personalización completa.">
+    <meta name="theme-color" content="#667eea">
+     <script src="https://kit.fontawesome.com/699afbb322.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <svg style="display: none;">
+        <defs>
+            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#667eea"/>
+                <stop offset="100%" style="stop-color:#764ba2"/>
+            </linearGradient>
+        </defs>
+    </svg>
 
     <header class="app-header">
-        <h1>FocusFlow Timer</h1>
-        <button id="settings-button" aria-label="Abrir configuración">⚙️</button>
+        <h1>FocusFlow Timer 🐾</h1>
+        <div class="header-actions">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema"><i class="fa-solid fa-sun"></i></button>
+            <button id="settings-button" class="settings-button" aria-label="Abrir configuración" title="Configuración"><i class="fa-solid fa-gear"></i></button>
+        </div>
     </header>
 
-    <main class="timer-container">
-        <div class="timer-display">
-            <span id="timer-mode">Focus</span>
-            <span id="timer-time">25:00</span>
-        </div>
-        <div class="timer-controls">
-            <button id="start-pause-button">Start</button>
-            <button id="reset-button">Reset</button>
-            <button id="skip-button">Skip</button>
-        </div>
-        <div class="cycle-tracker">
-            <span>Ciclos completados: <span id="cycle-count">0</span></span>
+    <main class="main-container">
+        <section class="timer-section">
+            <div class="timer-circle-container">
+                <div class="timer-circle" id="timer-circle">
+                    <svg class="progress-ring" width="320" height="320">
+                        <circle class="progress-ring-background" cx="160" cy="160" r="152"></circle>
+                        <circle class="progress-ring-progress" id="progress-ring" cx="160" cy="160" r="152"></circle>
+                    </svg>
+                    <div class="timer-time" id="timer-time">25:00</div>
+                    <div class="timer-mode focus" id="timer-mode">Focus</div>
+                </div>
+            </div>
+            
+            <div class="timer-controls">
+                <button id="start-pause-button" class="control-button start-button">Start</button>
+                <button id="reset-button" class="control-button secondary-button">Reset</button>
+                <button id="skip-button" class="control-button secondary-button">Skip</button>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="cycle-count">0</div>
+                <div class="stat-label">Ciclos Completados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="focus-time">0h 0m</div>
+                <div class="stat-label">Tiempo Total Focus</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="productivity-score">0%</div>
+                <div class="stat-label">Score Productividad</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="streak-count">0</div>
+                <div class="stat-label">Racha Actual</div>
+            </div>
+        </section>
+
+        <div class="productivity-chart" id="productivity-chart">
+            <canvas id="chart-canvas" width="100%" height="100%"></canvas>
         </div>
     </main>
 
-    <section id="settings-modal" class="modal" hidden>
+    <section id="settings-modal" class="modal" role="dialog" aria-labelledby="settings-title">
         <div class="modal-content">
-            <h2>Configuración</h2>
             <button id="close-settings-button" class="close-button" aria-label="Cerrar configuración">&times;</button>
+            <h2 id="settings-title"> Configuración Avanzada</h2>
+            
             <form id="settings-form">
-                <label for="focus-duration">Duración Focus (min):</label>
-                <input type="number" id="focus-duration" min="1" value="25">
-
-                <label for="short-break-duration">Descanso Corto (min):</label>
-                <input type="number" id="short-break-duration" min="1" value="5">
-
-                <label for="long-break-duration">Descanso Largo (min):</label>
-                <input type="number" id="long-break-duration" min="1" value="15">
-
-                <label for="cycles-before-long-break">Ciclos para Descanso Largo:</label>
-                <input type="number" id="cycles-before-long-break" min="1" value="4">
-
-                <label for="enable-sound">Activar sonido:</label>
-                <input type="checkbox" id="enable-sound">
-
-                <hr> <!-- Separador visual -->
-
-                <!-- Color Customization Mode Selector -->
-                <div class="settings-color-mode">
-                    <label>Modo de Personalización de Color:</label>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="color-mode" value="simple" checked> Simple
-                        </label>
-                        <label>
-                            <input type="radio" name="color-mode" value="advanced"> Avanzado
-                        </label>
-                    </div>
+                <div class="form-group">
+                    <label for="focus-duration"> Duración Focus (min):</label>
+                    <input type="number" id="focus-duration" min="1" max="120" value="25" required>
                 </div>
 
-                <!-- Simple Color Settings (Visible when simple mode is active) -->
-                <div id="simple-color-settings" class="color-settings-group">
-                    <label for="simple-primary-color-picker">Color Principal:</label>
-                    <div class="color-input-group">
-                        <input type="color" id="simple-primary-color-picker" value="#4a90e2">
-                        <span>Elige un color y la app ajustará el resto para asegurar buena legibilidad.</span>
-                    </div>
+                <div class="form-group">
+                    <label for="short-break-duration"> Descanso Corto (min):</label>
+                    <input type="number" id="short-break-duration" min="1" max="60" value="5" required>
                 </div>
 
-                <!-- Advanced Color Settings (Visible when advanced mode is active) -->
-                <div id="advanced-color-settings" class="color-settings-group" hidden>
-                    <label>Colores Específicos:</label>
-                    <div class="color-inputs-advanced">
-                        <div class="color-input-group">
-                            <label for="adv-primary-color-picker">Primario:</label>
-                            <input type="color" id="adv-primary-color-picker" value="#4a90e2">
-                        </div>
-                        <div class="color-input-group">
-                            <label for="adv-background-color-picker">Fondo:</label>
-                            <input type="color" id="adv-background-color-picker" value="#f8f9fa">
-                        </div>
-                        <div class="color-input-group">
-                            <label for="adv-text-color-picker">Texto:</label>
-                            <input type="color" id="adv-text-color-picker" value="#343a40">
-                        </div>
-                         <!-- Podríamos añadir más aquí: secundario, fondo focus, fondo break, etc. -->
-                    </div>
+                <div class="form-group">
+                    <label for="long-break-duration"> Descanso Largo (min):</label>
+                    <input type="number" id="long-break-duration" min="1" max="120" value="15" required>
                 </div>
 
-                <button type="submit">Guardar</button> 
+                <div class="form-group">
+                    <label for="cycles-before-long-break"> Ciclos para Descanso Largo:</label>
+                    <input type="number" id="cycles-before-long-break" min="1" max="10" value="4" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="auto-start-breaks">Auto-iniciar descansos:</label>
+                    <select id="auto-start-breaks">
+                        <option value="false">Manual</option>
+                        <option value="true">Automático</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="notification-sound">Sonido de notificación:</label>
+                    <select id="notification-sound">
+                        <option value="none">Sin sonido</option>
+                        <option value="bell">Campana</option>
+                        <option value="chime">Campanita</option>
+                        <option value="notification">Notificación</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="enable-notifications">
+                    <label for="enable-notifications"> Notificaciones del navegador</label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="enable-vibration">
+                    <label for="enable-vibration">Vibración (móvil)</label>
+                </div>
+
+                <button type="submit" class="submit-button">Guardar Configuración</button>
             </form>
         </div>
     </section>
 
+    <div id="toast-container" class="toast-container" style="text-align: center; margin-right: 220px;"></div>
+
     <footer class="app-footer">
-        <p>Made w ❤️ by Skilkry</p>
+        <p>Made w 🫶 by Skilkry</p>
     </footer>
-
-    <!-- Scripts -->
-    <script src="./js/settings.js"></script>
-    <script src="./js/timer.js"></script>
-    <script src="./js/ui.js"></script>
-    <script src="./js/notifications.js"></script>
-    <script src="./js/main.js"></script>
-
+<script src="./js/main.js"></script>
 </body>
 </html>
