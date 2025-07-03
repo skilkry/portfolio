@@ -15,6 +15,9 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 print('Token:', TELEGRAM_TOKEN)
 print('Chat ID:', TELEGRAM_CHAT_ID)
 
+@app.route('/', methods=['GET'])
+def health_check():
+    return 'OK', 200
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
