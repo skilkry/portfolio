@@ -322,3 +322,55 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeInteractiveTutorial();
 
 });
+
+require('dotenv').config();
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const fetch = require('node-fetch');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+
+app.post('/api/contact', async (req, res) => {
+  const { name, email, message, subject } = req.body;
+
+  // Validación básica
+  if (
+    typeof name !== 'string' || name.length < 1 || name.length > 100 ||
+    typeof email !== 'string' || email.length < 3 || email.length > 100 ||
+    typeof message !== 'string' || message.length < 1 || message.length > 1000
+  ) {
+    return res.status(400).json({ error: 'Datos inválidos.' });
+  }
+
+  const text = `📩 *Nuevo mensaje desde tu portfolio:*\n\n*Asunto:* ${subject || 'Sin asunto'}\n👤 *Nombre:* ${name}\n📧 *Email:* ${email}\n📝 *Mensaje:* ${message}`;
+
+  try {
+    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text,
+        parse_mode: 'Markdown'
+      })
+    });
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error('Error al enviar a Telegram:', err);
+    res.status(500).json({ error: 'Error interno.' });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Backend corriendo en http://localhost:${PORT}`);
+});
