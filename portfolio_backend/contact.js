@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       message: form.message.value.trim(),
-      subject: "Formulario contacto"
+      subject: "Por terminar."
     };
 
     if (!data.name || !data.email || !data.message) {
@@ -17,20 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/contact', {
+      const response = await fetch('https://portfolio-backend-ytqn.onrender.com/api/contact', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
       });
 
       if (response.ok) {
-        alert('✅ Mensaje enviado correctamente.');
+        alert('Se ha enviado su mensaje\nEspere su respuesta!');
         form.reset();
       } else {
-        alert('❌ Error al enviar el mensaje.');
+        alert('Error al enviar el mensaje.');
       }
     } catch (error) {
-      alert('❌ No se pudo conectar con el servidor.');
+      alert('No se pudo conectar con el servidor.');
       console.error(error);
     }
   });
